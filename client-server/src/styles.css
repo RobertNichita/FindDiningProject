@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+.nav {
+  background-color: #333;
+  z-index: 500;
+  position: fixed;
+  padding: 7px;
+  top: 0;
+  width: 100%;
+}
+
+.nav-item {
+  transition: background-color 0.5s;
+}
+
+.nav-link {
+  font-size: 15px;
+  color: white;
+}
+
+.nav-link:hover {
+  color: black;
+}
+
+.active {
+  color: #ccc;
+}
