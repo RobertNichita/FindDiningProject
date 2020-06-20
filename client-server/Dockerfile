@@ -19,7 +19,14 @@ RUN npm install -g @angular/cli@9.1.9
 
 # add app
 COPY . /app
+RUN npm install -g @fortawesome/fontawesome-svg-core
+RUN npm install -g @fortawesome/free-solid-svg-icons
+RUN npm install -g @fortawesome/angular-fontawesome
+RUN npm install -g @fortawesome/free-brands-svg-icons
+RUN npm install -g @fortawesome/free-regular-svg-icons
+
 RUN npm install -g bootstrap
+RUN npm install -g ngx-bootstrap
 
 # start app
 CMD ng serve --host 0.0.0.0
