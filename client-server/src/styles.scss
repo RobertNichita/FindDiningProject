@@ -1,27 +1,23 @@
-$primary-color: #333;
+$primary-color: rgb(155, 50, 50);
+$link-color: rgb(0, 0, 0);
 
-.nav {
+.navbar {
   background-color: $primary-color;
-  z-index: 500;
-  position: fixed;
-  padding: 7px;
-  top: 0;
-  width: 100%;
 }
 
-.nav-item {
-  transition: background-color 0.5s;
+.navbar-brand {
+  color: white;
 }
 
 .nav-link {
   font-size: 15px;
-  color: white;
+  color: #ccc;
 }
 
 .nav-link:hover {
-  color: black;
+  color: white;
 }
 
 .active {
-  color: #ccc;
+  color: white;
 }
