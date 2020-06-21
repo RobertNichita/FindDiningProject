@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StarRatingComponent } from 'ng-starrating';
+import dishes from '../../assets/data/dishes.json';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  totalStars: number = 5;
+  dishes: any[];
+
+  constructor() {
+    this.dishes = dishes;
+  }
 
   ngOnInit(): void {}
 }
