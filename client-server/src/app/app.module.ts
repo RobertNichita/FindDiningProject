@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { IvyCarouselModule } from './components/carousel/carousel.module';
+import { DishCardComponent } from './components/dish-card/dish-card.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 import { RatingModule } from 'ng-starrating';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -14,7 +15,13 @@ import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SignupComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    SignupComponent,
+    DishCardComponent,
+    CarouselComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,7 +29,6 @@ import { SignupComponent } from './signup/signup.component';
     FontAwesomeModule,
     RatingModule,
     DragScrollModule,
-    IvyCarouselModule,
     CarouselModule.forRoot(),
   ],
   providers: [],

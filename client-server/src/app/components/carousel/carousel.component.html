@@ -8,7 +8,9 @@
     <ng-template ngFor let-image [ngForOf]="images" let-i="index">
       <div
         class="carousel-cell"
-        *ngIf="i < cellLimit"
+        *ngIf="
+          i < cellLimit && getFile(i) && getFile(i)['image']['type'] === 'image'
+        "
         [style.width]="getCellWidth() + 'px'"
         [style.border-radius]="borderRadius + 'px'"
       >
@@ -18,8 +20,17 @@
           [style.object-fit]="objectFit"
           draggable="false"
         />
-        <div class="bottomleft">{{ getFile(i)["image"]["caption"] }}</div>
-        <div class="center">{{ getFile(i)["image"]["title"] }}</div>
+        <div *ngIf="getFile(i)['image']['caption']" class="bottomleft">
+          {{ getFile(i)["image"]["caption"] }}
+        </div>
+      </div>
+      <div
+        class="carousel-cell carousel-cell-cards"
+        *ngIf="getFile(i) && getFile(i)['image']['type'] === 'dish'"
+        [style.width]="getCellWidth() + 'px'"
+        [style.border-radius]="borderRadius + 'px'"
+      >
+        <app-dish-card [dish]="getFile(i)['image']"></app-dish-card>
       </div>
     </ng-template>
   </div>

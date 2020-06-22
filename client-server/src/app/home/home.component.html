@@ -89,35 +89,17 @@
   </slide>
 </carousel>
 
-<div class="bg1">
+<div class="bg1 cuisine-carousel">
   <h2 class="heading">Specials</h2>
-  <drag-scroll
-    class="cardFrame"
-    [scrollbar-hidden]="true"
-    [drag-scroll-y-disabled]="true"
+  <ivy-carousel
+    [images]="dishes"
+    [margin]="30"
+    [arrowsOutside]="true"
+    [borderRadius]="20"
+    [cellWidth]="300"
+    [height]="400"
   >
-    <div *ngFor="let dish of dishes" class="card cardBox drag-scroll-item">
-      <img src="{{ dish.image }}" class="card-img-top" alt="{{ dish.name }}" />
-      <div class="card-body">
-        <div class="row">
-          <div class="col">
-            <h5 class="card-title">{{ dish.name }}</h5>
-            <p class="card-text">
-              <star-rating
-                value="{{ dish.rating }}"
-                totalstars="{{ totalStars }}"
-                checkedcolor="gold"
-                uncheckedcolor="grey"
-                size="24px"
-                readonly="true"
-              ></star-rating>
-            </p>
-          </div>
-          <a href="#" class="btn">View dish</a>
-        </div>
-      </div>
-    </div>
-  </drag-scroll>
+  </ivy-carousel>
 </div>
 
 <div class="bg2">

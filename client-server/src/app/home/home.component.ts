@@ -22,13 +22,37 @@ export class HomeComponent implements OnInit {
   stories: any[];
 
   cuisines = [
-    { path: 'assets/images/cuisines/chinese.png', caption: 'Chinese' },
-    { path: 'assets/images/cuisines/greek.jpg', caption: 'Greek' },
-    { path: 'assets/images/cuisines/indian.jpg', caption: 'Indian' },
-    { path: 'assets/images/cuisines/italian.png', caption: 'Italian' },
-    { path: 'assets/images/cuisines/japanese.jpg', caption: 'Japanese' },
-    { path: 'assets/images/cuisines/thai.jpg', caption: 'Thai' },
-    { path: 'assets/images/cuisines/vietnamese.jpg', caption: 'Vietnamese' },
+    {
+      type: 'image',
+      path: 'assets/images/cuisines/chinese.png',
+      caption: 'Chinese',
+    },
+    {
+      type: 'image',
+      path: 'assets/images/cuisines/greek.jpg',
+      caption: 'Greek',
+    },
+    {
+      type: 'image',
+      path: 'assets/images/cuisines/indian.jpg',
+      caption: 'Indian',
+    },
+    {
+      type: 'image',
+      path: 'assets/images/cuisines/italian.png',
+      caption: 'Italian',
+    },
+    {
+      type: 'image',
+      path: 'assets/images/cuisines/japanese.jpg',
+      caption: 'Japanese',
+    },
+    { type: 'image', path: 'assets/images/cuisines/thai.jpg', caption: 'Thai' },
+    {
+      type: 'image',
+      path: 'assets/images/cuisines/vietnamese.jpg',
+      caption: 'Vietnamese',
+    },
   ];
 
   constructor() {

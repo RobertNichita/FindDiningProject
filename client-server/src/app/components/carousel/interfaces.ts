@@ -1,8 +1,8 @@
 export interface Images {
   [index: number]: {
+    type: string;
     path: string;
     caption: string;
-    link: string;
     width?: number;
     height?: number;
     //type?: 'image' | 'video'
@@ -10,9 +10,9 @@ export interface Images {
 }
 
 export interface Image {
+  type: string;
   path: string;
   caption: string;
-  link: string;
   width?: number;
   height?: number;
 }

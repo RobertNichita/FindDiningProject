@@ -57,6 +57,7 @@ export class CarouselComponent implements OnDestroy {
   @Input()
   set images(images: Images & any) {
     this._images = images;
+    console.log(images);
   }
   get images() {
     return this._images;
@@ -184,6 +185,7 @@ export class CarouselComponent implements OnDestroy {
   }
 
   getFile(index) {
+    console.log(this.carousel.getFile(index));
     return this.carousel.getFile(index);
   }
 
