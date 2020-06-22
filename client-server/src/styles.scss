@@ -1,27 +1,8 @@
 $primary-color: rgb(155, 50, 50);
 $secondary-color: rgb(189, 96, 96);
-$link-color: rgb(0, 0, 0);
 
-.navbar {
-  background-color: $primary-color;
-}
-
-.navbar-brand {
-  color: white;
-}
-
-.nav-link {
-  font-size: 15px;
-  color: #ccc;
-}
-
-.nav-link:hover {
-  color: white;
-}
-
-.active {
-  color: white;
-}
+$navigation-color: white;
+$navigation-accent-color: #ccc;
 
 html,
 body {
@@ -30,4 +11,45 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+fa-icon {
+  color: white;
+  font-size: 25px;
+  margin: 0 10px;
+}
+
+.navbar {
+  background-color: $primary-color;
+}
+
+.navbar-brand {
+  font-family: "Alegreya Sans SC", sans-serif;
+  font-size: 35px;
+  margin-left: 10px;
+  color: $navigation-color;
+}
+
+.navbar-brand:hover {
+  color: $navigation-accent-color;
+}
+
+.nav-link {
+  font-size: 15px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  color: $navigation-color;
+  margin: 0 10px;
+}
+
+.nav-link:hover {
+  color: $navigation-accent-color;
+}
+
+.active {
+  color: $navigation-accent-color;
+}
+
+.search {
+  border-radius: 40px;
 }
