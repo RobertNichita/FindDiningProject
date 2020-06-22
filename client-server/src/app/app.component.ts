@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { faSearch, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faFacebookSquare,
+  faTwitter,
+  faInstagram,
+} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +15,7 @@ export class AppComponent {
   title = 'client-server';
   faSearch = faSearch;
   faUserCircle = faUserCircle;
+  faFacebook = faFacebookSquare;
+  faTwitter = faTwitter;
+  faInstagram = faInstagram;
 }

@@ -2,6 +2,14 @@
 
 $box-border-shadow-color: rgb(175, 175, 175);
 
+.bg1 {
+  background-color: $background-color1;
+}
+
+.bg2 {
+  background-color: $background-color2;
+}
+
 .carousel-images {
   display: block;
   width: 100%;
