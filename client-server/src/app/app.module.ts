@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IvyCarouselModule } from './components/carousel/carousel.module';
 import { RatingModule } from 'ng-starrating';
 import { DragScrollModule } from 'ngx-drag-scroll';
-// import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +23,7 @@ import { SignupComponent } from './signup/signup.component';
     RatingModule,
     DragScrollModule,
     IvyCarouselModule,
-    //CarouselModule.forRoot(),
+    CarouselModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

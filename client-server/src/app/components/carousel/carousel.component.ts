@@ -16,8 +16,8 @@ import { Touches } from './touches';
 import { Carousel } from './carousel';
 
 @Component({
-  selector: 'carousel, [carousel]',
-  exportAs: 'carousel',
+  selector: 'ivy-carousel, [ivy-carousel]',
+  exportAs: 'ivy-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.sass'],
 })

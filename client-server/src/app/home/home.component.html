@@ -53,7 +53,7 @@
   </div>
 </div>
 
-<!-- <carousel [isAnimated]="true">
+<carousel [isAnimated]="true" [interval]="5000">
   <slide>
     <img
       src="assets/images/food/fastfood.jpg"
@@ -87,7 +87,7 @@
       <p>Keep your healthy habits in check!</p>
     </div>
   </slide>
-</carousel> -->
+</carousel>
 
 <div class="bg1">
   <h2 class="heading">Specials</h2>
@@ -153,14 +153,14 @@
 </div>
 
 <div class="bg1 cuisine-carousel">
-  <carousel
+  <ivy-carousel
     [images]="cuisines"
     [margin]="20"
     [arrowsOutside]="true"
     [borderRadius]="20"
     [cellWidth]="300"
   >
-  </carousel>
+  </ivy-carousel>
 </div>
 
 <button *ngIf="isShow" class="scroll-top-btn" (click)="gotoTop()">
