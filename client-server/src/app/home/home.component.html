@@ -89,49 +89,34 @@
   </slide>
 </carousel>
 
-<div class="bg1 cuisine-carousel">
-  <h2 class="heading">Specials</h2>
-  <ivy-carousel
-    [images]="dishes"
-    [margin]="30"
-    [arrowsOutside]="true"
-    [borderRadius]="20"
-    [cellWidth]="300"
-    [height]="400"
-  >
-  </ivy-carousel>
+<div class="bg1">
+  <div class="cuisine-carousel">
+    <h2 class="heading">Specials</h2>
+    <ivy-carousel
+      [images]="dishes"
+      [margin]="30"
+      [arrowsOutside]="true"
+      [borderRadius]="20"
+      [cellWidth]="300"
+      [height]="400"
+    >
+    </ivy-carousel>
+  </div>
 </div>
 
 <div class="bg2">
-  <h2 class="heading">Stories</h2>
-  <drag-scroll
-    class="cardFrame"
-    [scrollbar-hidden]="true"
-    [drag-scroll-y-disabled]="true"
-    style="height: 400px;"
-  >
-    <div
-      *ngFor="let story of stories"
-      class="card cardBox drag-scroll-item"
-      style="height: 350px;"
+  <div class="cuisine-carousel">
+    <h2 class="heading">Stories</h2>
+    <ivy-carousel
+      [images]="stories"
+      [margin]="30"
+      [arrowsOutside]="true"
+      [borderRadius]="20"
+      [cellWidth]="500"
+      [height]="400"
     >
-      <img
-        src="{{ story.profile_pic }}"
-        class="card-img-top"
-        alt="{{ story.name }}"
-        style="height: 175px;"
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{ story.name }}</h5>
-        <p class="card-text" style="font-size: 13px;">
-          {{ story.bio }}
-        </p>
-        <a href="#" class="btn" style="width: 100%; margin: 0;">
-          Visit {{ story.restaurant }}
-        </a>
-      </div>
-    </div>
-  </drag-scroll>
+    </ivy-carousel>
+  </div>
 </div>
 
 <div class="bg1 cuisine-carousel">

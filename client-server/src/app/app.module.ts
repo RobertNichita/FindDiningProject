@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DishCardComponent } from './components/dish-card/dish-card.component';
+import { OwnerCardComponent } from './components/owner-card/owner-card.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { RatingModule } from 'ng-starrating';
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -20,6 +21,7 @@ import { SignupComponent } from './signup/signup.component';
     HomeComponent,
     SignupComponent,
     DishCardComponent,
+    OwnerCardComponent,
     CarouselComponent,
   ],
   imports: [

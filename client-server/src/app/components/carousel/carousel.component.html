@@ -32,6 +32,15 @@
       >
         <app-dish-card [dish]="getFile(i)['image']"></app-dish-card>
       </div>
+
+      <div
+        class="carousel-cell carousel-cell-cards"
+        *ngIf="getFile(i) && getFile(i)['image']['type'] === 'story'"
+        [style.width]="getCellWidth() + 'px'"
+        [style.border-radius]="borderRadius + 'px'"
+      >
+        <app-owner-card [story]="getFile(i)['image']"></app-owner-card>
+      </div>
     </ng-template>
   </div>
 </div>
