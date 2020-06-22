@@ -2,14 +2,18 @@
 
 $box-border-shadow-color: rgb(175, 175, 175);
 
+h2 {
+  font-family: "Alegreya Sans SC", sans-serif;
+}
+
 .bg1 {
   background-color: $background-color1;
-  padding: 40px;
+  padding: 30px;
 }
 
 .bg2 {
   background-color: $background-color2;
-  padding: 40px;
+  padding: 30px;
 }
 
 .header-img {
@@ -62,7 +66,7 @@ $box-border-shadow-color: rgb(175, 175, 175);
 }
 
 .overview-section {
-  margin: 20px 15%;
+  margin: 40px 15%;
 }
 
 .overview-grid {
