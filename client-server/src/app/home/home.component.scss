@@ -59,6 +59,22 @@ $box-border-shadow-color: rgb(175, 175, 175);
   color: $primary-color;
 }
 
+.overview-section {
+  margin: 20px 20%;
+}
+
+.overview-grid {
+  margin: 20px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.overview-icons {
+  width: auto;
+  height: 200px;
+}
+
 .carousel-images {
   display: block;
   width: 100%;
