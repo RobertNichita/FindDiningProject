@@ -22,6 +22,16 @@ export class HomeComponent implements OnInit {
   dishes: any[];
   stories: any[];
 
+  cuisines = [
+    { path: 'assets/images/cuisines/chinese.png' },
+    { path: 'assets/images/cuisines/greek.jpg' },
+    { path: 'assets/images/cuisines/indian.jpg' },
+    { path: 'assets/images/cuisines/italian.png' },
+    { path: 'assets/images/cuisines/japanese.jpg' },
+    { path: 'assets/images/cuisines/thai.jpg' },
+    { path: 'assets/images/cuisines/vietnamese.jpg' },
+  ];
+
   constructor() {
     this.dishes = dishes;
     this.stories = stories;

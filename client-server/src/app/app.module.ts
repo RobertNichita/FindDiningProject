@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { RatingModule } from 'ng-starrating';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+// import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,8 @@ import { SignupComponent } from './signup/signup.component';
     FormsModule,
     FontAwesomeModule,
     RatingModule,
-    CarouselModule.forRoot(),
+    IvyCarouselModule,
+    //CarouselModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
