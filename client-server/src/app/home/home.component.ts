@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { StarRatingComponent } from 'ng-starrating';
 import {
   faArrowUp,
   faArrowCircleDown,
@@ -23,13 +22,13 @@ export class HomeComponent implements OnInit {
   stories: any[];
 
   cuisines = [
-    { path: 'assets/images/cuisines/chinese.png' },
-    { path: 'assets/images/cuisines/greek.jpg' },
-    { path: 'assets/images/cuisines/indian.jpg' },
-    { path: 'assets/images/cuisines/italian.png' },
-    { path: 'assets/images/cuisines/japanese.jpg' },
-    { path: 'assets/images/cuisines/thai.jpg' },
-    { path: 'assets/images/cuisines/vietnamese.jpg' },
+    { path: 'assets/images/cuisines/chinese.png', caption: 'Chinese' },
+    { path: 'assets/images/cuisines/greek.jpg', caption: 'Greek' },
+    { path: 'assets/images/cuisines/indian.jpg', caption: 'Indian' },
+    { path: 'assets/images/cuisines/italian.png', caption: 'Italian' },
+    { path: 'assets/images/cuisines/japanese.jpg', caption: 'Japanese' },
+    { path: 'assets/images/cuisines/thai.jpg', caption: 'Thai' },
+    { path: 'assets/images/cuisines/vietnamese.jpg', caption: 'Vietnamese' },
   ];
 
   constructor() {

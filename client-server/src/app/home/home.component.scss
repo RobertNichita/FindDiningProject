@@ -97,12 +97,10 @@ $box-border-shadow-color: rgb(175, 175, 175);
   margin: 20px 20%;
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: scroll;
-  overflow-y: hidden;
 }
 
 .cardBox {
-  width: 300px;
+  max-width: 300px;
   height: 310px;
   flex: 0 0 auto;
   margin: 10px;
@@ -110,6 +108,8 @@ $box-border-shadow-color: rgb(175, 175, 175);
   border-radius: 10px;
   background-color: white;
   box-shadow: 7px 7px 5px $box-border-shadow-color;
+  overflow-wrap: normal;
+  word-wrap: break-word;
 }
 
 .cardBox::-webkit-scrollbar {
@@ -121,6 +121,18 @@ $box-border-shadow-color: rgb(175, 175, 175);
   height: 200px;
   border-radius: 10px 10px 0 0;
   object-fit: cover;
+}
+
+.card-body {
+  width: 300px;
+  overflow-wrap: normal;
+  word-wrap: break-word;
+}
+
+.card-text {
+  width: 300px;
+  overflow-wrap: normal;
+  word-wrap: break-word;
 }
 
 .btn {
