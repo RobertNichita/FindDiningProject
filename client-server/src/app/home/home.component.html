@@ -119,15 +119,27 @@
   </div>
 </div>
 
-<div class="bg1 cuisine-carousel">
-  <ivy-carousel
-    [images]="cuisines"
-    [margin]="20"
-    [arrowsOutside]="true"
-    [borderRadius]="20"
-    [cellWidth]="300"
-  >
-  </ivy-carousel>
+<div class="bg1">
+  <div class="cuisine-carousel">
+    <ivy-carousel
+      [images]="cuisines"
+      [margin]="20"
+      [arrowsOutside]="true"
+      [borderRadius]="20"
+      [cellWidth]="300"
+    >
+    </ivy-carousel>
+  </div>
+</div>
+
+<div class="bg1" style="text-align: center;">
+  <h2 class="heading">Ready to explore?</h2>
+  <br />
+  <a href="/signup">
+    <button class="btn get-started-btn">
+      GET STARTED
+    </button>
+  </a>
 </div>
 
 <button *ngIf="isShow" class="scroll-top-btn" (click)="gotoTop()">

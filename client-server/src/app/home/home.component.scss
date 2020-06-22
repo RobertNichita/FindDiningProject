@@ -4,10 +4,12 @@ $box-border-shadow-color: rgb(175, 175, 175);
 
 .bg1 {
   background-color: $background-color1;
+  padding: 40px;
 }
 
 .bg2 {
   background-color: $background-color2;
+  padding: 40px;
 }
 
 .header-img {
@@ -100,4 +102,12 @@ $box-border-shadow-color: rgb(175, 175, 175);
 
 .cuisine-carousel {
   margin: 20px 20%;
+}
+
+.get-started-btn {
+  padding: 10px;
+  height: 50px;
+  width: 300px;
+  font-size: 15px;
+  font-weight: 600;
 }
