@@ -1,5 +1,16 @@
 <router-outlet></router-outlet>
 
+<img src="assets/images/food/header.jpeg" alt="header" class="header-img" />
+<div class="header">
+  Your local Scarborough restaurants, delivered.
+</div>
+
+<button class="scroll-down-btn" (click)="scrollDown()">
+  <fa-icon class="header-down-icon" [icon]="faArrowCircleDown"></fa-icon>
+</button>
+
+<div id="scroll"></div>
+
 <carousel>
   <slide>
     <img
@@ -89,3 +100,7 @@
     </div>
   </div>
 </div>
+
+<button *ngIf="isShow" class="scroll-top-btn" (click)="gotoTop()">
+  <fa-icon class="top-icon" [icon]="faArrowUp"></fa-icon>
+</button>
