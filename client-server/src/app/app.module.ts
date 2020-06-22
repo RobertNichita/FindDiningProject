@@ -7,7 +7,6 @@ import { DishCardComponent } from './components/dish-card/dish-card.component';
 import { OwnerCardComponent } from './components/owner-card/owner-card.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { RatingModule } from 'ng-starrating';
-import { DragScrollModule } from 'ngx-drag-scroll';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,7 +29,6 @@ import { SignupComponent } from './signup/signup.component';
     FormsModule,
     FontAwesomeModule,
     RatingModule,
-    DragScrollModule,
     CarouselModule.forRoot(),
   ],
   providers: [],
