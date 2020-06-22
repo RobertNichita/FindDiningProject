@@ -36,52 +36,56 @@
   </slide>
 </carousel>
 
-<h2 class="heading">Specials</h2>
-<div class="cardFrame">
-  <div *ngFor="let dish of dishes" class="card cardBox">
-    <img src="{{ dish.image }}" class="card-img-top" alt="{{ dish.name }}" />
-    <div class="card-body">
-      <div class="row">
-        <div class="col">
-          <h5 class="card-title">{{ dish.name }}</h5>
-          <p class="card-text">
-            <star-rating
-              value="{{ dish.rating }}"
-              totalstars="{{ totalStars }}"
-              checkedcolor="gold"
-              uncheckedcolor="grey"
-              size="24px"
-              readonly="true"
-            ></star-rating>
-          </p>
+<div class="bg1">
+  <h2 class="heading">Specials</h2>
+  <div class="cardFrame">
+    <div *ngFor="let dish of dishes" class="card cardBox">
+      <img src="{{ dish.image }}" class="card-img-top" alt="{{ dish.name }}" />
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h5 class="card-title">{{ dish.name }}</h5>
+            <p class="card-text">
+              <star-rating
+                value="{{ dish.rating }}"
+                totalstars="{{ totalStars }}"
+                checkedcolor="gold"
+                uncheckedcolor="grey"
+                size="24px"
+                readonly="true"
+              ></star-rating>
+            </p>
+          </div>
+          <a href="#" class="btn">View dish</a>
         </div>
-        <a href="#" class="btn">View dish</a>
       </div>
     </div>
   </div>
 </div>
 
-<h2 class="heading">Stories</h2>
-<div class="cardFrame" style="height: 400px;">
-  <div
-    *ngFor="let story of stories"
-    class="card cardBox"
-    style="height: 350px;"
-  >
-    <img
-      src="{{ story.profile_pic }}"
-      class="card-img-top"
-      alt="{{ story.name }}"
-      style="height: 175px;"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{ story.name }}</h5>
-      <p class="card-text" style="font-size: 13px;">
-        {{ story.bio }}
-      </p>
-      <a href="#" class="btn" style="width: 100%; margin: 0;">
-        Visit {{ story.restaurant }}
-      </a>
+<div class="bg2">
+  <h2 class="heading">Stories</h2>
+  <div class="cardFrame" style="height: 400px;">
+    <div
+      *ngFor="let story of stories"
+      class="card cardBox"
+      style="height: 350px;"
+    >
+      <img
+        src="{{ story.profile_pic }}"
+        class="card-img-top"
+        alt="{{ story.name }}"
+        style="height: 175px;"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ story.name }}</h5>
+        <p class="card-text" style="font-size: 13px;">
+          {{ story.bio }}
+        </p>
+        <a href="#" class="btn" style="width: 100%; margin: 0;">
+          Visit {{ story.restaurant }}
+        </a>
+      </div>
     </div>
   </div>
 </div>

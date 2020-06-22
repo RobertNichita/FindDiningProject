@@ -1,6 +1,9 @@
 $primary-color: rgb(155, 50, 50);
 $secondary-color: rgb(189, 96, 96);
 
+$background-color1: white;
+$background-color2: rgb(240, 240, 240);
+
 $navigation-color: white;
 $navigation-accent-color: #ccc;
 
@@ -17,6 +20,14 @@ fa-icon {
   color: white;
   font-size: 25px;
   margin: 0 10px;
+}
+
+.bg1 {
+  background-color: $background-color1;
+}
+
+.bg2 {
+  background-color: $background-color2;
 }
 
 .navbar {
