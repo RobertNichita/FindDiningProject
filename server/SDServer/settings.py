@@ -76,8 +76,11 @@ WSGI_APPLICATION = 'SDServer.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'SCDining',
+        'HOST': 'mongodb+srv://scdining:eBXx50zNq5pE7ZeJ@cluster0-zwews.gcp.mongodb.net/SCDining?retryWrites=true&w=majority',
+        'USER': 'scdining',
+        'PASSWORD': 'eBXx50zNq5pE7ZeJ'
     }
 }
 
