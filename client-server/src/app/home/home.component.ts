@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {
-  faArrowUp,
+  faArrowCircleUp,
   faArrowCircleDown,
 } from '@fortawesome/free-solid-svg-icons';
 import dishes from '../../assets/data/dishes.json';
@@ -16,7 +16,7 @@ import stories from '../../assets/data/stories.json';
 export class HomeComponent implements OnInit {
   isShow: boolean;
   topPosToStartShowing = 100;
-  faArrowUp = faArrowUp;
+  faArrowCircleUp = faArrowCircleUp;
   faArrowCircleDown = faArrowCircleDown;
 
   totalStars: number = 5;

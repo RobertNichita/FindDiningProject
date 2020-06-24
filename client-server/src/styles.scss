@@ -58,6 +58,19 @@ fa-icon {
   border-radius: 40px;
 }
 
+.btn {
+  height: 35px;
+  margin: 20px;
+  background-color: $secondary-color;
+  color: white;
+}
+
+.btn:hover {
+  border-color: $secondary-color;
+  color: $secondary-color;
+  background-color: white;
+}
+
 footer {
   font-size: 15px;
   padding: 50px;

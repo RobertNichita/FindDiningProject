@@ -52,6 +52,11 @@ h2 {
   outline: none;
 }
 
+.icon:hover {
+  transition: 1s;
+  color: $secondary-color;
+}
+
 .top-icon {
   color: $primary-color;
 }
@@ -95,13 +100,6 @@ h2 {
 .heading {
   text-align: center;
   margin-top: 30px;
-}
-
-.btn {
-  height: 35px;
-  margin: 20px;
-  background-color: $secondary-color;
-  color: white;
 }
 
 .cuisine-carousel {
