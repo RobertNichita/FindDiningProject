@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   topPosToStartShowing = 100;
   faArrowCircleUp = faArrowCircleUp;
   faArrowCircleDown = faArrowCircleDown;
+  arrowsOutside = true;
 
   totalStars: number = 5;
   dishes: any[];
@@ -69,6 +70,29 @@ export class HomeComponent implements OnInit {
       once: false,
       anchorPlacement: 'top-bottom',
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.arrowsOutside = window.innerWidth < 1250 ? false : true;
+
+    if (window.innerWidth < 850) {
+      var el = document.getElementsByClassName(
+        'overview-section'
+      ) as HTMLCollectionOf<HTMLElement>;
+      for (var i = 0; i < el.length; i++) {
+        el[i].classList.remove('row');
+      }
+    } else {
+      var el = document.getElementsByClassName(
+        'overview-section'
+      ) as HTMLCollectionOf<HTMLElement>;
+      for (var i = 0; i < el.length; i++) {
+        if (!el[i].classList.contains('row')) {
+          el[i].classList.add('row');
+        }
+      }
+    }
   }
 
   @HostListener('window:scroll')

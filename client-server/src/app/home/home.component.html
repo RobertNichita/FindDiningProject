@@ -11,45 +11,43 @@
 
 <div id="scroll"></div>
 
-<div class="overview-section" data-aos="fade-right">
-  <div class="row">
-    <div class="col overview-grid">
-      <img
-        src="assets/images/undraw_chef.png"
-        class="overview-icons"
-        alt="chef"
-      />
-      <h2>Local Businesses</h2>
-      <p>
-        Support local Scarborough businesses in times of need. Let them tell you
-        their history and story through their foods!
-      </p>
-    </div>
-    <div class="col overview-grid">
-      <img
-        src="assets/images/undraw_cooking.png"
-        class="overview-icons"
-        alt="cooking"
-      />
-      <h2>Family Recipes</h2>
-      <p>
-        Learn from professional chefs and their best selling recipes from the
-        comfort of your home!
-      </p>
-    </div>
-    <div class="col overview-grid">
-      <img
-        src="assets/images/undraw_shopping.png"
-        class="overview-icons"
-        alt="shopping"
-      />
-      <h2>Order Today</h2>
-      <p>
-        What are you waiting for? Sign up and get your food right to your
-        doorstep!
-      </p>
-      <a routerLink="/signup"><button class="btn">Sign Up →</button></a>
-    </div>
+<div class="overview-section row" data-aos="fade-right">
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_chef.png"
+      class="overview-icons"
+      alt="chef"
+    />
+    <h2>Local Businesses</h2>
+    <p>
+      Support local Scarborough businesses in times of need. Let them tell you
+      their history and story through their foods!
+    </p>
+  </div>
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_cooking.png"
+      class="overview-icons"
+      alt="cooking"
+    />
+    <h2>Family Recipes</h2>
+    <p>
+      Learn from professional chefs and their best selling recipes from the
+      comfort of your home!
+    </p>
+  </div>
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_shopping.png"
+      class="overview-icons"
+      alt="shopping"
+    />
+    <h2>Order Today</h2>
+    <p>
+      What are you waiting for? Sign up and get your food right to your
+      doorstep!
+    </p>
+    <a routerLink="/signup"><button class="btn">Sign Up →</button></a>
   </div>
 </div>
 
@@ -95,7 +93,7 @@
     <ivy-carousel
       [images]="dishes"
       [margin]="30"
-      [arrowsOutside]="true"
+      [arrowsOutside]="arrowsOutside"
       [borderRadius]="20"
       [cellWidth]="300"
       [height]="400"
@@ -110,7 +108,7 @@
     <ivy-carousel
       [images]="stories"
       [margin]="30"
-      [arrowsOutside]="true"
+      [arrowsOutside]="arrowsOutside"
       [borderRadius]="20"
       [cellWidth]="500"
       [height]="400"
@@ -119,44 +117,42 @@
   </div>
 </div>
 
-<div class="overview-section" data-aos="fade-left">
-  <div class="row">
-    <div class="col overview-grid">
-      <img
-        src="assets/images/undraw_book.png"
-        class="overview-icons"
-        alt="chef"
-      />
-      <h2>Learn</h2>
-      <p>
-        Learn the local history and foods, and the adventures of the Scarborough
-        restuarant owners in their lifetime.
-      </p>
-    </div>
-    <div class="col overview-grid">
-      <img
-        src="assets/images/undraw_business.png"
-        class="overview-icons"
-        alt="cooking"
-      />
-      <h2>Connect</h2>
-      <p>
-        Become a partner of Scarborough Dining to help spread awareness of great
-        cuisines in Scarborough.
-      </p>
-    </div>
-    <div class="col overview-grid">
-      <img
-        src="assets/images/undraw_search.png"
-        class="overview-icons"
-        alt="shopping"
-      />
-      <h2>Search</h2>
-      <p>
-        Dynamic and easy searching to help you search for desired dishes,
-        cuisines, restaurants, you name it!
-      </p>
-    </div>
+<div class="overview-section row" data-aos="fade-left">
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_book.png"
+      class="overview-icons"
+      alt="chef"
+    />
+    <h2>Learn</h2>
+    <p>
+      Learn the local history and foods, and the adventures of the Scarborough
+      restuarant owners in their lifetime.
+    </p>
+  </div>
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_business.png"
+      class="overview-icons"
+      alt="cooking"
+    />
+    <h2>Connect</h2>
+    <p>
+      Become a partner of Scarborough Dining to help spread awareness of great
+      cuisines in Scarborough.
+    </p>
+  </div>
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_search.png"
+      class="overview-icons"
+      alt="shopping"
+    />
+    <h2>Search</h2>
+    <p>
+      Dynamic and easy searching to help you search for desired dishes,
+      cuisines, restaurants, you name it!
+    </p>
   </div>
 </div>
 
@@ -166,7 +162,7 @@
     <ivy-carousel
       [images]="cuisines"
       [margin]="20"
-      [arrowsOutside]="true"
+      [arrowsOutside]="arrowsOutside"
       [borderRadius]="20"
       [cellWidth]="300"
     >

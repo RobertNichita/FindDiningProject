@@ -72,6 +72,10 @@ h2 {
 
 .overview-section {
   margin: 40px 15%;
+
+  @media screen and (max-width: 1250px) {
+    margin: 40px 0;
+  }
 }
 
 .overview-grid {
@@ -79,6 +83,10 @@ h2 {
   text-align: center;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 850px) {
+    margin: 30px 0;
+  }
 }
 
 .overview-icons {
@@ -104,6 +112,10 @@ h2 {
 
 .cuisine-carousel {
   margin: 20px 20%;
+
+  @media screen and (max-width: 1250px) {
+    margin: 20px 0;
+  }
 }
 
 .get-started-btn {
