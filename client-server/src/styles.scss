@@ -8,6 +8,8 @@ $background-color2: rgb(240, 240, 240);
 $navigation-color: white;
 $navigation-accent-color: #ccc;
 
+$footer-text-color: rgb(192, 192, 192);
+
 html,
 body {
   height: 100%;
@@ -80,6 +82,7 @@ footer {
 
 .footer-content {
   margin: 50px 20%;
+  color: $footer-text-color;
 }
 
 .footer-bottom-content {
@@ -87,11 +90,20 @@ footer {
 }
 
 .footer-links {
-  color: white;
+  color: $footer-text-color;
   margin: 10px 10px 0 10px;
   display: inline-block;
 }
 
 .footer-links:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-icons {
+  color: $footer-text-color;
+}
+
+.footer-icons:hover {
   color: white;
 }
