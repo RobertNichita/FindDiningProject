@@ -1,0 +1,21 @@
+<div class="card cardBox">
+  <img src="{{ dish.image }}" class="card-img-top" alt="{{ dish.name }}" />
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h5 class="card-title">{{ dish.name }}</h5>
+        <p class="card-text">
+          <star-rating
+            value="{{ dish.rating }}"
+            totalstars="{{ totalStars }}"
+            checkedcolor="gold"
+            uncheckedcolor="grey"
+            size="24px"
+            readonly="true"
+          ></star-rating>
+        </p>
+      </div>
+      <a href="#" class="btn">View dish</a>
+    </div>
+  </div>
+</div>

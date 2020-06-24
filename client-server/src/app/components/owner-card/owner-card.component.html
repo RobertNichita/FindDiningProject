@@ -1,0 +1,20 @@
+<div class="card cardBox">
+  <div class="row">
+    <div class="col">
+      <img
+        src="{{ story.profile_pic }}"
+        class="card-img-top"
+        alt="{{ story.name }}"
+      />
+    </div>
+    <div class="col">
+      <div class="card-body">
+        <h5 class="card-title">{{ story.name }}</h5>
+        <p class="card-text">
+          {{ story.bio }}
+        </p>
+        <a href="#" class="btn"> Visit {{ story.restaurant }} </a>
+      </div>
+    </div>
+  </div>
+</div>
