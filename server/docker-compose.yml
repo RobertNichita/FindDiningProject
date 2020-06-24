@@ -8,3 +8,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:8000"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
