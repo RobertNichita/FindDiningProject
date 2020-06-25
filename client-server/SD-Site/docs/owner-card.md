@@ -17,9 +17,11 @@ Displaying dishes with their ratings. Files exist under `src\app\components\owne
 
 ### Input
 
-There is 1 input needed:
+Specify the input:
 
-1. `story: any` - Story object
+| Parameter | Type  | Desc         | Required |
+| --------- | ----- | ------------ | -------- |
+| `story`   | `any` | Story object | Yes      |
 
 Currently, the story object should contain:
 

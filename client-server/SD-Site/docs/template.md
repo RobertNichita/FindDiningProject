@@ -17,9 +17,11 @@ title: Component Template
 
 ### Input
 
-There is # input(s) needed:
+Specify the input:
 
-1. `{{ object }}` - {{ desc }}
+| Parameter      | Type         | Desc       | Required |
+| -------------- | ------------ | ---------- | -------- |
+| `{{ object }}` | `{{ type }}` | {{ desc }} | No       |
 
 Add this to the `.html` file. Replace the sections `{{ }}` with the input to be generated.
 
@@ -53,6 +55,6 @@ There is no output. The card example above will be generated.
 
 OR
 
-There is # outputs(s):
-
-1. `{{ object }}` - {{ desc }}
+| Return           | Type         | Desc       |
+| ---------------- | ------------ | ---------- |
+| `{{ variable }}` | `{{ type }}` | {{ desc }} |

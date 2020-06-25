@@ -17,9 +17,11 @@ Displaying dishes with their ratings. Files exist under `src\app\components\dish
 
 ### Input
 
-There is 1 input needed:
+Specify the input:
 
-1. `dish: any` - Dish object
+| Parameter | Type  | Desc        | Required |
+| --------- | ----- | ----------- | -------- |
+| `dish`    | `any` | Dish object | Yes      |
 
 Currently, the dish object should contain:
 

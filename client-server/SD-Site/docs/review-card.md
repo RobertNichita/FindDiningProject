@@ -19,9 +19,11 @@ Files exist under `src\app\components\review-card`
 
 ### Input
 
-There is 1 **optional** input:
+Specify the input:
 
-1. `width: number` - the width of the card. Default is `500px`.
+| Parameter | Type     | Desc                                  | Required |
+| --------- | -------- | ------------------------------------- | -------- |
+| `width`   | `number` | Width of the card. Default is `500px` | No       |
 
 Add this to the `.html` file. Replace the sections `{{ }}` with the input to be generated.
 
@@ -42,6 +44,10 @@ Example:
 ```
 
 ### Output
+
+| Return   | Type   | Desc                              |
+| -------- | ------ | --------------------------------- |
+| `review` | `JSON` | Returns the review in JSON format |
 
 When _submit_ is pressed on the card, the review data is returned in JSON format. The data is cleared from the UI once _submit_ is pressed.
 

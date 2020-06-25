@@ -17,11 +17,13 @@ Generating a list of filters for a category. Files exist under `src\app\componen
 
 ### Input
 
-There are 3 inputs needed:
+Specify the input:
 
-1. `category: string` - Category of the filters
-2. `subcategories: string[]` - List of the filters
-3. `length: number` - Length of subcategories
+| Parameter       | Type       | Desc                    | Required |
+| --------------- | ---------- | ----------------------- | -------- |
+| `category`      | `string`   | Category of the filters | Yes      |
+| `subcategories` | `string[]` | List of the filters     | Yes      |
+| `length`        | `number`   | Length of subcategories | Yes      |
 
 Add this to the `.html` file. Replace the sections `{{ }}` with the input to be generated.
 
@@ -47,9 +49,9 @@ Example:
 
 ### Output
 
-There is 1 output:
-
-1. `list: boolean[]` - Returns a list of boolean values with each indexes value corresponding with the list of subcategories.
+| Return | Type        | Desc                                                                                                   |
+| ------ | ----------- | ------------------------------------------------------------------------------------------------------ |
+| `list` | `boolean[]` | Returns a list of boolean values with each indexes value corresponding with the list of subcategories. |
 
 Example:
 Suppose your subcategories are `['1 star', '2 star', '3 star', '4 star', '5 star']`
