@@ -74,15 +74,15 @@ WSGI_APPLICATION = 'SDServer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'SCDining',
-#         'HOST': 'mongodb+srv://scdining:eBXx50zNq5pE7ZeJ@cluster0-zwews.gcp.mongodb.net/SCDining?retryWrites=true&w=majority',
-#         'USER': 'scdining',
-#         'PASSWORD': 'eBXx50zNq5pE7ZeJ'
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'SCDining',
+        'HOST': 'mongodb+srv://scdining:eBXx50zNq5pE7ZeJ@cluster0-zwews.gcp.mongodb.net/SCDining?retryWrites=true&w=majority',
+        'USER': 'scdining',
+        'PASSWORD': 'eBXx50zNq5pE7ZeJ'
+    }
+}
 
 
 # Password validation

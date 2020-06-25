@@ -11,6 +11,6 @@ python_version = "3.8"
 [packages]
 waitress = "*"
 dnspython = "*"
-django = "==3.0.7"
 pymongo = "*"
-djongo = "*"
+django = "==2.2.8"
+djongo = "==1.2.38"
