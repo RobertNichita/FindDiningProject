@@ -7,6 +7,7 @@ import { DishCardComponent } from './components/dish-card/dish-card.component';
 import { OwnerCardComponent } from './components/owner-card/owner-card.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { FilterlistCardComponent } from './components/filterlist-card/filterlist-card.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
 
 import { RatingModule } from 'ng-starrating';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -25,6 +26,7 @@ import { SignupComponent } from './signup/signup.component';
     OwnerCardComponent,
     CarouselComponent,
     FilterlistCardComponent,
+    ReviewCardComponent,
   ],
   imports: [
     BrowserModule,
