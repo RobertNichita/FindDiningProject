@@ -21,21 +21,3 @@ In _production mode_:
 ```
 docker-compose -f docker-compose.yml up -d client-prod
 ```
-
-## Component UI Documentation
-
-### Prerequisite
-
-[Yarn](https://classic.yarnpkg.com/en/docs/install/)
-
-### Run
-
-To access the documentation for created components, run:
-
-```
-cd SD-Site && yarn start
-```
-
-Navigate to [localhost:3000](http://localhost:3000) to view.
-
-Run `npm run dev` if you want to start up the development server and documentation in one command.
