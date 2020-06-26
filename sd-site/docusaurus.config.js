@@ -21,9 +21,15 @@ module.exports = {
           position: "left",
         },
         {
-          to: "docs/backend",
+          to: "docs/backend/backend",
           activeBasePath: "docs",
-          label: "backend",
+          label: "Backend",
+          position: "left",
+        },
+        {
+          to: "docs/frontend/frontend",
+          activeBasePath: "docs",
+          label: "Frontend",
           position: "left",
         },
         {
