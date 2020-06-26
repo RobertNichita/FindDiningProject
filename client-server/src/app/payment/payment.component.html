@@ -5,25 +5,38 @@
           <p>Please fill out the fields below and hit submit to process payment.</p>
       </div>
       <form>
-        <h4>Card Information</h4>
-        <div class="form-group">
-          <label for="cardNumber">Card Number</label>
-          <input type="text" class="form-control" id="cardNumber" placeholder="Ex: 1234 5678 9876 5421">
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="cardName">Cardholder Name</label>
-            <input type="text" class="form-control" id="cardName" placeholder="Ex: Jane Doe">
+        <div class="cardInformation">
+          <h4>Card Information</h4>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend input-group-lg">
+              <span class="input-group-text input-addon" id="basic-addon1"><fa-icon class="payment-icons" [icon]="faCreditCard"></fa-icon> </span>
+            </div>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
           </div>
-          <div class="form-group col-md-4">
-            <label for="cardExpiryDate">Expiry Date</label>
-            <input type="text" class="form-control" id="cardExpiryDate" placeholder="MM/YY">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend input-group-lg">
+              <span class="input-group-text input-addon" id="basic-addon1">
+                <fa-icon class="payment-icons" [icon]="faUser"></fa-icon>
+              </span>
+            </div>
+            <input type="text" aria-label="First name" class="form-control" placeholder="Cardholder First Name">
+            <input type="text" aria-label="Last name" class="form-control" placeholder="Cardholder Last Name">
           </div>
-          <div class="form-group col-md-2">
-            <label for="cardCVV">CVV</label>
-            <input type="text" class="form-control" id="cardCVV" placeholder="Ex: 123">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend input-group-lg">
+              <span class="input-group-text input-addon" id="basic-addon1"><fa-icon class="payment-icons" [icon]="faCalendarAlt"></fa-icon>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="cardExpiry" placeholder="Card Expiry: MM/YY">
           </div>
-        </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend input-group-lg">
+              <span class="input-group-text input-addon" id="basic-addon1"><fa-icon class="payment-icons" [icon]="faKey"></fa-icon>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="cardCVV" placeholder="CVV: 123">
+          </div>
+      </div>
         <div class="billing">
             <h4>Billing Information</h4>
         </div>

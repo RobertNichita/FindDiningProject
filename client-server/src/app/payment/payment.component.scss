@@ -5,6 +5,17 @@
     padding: 30px 30px 30px 30px;
 }
 
+
+.payment-icons{
+    color:black;
+}
+
+.input-group-lg, .input-addon{
+    height: 38px;
+    width: 70px;
+    align-content: center;
+}
+
 .payment-box{
     margin: auto;
     border-radius: 25px;
@@ -22,6 +33,7 @@
     margin: auto;
     text-align: left;
     padding: 5px 5px 5px 5px;
+    
 }
 
 .form-row{
