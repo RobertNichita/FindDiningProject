@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { RestaurantCardComponent } from './components/restaurant-card/restaurant-card.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RestaurantCardComponent } from './components/restaurant-card/restaurant
     FilterlistCardComponent,
     ReviewCardComponent,
     RestaurantCardComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
