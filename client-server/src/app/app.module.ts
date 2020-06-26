@@ -12,6 +12,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 
@@ -19,6 +20,7 @@ import { HomeComponent } from './pages/home/home.component';
   declarations: [
     AppComponent,
     NavbarComponent,
+    FooterComponent,
     ProfileComponent,
     DishCardComponent,
     OwnerCardComponent,
