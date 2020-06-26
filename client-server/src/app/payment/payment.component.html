@@ -1,1 +1,86 @@
-<p>payment works!</p>
+<div class = "payment-page">
+    <div class="payment-box">
+      <div class="payment-header">
+          <h2>Payment</h2>
+          <p>Please fill out the fields below and hit submit to process payment.</p>
+      </div>
+      <form>
+        <h4>Card Information</h4>
+        <div class="form-group">
+          <label for="cardNumber">Card Number</label>
+          <input type="text" class="form-control" id="cardNumber" placeholder="Ex: 1234 5678 9876 5421">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="cardName">Cardholder Name</label>
+            <input type="text" class="form-control" id="cardName" placeholder="Ex: Jane Doe">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="cardExpiryDate">Expiry Date</label>
+            <input type="text" class="form-control" id="cardExpiryDate" placeholder="MM/YY">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cardCVV">CVV</label>
+            <input type="text" class="form-control" id="cardCVV" placeholder="Ex: 123">
+          </div>
+        </div>
+          <h4>Billing Information</h4>
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="inputFirstName">First Name</label>
+                  <input type="text" class="form-control" id="inputFirstName" placeholder="Ex: Jane">
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="inputLastNasme">Last Name</label>
+                  <input type="text" class="form-control" id="inputLastName" placeholder="Ex: Doe">
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>           
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputProvince">Province</label>
+              <select id="inputProvince" class="form-control">
+                <option selected>Choose...</option>
+                <option>Albert</option>
+                <option>British Columbia</option>
+                <option>Maintoba</option>
+                <option>New Brunswick</option>
+                <option>Northwest Territories</option>
+                <option>Nova Scotia</option>
+                <option>Nunavut</option>
+                <option>Ontario</option>
+                <option>Price Edward Island</option>
+                <option>Quebec </option>
+                <option>Saskatchewan</option>
+              </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputPostal">Postal Code</label>
+              <input type="text" class="form-control" id="inputPostal">
+            </div>
+          </div>
+          <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2">
+                <label class="form-check-label" for="invalidCheck2">
+                  I Agree to terms and conditions.
+                </label>
+              </div>
+            </div>
+          <div class="submit">
+              <button class="btn btn-primary">Pay Now!</button>
+          </div>
+      </form>
+    </div>
+</div>

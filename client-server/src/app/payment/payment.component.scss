@@ -1,1 +1,42 @@
 @import "src/styles";
+
+.payment-page{
+    margin: auto;
+    padding: 30px 30px 30px 30px;
+}
+
+.payment-box{
+    margin: auto;
+    border-radius: 25px;
+    width: 50%;
+    text-align: center;
+    border: 10px solid lightcoral;
+    padding: 10px 10px 10px 10px;
+}
+.payment-header{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-group{
+    margin: auto;
+    text-align: left;
+    padding: 5px 5px 5px 5px;
+}
+
+.form-row{
+    margin: auto;
+    text-align: left;
+    padding: 5px 5px 5px 5px;
+}
+
+.submit{
+    text-align: center;
+}
+
+.submit-btn{
+    height: 35px;
+    margin: 20px;
+    background-color: $secondary-color;
+    color: white;
+}
