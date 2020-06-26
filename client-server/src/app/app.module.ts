@@ -6,6 +6,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DishCardComponent } from './components/dish-card/dish-card.component';
 import { OwnerCardComponent } from './components/owner-card/owner-card.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { FilterlistCardComponent } from './components/filterlist-card/filterlist-card.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
+import { RestaurantCardComponent } from './components/restaurant-card/restaurant-card.component';
+
 import { RatingModule } from 'ng-starrating';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
@@ -15,6 +19,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +31,10 @@ import { HomeComponent } from './pages/home/home.component';
     OwnerCardComponent,
     CarouselComponent,
     HomeComponent,
+    FilterlistCardComponent,
+    ReviewCardComponent,
+    RestaurantCardComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
