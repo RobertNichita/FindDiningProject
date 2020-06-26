@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { RestaurantCardComponent } from './components/restaurant-card/restaurant-card.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SignupComponent } from './signup/signup.component';
     CarouselComponent,
     FilterlistCardComponent,
     ReviewCardComponent,
+    RestaurantCardComponent,
   ],
   imports: [
     BrowserModule,

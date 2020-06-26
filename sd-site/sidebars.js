@@ -12,6 +12,7 @@ module.exports = {
       "components/dish-card",
       "components/filterlist-card",
       "components/owner-card",
+      "components/restaurant-card",
       "components/review-card",
     ],
   },
