@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCreditCard, faUser, faCalendarAlt, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard, faUser, faCalendarAlt, faKey, faHome, faBuilding, faCity } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-payment',
@@ -16,5 +16,8 @@ export class PaymentComponent implements OnInit {
   faUser = faUser;
   faCalendarAlt = faCalendarAlt;
   faKey = faKey;
+  faHome = faHome;
+  faBuilding = faBuilding;
+  faCity = faCity;
 
 }
