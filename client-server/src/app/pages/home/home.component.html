@@ -47,7 +47,7 @@
       What are you waiting for? Sign up and get your food right to your
       doorstep!
     </p>
-    <a routerLink="/signup"><button class="btn">Sign Up →</button></a>
+    <button (click)="auth.login()" class="btn">Sign Up →</button>
   </div>
 </div>
 
@@ -173,11 +173,9 @@
 <div class="bg1" style="text-align: center;">
   <h2 class="heading">Ready to explore?</h2>
   <br />
-  <a routerLink="/signup">
-    <button class="btn get-started-btn">
-      GET STARTED
-    </button>
-  </a>
+  <button (click)="auth.login()" class="btn get-started-btn">
+    GET STARTED
+  </button>
 </div>
 
 <button *ngIf="isShow" class="scroll-top-btn" (click)="gotoTop()">
