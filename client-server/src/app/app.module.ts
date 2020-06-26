@@ -11,17 +11,19 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { SignupComponent } from './signup/signup.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    SignupComponent,
+    NavbarComponent,
+    ProfileComponent,
     DishCardComponent,
     OwnerCardComponent,
     CarouselComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

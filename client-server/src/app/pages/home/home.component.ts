@@ -5,8 +5,9 @@ import {
   faArrowCircleUp,
   faArrowCircleDown,
 } from '@fortawesome/free-solid-svg-icons';
-import dishes from '../../assets/data/dishes.json';
-import stories from '../../assets/data/stories.json';
+import dishes from '../../../assets/data/dishes.json';
+import stories from '../../../assets/data/stories.json';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -58,7 +59,7 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  constructor() {
+  constructor(public auth: AuthService) {
     this.dishes = dishes;
     this.stories = stories;
   }
