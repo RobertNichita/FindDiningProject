@@ -4,34 +4,39 @@
     "name": "Special Dish",
     "rating": "4",
     "price": "2.99",
-    "image": "assets/images/cuisines/chinese.png"
+    "image": "assets/images/cuisines/chinese.png",
+    "url": "/"
   },
   {
     "type": "dish",
     "name": "Special Dish",
     "rating": "3",
     "price": "12.99",
-    "image": "assets/images/cuisines/greek.jpg"
+    "image": "assets/images/cuisines/greek.jpg",
+    "url": "/"
   },
   {
     "type": "dish",
     "name": "Special Dish",
     "rating": "4",
     "price": "14.99",
-    "image": "assets/images/cuisines/vietnamese.jpg"
+    "image": "assets/images/cuisines/vietnamese.jpg",
+    "url": "/"
   },
   {
     "type": "dish",
     "name": "Special Dish",
     "rating": "5",
     "price": "29.99",
-    "image": "assets/images/cuisines/thai.jpg"
+    "image": "assets/images/cuisines/thai.jpg",
+    "url": "/"
   },
   {
     "type": "dish",
     "name": "Special Dish",
     "rating": "5",
     "price": "4.99",
-    "image": "assets/images/cuisines/japanese.jpg"
+    "image": "assets/images/cuisines/japanese.jpg",
+    "url": "/"
   }
 ]
