@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SignupComponent } from './signup/signup.component';
     DishCardComponent,
     OwnerCardComponent,
     CarouselComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
