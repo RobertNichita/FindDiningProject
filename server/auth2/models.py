@@ -5,13 +5,12 @@ from django.db import models
 
 # Scarborough Dining User
 class SDUser(models.Model):
-    nickname = models.CharField(max_length=30, null=True)
-    name = models.CharField(max_length=50)
-    picture = models.CharField(max_length=200)
-    last_updated = models.DateTimeField(null=True)
-    email = models.EmailField(primary_key=True)
-    email_verified = models.BooleanField()
-    _id = models.UUIDField(blank=True)
+    nickname = models.CharField(max_length=30, null=True, default='')
+    name = models.CharField(max_length=50, default='')
+    picture = models.CharField(max_length=200, default='')
+    last_updated = models.CharField(max_length=200, default='')
+    email = models.EmailField(primary_key=True, default='')
+    email_verified = models.BooleanField(default=False)
 
     # Constructs & Saves User to DB
     @classmethod
