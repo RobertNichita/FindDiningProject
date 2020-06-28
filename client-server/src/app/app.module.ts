@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DishCardComponent } from './components/dish-card/dish-card.component';
@@ -21,6 +22,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PaymentComponent } from './payment/payment.component';
 
+import { LoginService } from './service/login.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,13 +41,14 @@ import { PaymentComponent } from './payment/payment.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     FontAwesomeModule,
     RatingModule,
     CarouselModule.forRoot(),
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
