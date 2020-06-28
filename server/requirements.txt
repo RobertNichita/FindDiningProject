@@ -2,4 +2,4 @@ Django<3
 pipenv
 waitress
 dnspython
-djongo
+djongo==1.2.38

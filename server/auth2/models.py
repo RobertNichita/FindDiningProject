@@ -11,12 +11,12 @@ class SDUser(models.Model):
     last_updated = models.DateTimeField(null=True)
     email = models.EmailField(primary_key=True)
     email_verified = models.BooleanField()
-    _id = models.UUIDField(null=True)
+    _id = models.UUIDField(blank=True)
 
     # Constructs & Saves User to DB
     @classmethod
     def signup(cls, nickname, name, picture, updated, email, verified):
         user = cls(nickname=nickname, name=name, picture=picture, last_updated=updated, email=email,
-                   email_verified=verified, _id=None)
+                   email_verified=verified)
         user.save()
         return user

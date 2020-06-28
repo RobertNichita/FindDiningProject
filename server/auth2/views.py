@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from auth2.models import SDUser
+import json
 
 
 def index(request):
-    book = SDUser.signup(request.nickname, request.name, request.picture, request.updated_at, request.email,
-                         request.verified)
-    return 200
+	body = json.loads(request.body)
+	user = SDUser.signup(body['nickname'], body['name'], body['picture'], body['updated_at'], body['email'], body['email_verified'])
+	return HttpResponse(status=200)
