@@ -1,0 +1,43 @@
+$primary-color: rgb(155, 50, 50);
+$secondary-color: rgb(189, 96, 96);
+$dark-color: rgb(7, 27, 48);
+
+$background-color1: white;
+$background-color2: rgb(240, 240, 240);
+
+$navigation-color: white;
+$navigation-accent-color: #ccc;
+
+$footer-text-color: rgb(192, 192, 192);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h2 {
+  font-family: "Alegreya Sans SC", sans-serif;
+}
+
+fa-icon {
+  color: white;
+  font-size: 25px;
+  margin: 0 10px;
+}
+
+.btn {
+  height: 35px;
+  margin: 20px;
+  background-color: $secondary-color;
+  color: white;
+}
+
+.btn:hover {
+  border-color: $secondary-color;
+  color: $secondary-color;
+  background-color: white;
+}

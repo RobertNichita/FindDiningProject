@@ -5,10 +5,13 @@ verify_ssl = true
 
 [dev-packages]
 
-[packages]
-django = "==2.2.4"
-gunicorn = "*"
-waitress = "*"
-
 [requires]
 python_version = "3.8"
+
+[packages]
+waitress = "*"
+dnspython = "*"
+pymongo = "*"
+django = "==2.2.8"
+djongo = "==1.2.38"
+django-cors-headers = "*"

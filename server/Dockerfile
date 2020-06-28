@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # install environment dependencies
 RUN pip3 install --upgrade pip 
-RUN pip3 install pipenv
+RUN pip3 install pipenv && pip3 install -r requirements.txt
 
 # Install project dependencies
 RUN pipenv install --skip-lock --system --dev
