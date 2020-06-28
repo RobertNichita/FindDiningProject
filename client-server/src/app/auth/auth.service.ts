@@ -11,6 +11,7 @@ import {
 } from 'rxjs';
 import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { LoginService } from '../service/login.service';
 
 @Injectable({
   providedIn: 'root',
@@ -44,7 +45,7 @@ export class AuthService {
   // Create a local property for login status
   loggedIn: boolean = null;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private loginService: LoginService) {
     // On initial load, check authentication state with authorization server
     // Set up local auth streams if user is already authenticated
     this.localAuthSetup();
@@ -78,7 +79,7 @@ export class AuthService {
     checkAuth$.subscribe();
   }
 
-  login(redirectPath: string = '/home') {
+  login(redirectPath: string = '/') {
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
@@ -115,6 +116,8 @@ export class AuthService {
       authComplete$.subscribe(([user, loggedIn]) => {
         // Redirect to target route after callback processing
         this.router.navigate([targetRoute]);
+        // Add resulting new user to database
+        this.loginService.addNewUser(user);
       });
     }
   }
