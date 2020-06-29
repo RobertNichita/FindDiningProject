@@ -70,6 +70,9 @@ HTTPS from all sources
 NFS from the default security group
 if SSH is not already present allow it from all sources
 
+### Whitelist the IP of the aws instance on mongodb atlas
+    https://docs.atlas.mongodb.com/security-whitelist/
+
 ### Optionally, apply an elastic ip to your EC2 instance
 This is done so that the instance's IP stays the same across restarts
 Note that this will cost $0.01/hr for every hour that the elastic IP is not assigned to a running instance
@@ -135,3 +138,4 @@ docker pull dockerhubusername/dockerhubrepositoryname:latest-server
 docker run -d -p 443:443 -p 8000:8000 dockerhubusername/dockerhubrepositoryname:latest-client
 docker run -d -p 8000:8000 dockerhubusername/dockerhubrepositoryname:latest-server
 ```
+
