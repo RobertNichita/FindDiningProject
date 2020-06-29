@@ -1,0 +1,183 @@
+<router-outlet></router-outlet>
+
+<img src="assets/images/food/header.jpeg" alt="header" class="header-img" />
+<div class="header">
+  Your local Scarborough restaurants, delivered.
+</div>
+
+<button class="scroll-down-btn" (click)="scrollDown()">
+  <fa-icon class="header-down-icon icon" [icon]="faArrowCircleDown"></fa-icon>
+</button>
+
+<div id="scroll"></div>
+
+<div class="overview-section row" data-aos="fade-right">
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_chef.png"
+      class="overview-icons"
+      alt="chef"
+    />
+    <h2>Local Businesses</h2>
+    <p>
+      Support local Scarborough businesses in times of need. Let them tell you
+      their history and story through their foods!
+    </p>
+  </div>
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_cooking.png"
+      class="overview-icons"
+      alt="cooking"
+    />
+    <h2>Family Recipes</h2>
+    <p>
+      Learn from professional chefs and their best selling recipes from the
+      comfort of your home!
+    </p>
+  </div>
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_shopping.png"
+      class="overview-icons"
+      alt="shopping"
+    />
+    <h2>Order Today</h2>
+    <p>
+      What are you waiting for? Sign up and get your food right to your
+      doorstep!
+    </p>
+    <button (click)="auth.login()" class="btn">Sign Up →</button>
+  </div>
+</div>
+
+<carousel [isAnimated]="true" [interval]="5000">
+  <slide>
+    <img
+      src="assets/images/food/fastfood.jpg"
+      alt="first slide"
+      class="carousel-images"
+    />
+    <div class="carousel-caption d-none d-md-block">
+      <h2>Variety of Options</h2>
+      <p>Take a break and indulge in your guilty pleasure foods!</p>
+    </div>
+  </slide>
+  <slide>
+    <img
+      src="assets/images/food/grilledcheese.jpg"
+      alt="second slide"
+      class="carousel-images"
+    />
+    <div class="carousel-caption d-none d-md-block">
+      <h2>Learn from the best in Scarborough</h2>
+      <p>Grill your own cheese sandwich!</p>
+    </div>
+  </slide>
+  <slide>
+    <img
+      src="assets/images/food/veggies.jpg"
+      alt="third slide"
+      class="carousel-images"
+    />
+    <div class="carousel-caption d-none d-md-block">
+      <h2>Health Options</h2>
+      <p>Keep your healthy habits in check!</p>
+    </div>
+  </slide>
+</carousel>
+
+<div class="bg1">
+  <div class="cuisine-carousel" data-aos="fade-left">
+    <h2 class="heading">Specials</h2>
+    <ivy-carousel
+      [images]="dishes"
+      [margin]="30"
+      [arrowsOutside]="arrowsOutside"
+      [borderRadius]="20"
+      [cellWidth]="300"
+      [height]="400"
+    >
+    </ivy-carousel>
+  </div>
+</div>
+
+<div class="bg2">
+  <div class="cuisine-carousel" data-aos="fade-right">
+    <h2 class="heading">Stories</h2>
+    <ivy-carousel
+      [images]="stories"
+      [margin]="30"
+      [arrowsOutside]="arrowsOutside"
+      [borderRadius]="20"
+      [cellWidth]="500"
+      [height]="400"
+    >
+    </ivy-carousel>
+  </div>
+</div>
+
+<div class="overview-section row" data-aos="fade-left">
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_book.png"
+      class="overview-icons"
+      alt="chef"
+    />
+    <h2>Learn</h2>
+    <p>
+      Learn the local history and foods, and the adventures of the Scarborough
+      restuarant owners in their lifetime.
+    </p>
+  </div>
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_business.png"
+      class="overview-icons"
+      alt="cooking"
+    />
+    <h2>Connect</h2>
+    <p>
+      Become a partner of Scarborough Dining to help spread awareness of great
+      cuisines in Scarborough.
+    </p>
+  </div>
+  <div class="col overview-grid">
+    <img
+      src="assets/images/undraw_search.png"
+      class="overview-icons"
+      alt="shopping"
+    />
+    <h2>Search</h2>
+    <p>
+      Dynamic and easy searching to help you search for desired dishes,
+      cuisines, restaurants, you name it!
+    </p>
+  </div>
+</div>
+
+<div class="bg2">
+  <div class="cuisine-carousel" data-aos="fade-right">
+    <h2 class="heading">Cuisines</h2>
+    <ivy-carousel
+      [images]="cuisines"
+      [margin]="20"
+      [arrowsOutside]="arrowsOutside"
+      [borderRadius]="20"
+      [cellWidth]="300"
+    >
+    </ivy-carousel>
+  </div>
+</div>
+
+<div class="bg1" style="text-align: center;">
+  <h2 class="heading">Ready to explore?</h2>
+  <br />
+  <button (click)="auth.login()" class="btn get-started-btn">
+    GET STARTED
+  </button>
+</div>
+
+<button *ngIf="isShow" class="scroll-top-btn" (click)="gotoTop()">
+  <fa-icon class="top-icon icon" [icon]="faArrowCircleUp"></fa-icon>
+</button>

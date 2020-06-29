@@ -1,0 +1,40 @@
+<div class="card" id="cardBox">
+  <h2>Review</h2>
+  <hr />
+  <label>Rating:</label>
+  <star-rating
+    value="0"
+    totalstars="{{ totalStars }}"
+    checkedcolor="gold"
+    uncheckedcolor="grey"
+    size="24px"
+    readonly="false"
+    (rate)="onRate($event)"
+  ></star-rating>
+  <br />
+  <form>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input
+        class="form-control"
+        id="title"
+        name="reviewTitle"
+        [(ngModel)]="title"
+        placeholder="Enter title of review"
+        autocomplete="off"
+      />
+    </div>
+    <div class="form-group">
+      <label for="comments">Comments:</label>
+      <textarea
+        class="form-control"
+        id="comments"
+        rows="5"
+        name="reviewComments"
+        [(ngModel)]="comments"
+        placeholder="Enter comments"
+      ></textarea>
+    </div>
+  </form>
+  <button class="btn" (click)="sendReview()">Submit</button>
+</div>
