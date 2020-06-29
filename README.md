@@ -1,6 +1,8 @@
 # Team Aqua Project Repository
 
-  *Website* : https://team-aqua.wixsite.com/aqua/
+  *Project Website*: https://3.18.84.86/ (This is the deployed version of the product)
+  
+  *Team Website* : https://team-aqua.wixsite.com/aqua/
 
 ## Files
 
