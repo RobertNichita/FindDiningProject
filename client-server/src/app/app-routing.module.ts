@@ -4,6 +4,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { PaymentComponent } from './payment/payment.component';
+import { RestaurantPageComponent } from './pages/restaurant-page/restaurant-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'payment', component: PaymentComponent },
+  { path: 'restaurant', component: RestaurantPageComponent },
 ];
 
 @NgModule({

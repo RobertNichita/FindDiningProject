@@ -1,0 +1,95 @@
+<img src="assets/images/food/header.jpeg" alt="header" class="header-img" />
+
+<div>
+  <div class="card infoCard">
+    <div class="row" id="info-row">
+      <div class="col-md-7" id="info-col1">
+        <h2 class="restaurant-name">{{ restaurantDetails.name }}</h2>
+        <p>
+          {{ restaurantDetails.city }} • {{ restaurantDetails.cuisine }} •
+          {{ restaurantDetails.pricePoint }}
+        </p>
+        <div class="row" style="margin: 10px;">
+          <star-rating
+            value="{{ restaurantDetails.rating }}"
+            totalstars="{{ totalStars }}"
+            checkedcolor="gold"
+            uncheckedcolor="grey"
+            size="24px"
+            readonly="true"
+          ></star-rating>
+          <p class="row-text">{{ restaurantDetails.rating }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-5" id="info-col2">
+        <div class="row">
+          <fa-icon class="contact-icon" [icon]="faMapMarker"></fa-icon>
+          <div class="contact-wrapper">
+            <p class="row-text">
+              <b>{{ restaurantDetails.address }}</b>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <fa-icon class="contact-icon" [icon]="faPhone"></fa-icon>
+          <div class="contact-wrapper">
+            <p class="row-text">
+              <b>{{ restaurantDetails.phone }}</b>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <fa-icon class="contact-icon" [icon]="faMail"></fa-icon>
+          <div class="contact-wrapper">
+            <p class="row-text">
+              <b>{{ restaurantDetails.email }}</b>
+            </p>
+          </div>
+        </div>
+
+        <div class="media-icons">
+          <fa-icon class="media-icon" [icon]="faHeartLine"></fa-icon>
+          <a
+            *ngIf="restaurantDetails.instagram != ''"
+            href="{{ restaurantDetails.instagram }}"
+            target="_blank"
+          >
+            <fa-icon class="media-icon" [icon]="faInstagram"></fa-icon>
+          </a>
+          <a
+            *ngIf="restaurantDetails.twitter != ''"
+            href="{{ restaurantDetails.twitter }}"
+            target="_blank"
+          >
+            <fa-icon class="media-icon" [icon]="faTwitter"></fa-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="updatesBtn"><b>VIEW UPDATES</b></button>
+</div>
+
+<div class="card bio-card">
+  <p>{{ restaurantDetails.bio }}</p>
+</div>
+
+<mat-tab-group>
+  <mat-tab
+    *ngFor="let category of restaurantDetails.category"
+    label="{{ category.name }}"
+  >
+    <div class="menu-tab card-columns">
+      <app-dish-card
+        *ngFor="let dish of category.menu"
+        [dish]="dish"
+      ></app-dish-card>
+    </div>
+  </mat-tab>
+
+  <mat-tab disabled></mat-tab>
+  <mat-tab label="Media"> Media </mat-tab>
+  <mat-tab label="Reviews"> Reviews </mat-tab>
+</mat-tab-group>

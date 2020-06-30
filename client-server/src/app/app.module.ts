@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +14,8 @@ import { RestaurantCardComponent } from './components/restaurant-card/restaurant
 
 import { RatingModule } from 'ng-starrating';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PaymentComponent } from './payment/payment.component';
+import { RestaurantPageComponent } from './pages/restaurant-page/restaurant-page.component';
 
 import { LoginService } from './service/login.service';
 
@@ -38,15 +42,19 @@ import { LoginService } from './service/login.service';
     ReviewCardComponent,
     RestaurantCardComponent,
     PaymentComponent,
+    RestaurantPageComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
     FontAwesomeModule,
     RatingModule,
     CarouselModule.forRoot(),
+    TabsModule.forRoot(),
+    MatTabsModule,
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],
