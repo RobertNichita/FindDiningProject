@@ -23,6 +23,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PaymentComponent } from './payment/payment.component';
 
 import { LoginService } from './service/login.service';
+import { AllRestaurantsComponent } from './pages/all-restaurants/all-restaurants.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { LoginService } from './service/login.service';
     ReviewCardComponent,
     RestaurantCardComponent,
     PaymentComponent,
+    AllRestaurantsComponent,
   ],
   imports: [
     BrowserModule,
