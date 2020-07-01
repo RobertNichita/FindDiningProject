@@ -56,7 +56,7 @@ Example:
 Example:
 Suppose your subcategories are `['1 star', '2 star', '3 star', '4 star', '5 star']`
 
-![alt text](../static/img/examples/filterlist-card.PNG "Logo Title Text 1")
+![alt text](../../static/img/examples/filterlist-card.PNG "Logo Title Text 1")
 
 The returned `list` will be `[false, true, false, true, true]`, with the checked filters being `true` and unchecked `false`.
 

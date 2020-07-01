@@ -1,0 +1,22 @@
+<div class="card review-card">
+  <div class="row">
+    <div class="col-md-1" style="margin-right: 20px;">
+      <img src="{{ review.image_path }}" class="review-user-img" />
+    </div>
+    <div class="col-md-10">
+      <div class="d-flex justify-content-between">
+        <p>{{ review.name }} | {{ review.date }}</p>
+        <star-rating
+          value="{{ review.rating }}"
+          totalstars="{{ totalStars }}"
+          checkedcolor="gold"
+          uncheckedcolor="grey"
+          size="24px"
+          readonly="true"
+        ></star-rating>
+      </div>
+      <h5>{{ review.title }}</h5>
+      <p>{{ review.review }}</p>
+    </div>
+  </div>
+</div>

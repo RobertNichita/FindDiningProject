@@ -4,6 +4,7 @@ import { faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faHeart, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import dishes from '../../../assets/data/dishes.json';
+import reviews from '../../../assets/data/reviews.json';
 
 @Component({
   selector: 'app-restaurant-page',
@@ -15,6 +16,7 @@ export class RestaurantPageComponent implements OnInit {
 
   restaurantId: string;
   dishes: any[];
+  reviews: any[];
   restaurantDetails: any;
 
   restaurantDetails1 = {
@@ -79,6 +81,7 @@ export class RestaurantPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {
     this.dishes = dishes;
+    this.reviews = reviews;
   }
 
   ngOnInit(): void {

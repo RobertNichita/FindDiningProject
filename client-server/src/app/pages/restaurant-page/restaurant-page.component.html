@@ -91,5 +91,10 @@
 
   <mat-tab disabled></mat-tab>
   <mat-tab label="Media"> Media </mat-tab>
-  <mat-tab label="Reviews"> Reviews </mat-tab>
+  <mat-tab label="Reviews">
+    <app-view-review-card
+      *ngFor="let review of reviews"
+      [review]="review"
+    ></app-view-review-card>
+  </mat-tab>
 </mat-tab-group>

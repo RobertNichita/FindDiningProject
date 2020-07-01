@@ -27,6 +27,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { RestaurantPageComponent } from './pages/restaurant-page/restaurant-page.component';
 
 import { LoginService } from './service/login.service';
+import { ViewReviewCardComponent } from './components/view-review-card/view-review-card.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { LoginService } from './service/login.service';
     RestaurantCardComponent,
     PaymentComponent,
     RestaurantPageComponent,
+    ViewReviewCardComponent,
   ],
   imports: [
     BrowserModule,
