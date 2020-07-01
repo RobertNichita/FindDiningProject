@@ -1,3 +1,14 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+$client-theme-primary: mat-palette($mat-red);
+$client-theme-accent: mat-palette($mat-pink, A200, A100, A400);
+$client-theme-theme: mat-light-theme(
+  $client-theme-primary,
+  $client-theme-accent
+);
+@include angular-material-theme($client-theme-theme);
+
 $primary-color: rgb(155, 50, 50);
 $secondary-color: rgb(189, 96, 96);
 $dark-color: rgb(7, 27, 48);
@@ -21,6 +32,16 @@ body {
 
 h2 {
   font-family: "Alegreya Sans SC", sans-serif;
+  font-size: 35px;
+}
+
+h5 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+p {
+  font-size: 15px;
 }
 
 fa-icon {
