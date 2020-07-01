@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import restaurants from '../../../assets/data/restaurants.json'
 
 @Component({
   selector: 'app-all-restaurants',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllRestaurantsComponent implements OnInit {
 
-  constructor() { }
+  restaurants = restaurants;
+  constructor() { 
+    this.restaurants = restaurants;
+  }
 
   ngOnInit(): void {
+  }
+
+  displayList(list){
+    
   }
 
 }

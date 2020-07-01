@@ -1,10 +1,15 @@
-<h2 class="header-title">Restaurants</h2>
+<h2 class="header-title">All Restaurants</h2>
 
-<div class="search-bar-narrow">
-    <p>Test narrow</p>
-</div>
-<div class="restaurant-listing-wide">
-    <p>Test wide</p>
+<div class="all-listings-box">
+    <div class="row">
+        <div class="col-md-4">
+            <app-filterlist-card [category]="'Rating'" [subcategories]="['1 star', '2 star', '3 star', '4 star', '5 star']"
+            [length]="5" (events)="displayList($event)"></app-filterlist-card>
+        </div>
+        <div class="col-md-8">
+                <app-restaurant-card *ngFor="let restaurant of restaurants" [restaurant]="restaurant"></app-restaurant-card>
+        </div>
+    </div>
 </div>
 
 <img class="chef" src="../../../assets/images/undraw_chef.png"> 
