@@ -34,3 +34,34 @@
   background-color: $secondary-color;
   color: white;
 }
+
+.modal-box {
+  width: 1100px;
+  height: auto;
+  padding: 30px;
+}
+
+.dish-img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.info-body {
+  height: 225px;
+}
+
+.picker-wrapper {
+  width: 120px;
+  position: absolute;
+  bottom: 0;
+  right: 250px;
+}
+
+.order-btn {
+  width: 200px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

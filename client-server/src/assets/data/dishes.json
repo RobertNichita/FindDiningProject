@@ -5,7 +5,8 @@
     "rating": "4",
     "price": "2.99",
     "image": "assets/images/cuisines/chinese.png",
-    "url": "/"
+    "description": "Very good dish",
+    "allergy": "Nuts"
   },
   {
     "type": "dish",
@@ -13,7 +14,8 @@
     "rating": "3",
     "price": "12.99",
     "image": "assets/images/cuisines/greek.jpg",
-    "url": "/"
+    "description": "Very good dish",
+    "allergy": "Nuts"
   },
   {
     "type": "dish",
@@ -21,7 +23,8 @@
     "rating": "4",
     "price": "14.99",
     "image": "assets/images/cuisines/vietnamese.jpg",
-    "url": "/"
+    "description": "Very good dish",
+    "allergy": "Nuts"
   },
   {
     "type": "dish",
@@ -29,7 +32,8 @@
     "rating": "5",
     "price": "29.99",
     "image": "assets/images/cuisines/thai.jpg",
-    "url": "/"
+    "description": "Very good dish",
+    "allergy": "Nuts"
   },
   {
     "type": "dish",
@@ -37,6 +41,7 @@
     "rating": "5",
     "price": "4.99",
     "image": "assets/images/cuisines/japanese.jpg",
-    "url": "/"
+    "description": "Very good dish",
+    "allergy": "Nuts"
   }
 ]

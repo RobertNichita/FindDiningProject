@@ -15,7 +15,54 @@
           ></star-rating>
         </p>
       </div>
-      <a href="{{ dish.url }}" class="btn">View dish</a>
+      <button class="btn" (click)="openDish(content)">
+        View dish
+      </button>
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h2>{{ dish.name }}</h2>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="dish-img" src="{{ dish.image }}" />
+      </div>
+      <div class="col-md-8">
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab label="Details">
+            <br />
+            <div class="info-body">
+              <h2>${{ dish.price }}</h2>
+              <p>{{ dish.description }}</p>
+              <p><b>Allergy Warning: </b>{{ dish.allergy }}</p>
+
+              <div class="picker-wrapper">
+                <ng-number-picker [(value)]="value"></ng-number-picker>
+              </div>
+              <button class="btn order-btn">ADD ORDER</button>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Reviews">
+            <app-view-review-card
+              *ngFor="let review of reviews"
+              [review]="review"
+            ></app-view-review-card>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</ng-template>

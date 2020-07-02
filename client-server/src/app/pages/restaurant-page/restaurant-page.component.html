@@ -76,7 +76,7 @@
   <p>{{ restaurantDetails.bio }}</p>
 </div>
 
-<mat-tab-group>
+<mat-tab-group mat-align-tabs="center">
   <mat-tab
     *ngFor="let category of restaurantDetails.category"
     label="{{ category.name }}"

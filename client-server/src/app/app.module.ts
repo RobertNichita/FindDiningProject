@@ -14,8 +14,9 @@ import { RestaurantCardComponent } from './components/restaurant-card/restaurant
 
 import { RatingModule } from 'ng-starrating';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NumberPickerModule } from 'ng-number-picker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,8 +58,9 @@ import { AllRestaurantsComponent } from './pages/all-restaurants/all-restaurants
     FontAwesomeModule,
     RatingModule,
     CarouselModule.forRoot(),
-    TabsModule.forRoot(), 
     MatTabsModule,
+    NumberPickerModule,
+    NgbModule,
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],
