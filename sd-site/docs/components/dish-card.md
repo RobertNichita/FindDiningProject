@@ -5,11 +5,15 @@ title: Dish Card
 
 ## Usage
 
-Displaying dishes with their ratings. Files exist under `src\app\components\dish-card`
+Displaying dishes with their ratings. Clicking **View Dish** brings a modal up with dish details, ability to place orders, and dish reviews.
+
+Files exist under `src\app\components\dish-card`
 
 ## UI Appearance
 
-![alt text](../../static/img/examples/dish-card.PNG "Dish Card")
+![Dish Card](../../static/img/examples/dish-card.PNG "Dish Card")
+![Dish Card Modal](../../static/img/examples/dish-card-modal.PNG "Dish Card Modal")
+![Dish Card Reviews](../../static/img/examples/dish-card-reviews.PNG "Dish Card Reviews")
 
 ## Tag Fields
 
@@ -32,7 +36,8 @@ Currently, the dish object should contain:
   "rating": "{{ rating number out of 5 (whole numbers) }}",
   "price": "{{ the price of the dish }}",
   "image": "{{ path to the image file }}",
-  "url": "{{ link to the dish page }}"
+  "description": "{{ description of dish }}",
+  "allergy": "{{ list of allergies }}"
 }
 ```
 
@@ -45,7 +50,8 @@ Example:
   "rating": "4",
   "price": "2.99",
   "image": "assets/images/cuisines/chinese.png",
-  "url": "/"
+  "description": "Very good dish",
+  "allergy": "Nuts"
 }
 ```
 
@@ -57,4 +63,4 @@ Add this to the `.html` file. Replace the sections `{{ }}` with the input to be 
 
 ### Output
 
-There is no output. The card example above will be generated.
+There is no output yet. The card example above will be generated. When the ordering functionality is present, this component will be edited to add the correct number of the specific dish.

@@ -5,6 +5,7 @@ module.exports = {
     Frontend: [
       "frontend/frontend",
       "frontend/bootstrap",
+      "frontend/material",
       "frontend/aos",
       "frontend/fortawesome",
     ],
