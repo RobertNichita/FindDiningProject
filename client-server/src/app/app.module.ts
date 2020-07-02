@@ -28,6 +28,7 @@ import { RestaurantPageComponent } from './pages/restaurant-page/restaurant-page
 
 import { LoginService } from './service/login.service';
 import { ViewReviewCardComponent } from './components/view-review-card/view-review-card.component';
+import { AllRestaurantsComponent } from './pages/all-restaurants/all-restaurants.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ViewReviewCardComponent } from './components/view-review-card/view-revi
     PaymentComponent,
     RestaurantPageComponent,
     ViewReviewCardComponent,
+    AllRestaurantsComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,7 @@ import { ViewReviewCardComponent } from './components/view-review-card/view-revi
     FontAwesomeModule,
     RatingModule,
     CarouselModule.forRoot(),
-    TabsModule.forRoot(),
+    TabsModule.forRoot(), 
     MatTabsModule,
   ],
   providers: [LoginService],
