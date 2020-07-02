@@ -23,28 +23,27 @@
 </div>
 
 <ng-template #content let-modal>
-  <div class="modal-header">
-    <h2>{{ dish.name }}</h2>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss()"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+  <h2></h2>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="modal.dismiss()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
   <div class="modal-body">
-    <div class="row">
-      <div class="col-md-4">
+    <div class="row" id="row-modal">
+      <div class="col-md-4" id="col-img">
         <img class="dish-img" src="{{ dish.image }}" />
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8" id="col-body">
         <mat-tab-group mat-align-tabs="center">
           <mat-tab label="Details">
             <br />
             <div class="info-body">
-              <h2>${{ dish.price }}</h2>
+              <h2>{{ dish.name }}</h2>
+              <h5>${{ dish.price }}</h5>
               <p>{{ dish.description }}</p>
               <p><b>Allergy Warning: </b>{{ dish.allergy }}</p>
 
