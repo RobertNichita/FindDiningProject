@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import restaurants from '../../../assets/data/restaurants.json'
+import restaurants from '../../../assets/data/restaurants.json';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-all-restaurants',
@@ -9,6 +10,7 @@ import restaurants from '../../../assets/data/restaurants.json'
 export class AllRestaurantsComponent implements OnInit {
 
   restaurants = restaurants;
+  faSearch = faSearch;
   constructor() { 
     this.restaurants = restaurants;
   }

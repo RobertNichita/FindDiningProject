@@ -1,7 +1,16 @@
 <h2 class="header-title">All Restaurants</h2>
 
-<mat-tab-group>
+
+<mat-tab-group mat-align-tabs="center">
     <mat-tab label="Restaurant"> 
+        <div class="input-group">
+            <div class="input-group-prepend input-group-lg">
+                <span class="input-group-text input-addon" id="basic-addon1">
+                    <fa-icon class="search-icons" [icon]="faSearch"></fa-icon> 
+                </span>
+            </div>
+            <input type="text" class="form-control" id="search" placeholder="Search">
+        </div>
         <div class="all-listings-box">
             <div class="row">
                 <div class="col-md-4">
@@ -15,10 +24,19 @@
                     <div class="col-md-8">
                         <app-restaurant-card *ngFor="let restaurant of restaurants" [restaurant]="restaurant"></app-restaurant-card>
                     </div>
-                </div>
             </div>
+        </div>
     </mat-tab>
-    <mat-tab label="Dishes"> Dishes </mat-tab>
+    <mat-tab label="Dishes">
+        <div class="input-group mb-4">
+            <div class="input-group-prepend input-group-lg">
+                <span class="input-group-text input-addon" id="basic-addon1">
+                    <fa-icon class="search-icons" [icon]="faSearch"></fa-icon> 
+                </span>
+            </div>
+            <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+        </div>
+    </mat-tab>   
 </mat-tab-group> 
   
 <img class="chef" src="../../../assets/images/undraw_chef.png"> 
