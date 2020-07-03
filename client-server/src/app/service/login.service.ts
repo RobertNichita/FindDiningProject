@@ -13,7 +13,6 @@ export class LoginService {
   /*
   @Input: JSON user object from auth
   @Output: None
-
   Add logged in user to the database. Updates the time if user already exists.
   */
   addNewUser(userData): void {
