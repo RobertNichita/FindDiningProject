@@ -76,14 +76,11 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
-            <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-primary" *ngIf="auth.loggedIn" (click)="upgradeUser()" data-dismiss="modal">Confirm</button>
           </div>
         </div>
       </div>
     </div>
-      <!-- <li class="nav-item">
-        <button type="button" class="upgrade-button" *ngIf="auth.loggedIn" (click)="upgradeUser()">Upgrade to Restaurant Account</button>
-      </li> -->
       <li class="nav-item">
         <a (click)="auth.login()" *ngIf="!auth.loggedIn" class="nav-link">
           LOG IN
