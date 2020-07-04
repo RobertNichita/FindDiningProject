@@ -30,9 +30,9 @@ export class LoginService {
   updateUser(userData): void {
     const endpoint = `${LoginService.AUTH_ENDPOINT}/reassign/`;
     const userObject = {
-      'email': userData._value.email,
-      'role': 'RO',
-    }
+      email: userData._value.email,
+      role: 'RO',
+    };
     this.http.post<any>(endpoint, userObject).subscribe((data) => {});
   }
 }

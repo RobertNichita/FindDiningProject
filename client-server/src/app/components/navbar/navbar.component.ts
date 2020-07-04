@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {}
 
-  upgradeUser(): void{
+  upgradeUser(): void {
     this.loginService.updateUser(this.auth.userProfile$.source);
   }
 }
