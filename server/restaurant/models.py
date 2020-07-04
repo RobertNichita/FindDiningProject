@@ -1,6 +1,6 @@
 from django.db import models
 
-
+# Model for the Food Items on the Menu
 class Food(models.Model):
     name = models.CharField(max_length=50)
     restaurant = models.CharField(max_length=50)  # To be changed when restaurant is implemented
@@ -12,7 +12,7 @@ class Food(models.Model):
     class Meta:
         unique_together = (("name", "restaurant"),)
 
-
+# Model for Manual Tags
 class ManualTag(models.Model):
     food = models.ForeignKey(Food, on_delete=models.CASCADE)
     category = models.CharField(max_length=20, choices=[("promo", "promo"), ("allergy", "allergy")])
@@ -25,8 +25,8 @@ class ManualTag(models.Model):
         ManualTag.objects.filter(food=food).delete()
         return None
 
-        # Clears all the tags off a food item
 
+    # Clears all the tags off a food item
     @classmethod
     def add_tag(cls, food_name, restaurant, category, value):  # To be changed when restaurant is implemented
         food = Food.objects.get(name=food_name, restaurant=restaurant)  # To be changed when restaurant is implemented
@@ -34,3 +34,6 @@ class ManualTag(models.Model):
         tag.full_clean()
         tag.save()
         return tag
+
+    def __eq__(self, other):
+        return self.food == other.food and self.category == other.category and self.value == other.value
