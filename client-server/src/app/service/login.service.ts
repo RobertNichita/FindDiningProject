@@ -13,7 +13,6 @@ export class LoginService {
   /*
   @Input: JSON user object from auth
   @Output: None
-
   Add logged in user to the database. Updates the time if user already exists.
   */
   addNewUser(userData): void {
@@ -23,14 +22,17 @@ export class LoginService {
   }
 
   /*
-  @Input: JSON object with email
+  @Input: JSON object - source section of user profile
   @Output: None
 
   Assign the 'Restauraut Owner' role to the user using their email.
   */
   updateUser(userData): void {
     const endpoint = `${LoginService.AUTH_ENDPOINT}/reassign/`;
-    userData.role = 'RO';
-    this.http.post<any>(endpoint, userData).subscribe((data) => {});
+    const userObject = {
+      email: userData._value.email,
+      role: 'RO',
+    };
+    this.http.post<any>(endpoint, userObject).subscribe((data) => {});
   }
 }
