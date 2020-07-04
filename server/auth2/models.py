@@ -9,8 +9,6 @@ def getRoleValue(role):
             return user_type.value
 
 
-# Create your models here.
-
 # Scarborough Dining User
 class SDUser(models.Model):
     nickname = models.CharField(max_length=30, null=True, default='')
