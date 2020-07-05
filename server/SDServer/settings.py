@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'auth2'
+    'auth2',
+    'restaurant'
 ]
 
 MIDDLEWARE = [
