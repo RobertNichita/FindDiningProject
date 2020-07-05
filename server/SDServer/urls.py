@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('auth/', include('auth2.urls')),
     path('admin/', admin.site.urls),
+    path('tag/', include('restaurant.urls')),
 ]

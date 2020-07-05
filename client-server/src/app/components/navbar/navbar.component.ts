@@ -1,6 +1,7 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Type } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import { faSearch, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +10,9 @@ import { faSearch, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class NavbarComponent implements OnInit {
   title = 'client-server';
-  faSearch = faSearch;
   faUserCircle = faUserCircle;
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService, private loginService: LoginService) {}
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -25,4 +25,8 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  upgradeUser(): void {
+    this.loginService.updateUser(this.auth.userProfile$.source);
+  }
 }
