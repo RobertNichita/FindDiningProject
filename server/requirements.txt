@@ -1,6 +1,6 @@
 Django<3
 pipenv
-uwsgi
+waitress
 dnspython
 djongo==1.2.38
 django-cors-headers
