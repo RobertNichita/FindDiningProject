@@ -2,12 +2,11 @@
 
 import csv
 import time
-data = {}
+cuisine = {}
 start = time.time()
 
-with open('cuisine_dict.csv', newline='', encoding='utf-8-sig') as f:
-    data = {elem.lower() for line in list(csv.reader(f)) for elem in line}
+with open('cuisine.csv', newline='', encoding='utf-8-sig') as f:
+    cuisine = {elem.lower().strip() for line in list(csv.reader(f)) for elem in line}
 
-print(data)
 end = time.time()
-print(str(len(data)) + ' item loaded in ' + str(end - start) + ' s')
+print(str(len(cuisine)) + ' cuisine items loaded in ' + str(end - start) + ' s')
