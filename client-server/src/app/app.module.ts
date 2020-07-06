@@ -30,6 +30,7 @@ import { RestaurantPageComponent } from './pages/restaurant-page/restaurant-page
 import { LoginService } from './service/login.service';
 import { ViewReviewCardComponent } from './components/view-review-card/view-review-card.component';
 import { AllRestaurantsComponent } from './pages/all-restaurants/all-restaurants.component';
+import { OrderCardComponent } from './components/order-card/order-card.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AllRestaurantsComponent } from './pages/all-restaurants/all-restaurants
     RestaurantPageComponent,
     ViewReviewCardComponent,
     AllRestaurantsComponent,
+    OrderCardComponent,
   ],
   imports: [
     BrowserModule,
