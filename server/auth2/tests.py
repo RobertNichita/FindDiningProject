@@ -1,5 +1,7 @@
 from django.core.exceptions import ValidationError
-from django.test import TestCase, Client
+from django.test import TestCase
+from djongo.models import json
+
 from auth2.models import SDUser
 from auth2.enum import Roles
 
@@ -13,6 +15,7 @@ class SDUserTestCases(TestCase):
         SDUser.objects.create(nickname="TesterC", name="Tester", picture="picC", last_updated="2020-06-26T14:07:39.888Z", email="C@mail.com", email_verified=True, role=Roles.BU.name)
         SDUser.objects.create(nickname="TesterD", name="Tester", picture="picD", last_updated="2020-06-26T14:07:39.888Z", email="D@mail.com", email_verified=True, role=Roles.BU.name)
         SDUser.objects.create(nickname="TesterE", name="Tester", picture="picE", last_updated="2020-06-26T14:07:39.888Z", email="E@mail.com", email_verified=True, role=Roles.BU.name)
+
     def test_signup(self):
         SDUser.signup("TesterA", "Tester", "picA", "2020-06-26T14:07:39.888Z", "A@mail.com", True, "BU")
         actual = SDUser.objects.get(pk="A@mail.com")
@@ -43,3 +46,8 @@ class SDUserTestCases(TestCase):
         expected = Roles.BU.name
         self.assertEqual(actual, expected)
 
+    def test_data(self):
+        response = self.client.post('/auth/data/', {'email': 'E@mail.com'}, content_type="application/json")
+        expected = {"nickname": "TesterE", "name": "Tester", "picture": "picE", "updated_at": "2020-06-26T14:07:39.888Z", "email": "E@mail.com", "email_verified": True, "role": "BU"}
+        actual = response.content
+        self.assertJSONEqual(actual, expected)
