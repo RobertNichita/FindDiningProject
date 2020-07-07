@@ -15,6 +15,8 @@ class SDUser(models.Model):
     # Constructs & Saves User to DB
     @classmethod
     def signup(cls, nickname, name, picture, updated, email, verified, role):
+        if role == "":
+            role = "BU"
         user = cls(nickname=nickname, name=name, picture=picture, last_updated=updated, email=email,
                    email_verified=verified, role=role)
         user.full_clean()
