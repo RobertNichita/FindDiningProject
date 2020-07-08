@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'payment', component: PaymentComponent },
   { path: 'all-listings', component: AllRestaurantsComponent },
   { path: 'restaurant', component: RestaurantPageComponent },
-  { path: 'dashboard', component: RestaurantPageComponent },
+  { path: 'dashboard', component: RestuarantDashboardComponent },
 ];
 
 @NgModule({

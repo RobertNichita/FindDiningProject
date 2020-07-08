@@ -1,1 +1,21 @@
-<p>order-card works!</p>
+<div class="card cardBox">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Order #{{ order.number }}</h2>
+      <p>{{ order.name }}</p>
+      <p>{{ order.phone }}</p>
+      <p>{{ order.type }}</p>
+    </div>
+    <div class="col-md-8">
+      <div class="orders" *ngFor="let dish of order.dishes">
+        <p>{{ dish }}</p>
+      </div>
+      <button class="btn cancel">
+        Cancel
+      </button>
+      <button class="btn accept">
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
