@@ -1,1 +1,3 @@
-<p>restuarant-dashboard works!</p>
+<div class="dashboard-box">
+  <app-order-card *ngFor="let order of orders" [order]="order"></app-order-card>
+</div>
