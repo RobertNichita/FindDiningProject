@@ -22,3 +22,6 @@ urlpatterns = [
     path('tag/', include('restaurant.urls')),
     path('RO/', include('RO.urls'))
 ]
+
+#prefix all URLpatterns with api/ i.e. api/urlpattern
+urlpatterns = [path('api/', include(urlpatterns))]
