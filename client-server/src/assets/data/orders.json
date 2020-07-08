@@ -1,0 +1,9 @@
+[
+  {
+    "number": "1234",
+    "name": "Jane Doe",
+    "phone": "416-123-4567",
+    "type": "Pick-Up",
+    "dishes": ["1 x fancy dish #1", "1 x fancy dish #2"]
+  }
+]
