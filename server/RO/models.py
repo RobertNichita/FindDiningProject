@@ -2,26 +2,31 @@ from djongo import models
 from django.forms.models import model_to_dict
 from bson.objectid import ObjectId
 
+
 # Create your models here.
 
 class Restaurant(models.Model):
     _id = models.ObjectIdField()
     name = models.CharField(max_length=30)
     address = models.CharField(max_length=60)
-    phone = models.BigIntegerField()
-    email = models.EmailField()
+    phone = models.BigIntegerField(null=True)
+    email = models.EmailField(unique=True)
     city = models.CharField(max_length=40)
     cuisine = models.CharField(max_length=30)
-    pricepoint = models.CharField(max_length=30)  # add choices
-    twitter = models.CharField(max_length=60)
-    instagram = models.CharField(max_length=60)
-    bio = models.TextField()
-    GEO_location = models.CharField(max_length=60)
-    external_delivery_link = models.CharField(max_length=60)
+    pricepoint = models.CharField(max_length=30)  # add choices, make enum
+    twitter = models.CharField(max_length=100)
+    instagram = models.CharField(max_length=100)
+    bio = models.TextField(null=True)
+    GEO_location = models.CharField(max_length=100)
+    external_delivery_link = models.CharField(max_length=1000)
 
     @classmethod
     def get(cls, _id):
-        return list(Restaurant.objects.filter(_id=ObjectId(_id)))[0]
+        restaurant = list(Restaurant.objects.filter(_id=ObjectId(_id)))
+        if len(restaurant) == 1:
+            restaurant[0]._id = str(restaurant[0]._id)
+            return restaurant[0]
+        return None
 
     @classmethod
     def get_all(cls):
@@ -34,20 +39,10 @@ class Restaurant(models.Model):
     @classmethod
     def insert(cls, restaurant_data):
         restaurant = cls(
-            name=restaurant_data['name'],
-            address=restaurant_data['address'],
-            phone=restaurant_data['phone'],
-            email=restaurant_data['email'],
-            city=restaurant_data['city'],
-            cuisine=restaurant_data['cuisine'],
-            pricepoint=restaurant_data['pricepoint'],
-            twitter=restaurant_data['twitter'],
-            instagram=restaurant_data['instagram'],
-            bio=restaurant_data['bio'],
-            GEO_location=restaurant_data['location'],
-            external_delivery_link=restaurant_data['link'],
+            **restaurant_data
         )
         restaurant.full_clean()
         restaurant.save()
         return restaurant
+
 
