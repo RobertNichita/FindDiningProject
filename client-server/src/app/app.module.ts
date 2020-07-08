@@ -31,6 +31,7 @@ import { LoginService } from './service/login.service';
 import { ViewReviewCardComponent } from './components/view-review-card/view-review-card.component';
 import { AllRestaurantsComponent } from './pages/all-restaurants/all-restaurants.component';
 import { OrderCardComponent } from './components/order-card/order-card.component';
+import { RestuarantDashboardComponent } from './pages/restuarant-dashboard/restuarant-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { OrderCardComponent } from './components/order-card/order-card.component
     ViewReviewCardComponent,
     AllRestaurantsComponent,
     OrderCardComponent,
+    RestuarantDashboardComponent,
   ],
   imports: [
     BrowserModule,
