@@ -4,6 +4,32 @@
     "name": "Jane Doe",
     "phone": "416-123-4567",
     "type": "Pick-Up",
-    "dishes": ["1 x fancy dish #1", "1 x fancy dish #2"]
+    "dishes": ["1 x Fancy Dish #1"]
+  },
+  {
+    "number": "1234",
+    "name": "Jane Doe",
+    "phone": "416-123-4567",
+    "type": "Delivery",
+    "dishes": ["1 x Fancy Dish #1", "2 x Fancy Dish #2"]
+  },
+  {
+    "number": "1234",
+    "name": "Jane Doe",
+    "phone": "416-123-4567",
+    "type": "Pick-Up",
+    "dishes": ["1 x Fancy Dish #1", "2 x Fancy Dish #2", " 3 x Fancy Dish #3"]
+  },
+  {
+    "number": "1234",
+    "name": "Jane Doe",
+    "phone": "416-123-4567",
+    "type": "Delivery",
+    "dishes": [
+      "1 x Fancy Dish #1",
+      "2 x Fancy Dish #2",
+      "3 x Fancy Dish #3",
+      "4 x Fancy Dish #4"
+    ]
   }
 ]
