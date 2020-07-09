@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
-import { PaymentComponent } from './payment/payment.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 import { AllRestaurantsComponent } from './pages/all-restaurants/all-restaurants.component';
 import { RestaurantPageComponent } from './pages/restaurant-page/restaurant-page.component';
 
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   { path: 'payment', component: PaymentComponent },
   { path: 'all-listings', component: AllRestaurantsComponent },
-  { path: 'restaurant', component: RestaurantPageComponent }
+  { path: 'restaurant', component: RestaurantPageComponent },
 ];
 
 @NgModule({

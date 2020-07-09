@@ -15,9 +15,10 @@
 }
 
 .card-img {
-  width: auto;
+  width: 120px;
   height: 120px;
-  border-radius: 10px 10px 0 0;
+  border-radius: 5px;
+  object-fit: cover;
 }
 
 .card-body {
