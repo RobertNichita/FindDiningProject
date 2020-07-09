@@ -11,11 +11,14 @@ export class AllRestaurantsComponent implements OnInit {
   restaurants: any[];
   faSearch = faSearch;
 
-  constructor(private restaurantsService: RestaurantsService) {
-    this.restaurants = this.restaurantsService.listRestaurants();
-  }
+  constructor(private restaurantsService: RestaurantsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Get list of all restaurants
+    this.restaurantsService.listRestaurants().subscribe((data) => {
+      this.restaurants = data.Restaurants;
+    });
+  }
 
   displayList(list) {}
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -16,13 +17,8 @@ export class RestaurantsService {
 
   Return list of all restaurants in the database
   */
-  listRestaurants(): any[] {
+  listRestaurants(): Observable<any> {
     const endpoint = `${RestaurantsService.RO_ENDPOINT}/getAll/`;
-    let restaurants: any[];
-    this.http.get<any[]>(endpoint).subscribe((data) => {
-      restaurants = data;
-    });
-
-    return restaurants;
+    return this.http.get(endpoint);
   }
 }
