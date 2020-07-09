@@ -21,4 +21,18 @@ export class RestaurantsService {
     const endpoint = `${RestaurantsService.RO_ENDPOINT}/getAll/`;
     return this.http.get(endpoint);
   }
+
+  /*
+  @Input: Restaurand id
+  @Output: Corresponding restaurant object
+
+  Returns the details of the restaurant using its id.
+  */
+  getRestaurant(id): Observable<any> {
+    const endpoint = `${RestaurantsService.RO_ENDPOINT}/get/`;
+    var params = {
+      _id: id,
+    };
+    return this.http.get(endpoint, { params: params });
+  }
 }
