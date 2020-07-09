@@ -35,4 +35,18 @@ export class LoginService {
     };
     this.http.post<any>(endpoint, userObject).subscribe((data) => {});
   }
+
+  /*
+  @Input: JSON user object with email
+  @Output: None
+
+  Get the user's role
+  */
+  getUserRole(userData): void {
+    const endpoint = `${LoginService.AUTH_ENDPOINT}/data/`;
+    let userFields = this.http
+      .get(endpoint, userData._value.email)
+      .subscribe((data) => {});
+    console.log(userFields);
+  }
 }
