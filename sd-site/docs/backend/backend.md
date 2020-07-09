@@ -49,6 +49,25 @@ class ManualTag(models.Model):
     value = models.CharField(max_length=50)
 ``` 
 
+###### Restaurant
+
+```python
+class Restaurant(models.Model):
+    _id = models.ObjectIdField()
+    name = models.CharField(max_length=30)
+    address = models.CharField(max_length=60)
+    phone = models.BigIntegerField(null=True)
+    email = models.EmailField(unique=True)
+    city = models.CharField(max_length=40)
+    cuisine = models.CharField(max_length=30)
+    pricepoint = models.CharField(max_length=30)  # add choices, make enum
+    twitter = models.CharField(max_length=100)
+    instagram = models.CharField(max_length=100)
+    bio = models.TextField(null=True)
+    GEO_location = models.CharField(max_length=100)
+    external_delivery_link = models.CharField(max_length=1000)
+```
+
 ## URLs
 
 |     Address     | Required Fields (Field Type)                                                          | Functionality                    |
@@ -58,6 +77,9 @@ class ManualTag(models.Model):
 | /auth/data/     | email                                                                                 | Returns All Fields of the SDUser |
 | /tag/add/       | food_name, restaurant, category, value                                                | Adds Tag to a Food Item          |
 | /tag/clear/     | food_name, restaurant                                                                 | Clears All Tags on a Food Item   |
+| /RO/get/        | restaurant_id                                                                         | Retrieves Restaurant data        |                                 
+| /RO/getAll/     |                                                                                       | Retrieves all Restaurants        |    
+| /RO/insert/     | { name: , address: , phone : email : , city : , cuisine : , pricepoint : , instagram : , twitter : , GEO_location : , external_delivery_link : , bio : }
 
 All requests should be sent in a JSON format.
 

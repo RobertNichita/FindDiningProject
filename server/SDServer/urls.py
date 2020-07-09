@@ -25,7 +25,7 @@ urlpatterns = [
     path('user/data', auth2.views.data_page),
     path('admin/', admin.site.urls),
     path('tag/', include('restaurant.urls')),
-    path('dish/data', restaurant.views.all_dishes_page),
+    path('RO/', include('RO.urls'))
 ]
 
 #prefix all URLpatterns with api/ i.e. api/urlpattern
