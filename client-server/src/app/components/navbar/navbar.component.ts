@@ -11,6 +11,7 @@ import { LoginService } from '../../service/login.service';
 export class NavbarComponent implements OnInit {
   title = 'client-server';
   faUserCircle = faUserCircle;
+  userRole: any;
 
   constructor(public auth: AuthService, private loginService: LoginService) {}
 
@@ -24,7 +25,14 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.loginService
+      .getUserRole(this.auth.userProfile$.source)
+      .subscribe((data) => {
+        this.userRole = data;
+        console.log(data);
+      });
+  }
 
   upgradeUser(): void {
     this.loginService.updateUser(this.auth.userProfile$.source);

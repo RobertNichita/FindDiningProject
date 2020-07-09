@@ -23,7 +23,7 @@ export class LoginService {
   }
 
   /*
-  @Input: JSON object - source section of user profile
+  @Input: JSON object from auth
   @Output: None
 
   Assign the 'Restauraut Owner' role to the user using their email.
@@ -38,13 +38,15 @@ export class LoginService {
   }
 
   /*
-  @Input: JSON object - source section of user profile
-  @Output: None
+  @Input: JSON object from auth
+  @Output: Return all fields of a user
 
-  Assign the 'Restauraut Owner' role to the user using their email.
+  Get all fields of a user
   */
   getUserRole(userData): Observable<any> {
     const endpoint = `${LoginService.AUTH_ENDPOINT}/data/`;
+    console.log(userData);
+    console.log(userData._value);
     const userObject = {
       email: userData._value.email,
     };
