@@ -19,15 +19,22 @@
 
 .btn {
   margin: 5px;
-}
-
-.buttons {
-  position: absolute;
-  bottom: 0px;
+  padding-bottom: 0px;
+  text-align: center;
 }
 
 .cancel {
   color: $secondary-color;
   background-color: white;
   border-color: $secondary-color;
+  margin-left: 16px;
+}
+
+.cancel:hover {
+  color: white;
+  background-color: $secondary-color;
+}
+
+.dishes {
+  font-size: 18px;
 }
