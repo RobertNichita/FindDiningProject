@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from restaurant.models import Food, ManualTag
 import json
 
@@ -13,3 +13,9 @@ def clear_tags_page(request):
     body = json.loads(request.body)
     user = ManualTag.clear_food_tags(body['food_name'], body['restaurant'])
     return HttpResponse(status=200)
+
+
+def all_dishes_page(request):
+    body = json.loads(request.body)
+    dishes = Food.objects.all()
+    return JsonResponse({'results': list(dishes)})
