@@ -1,16 +1,14 @@
 from djongo import models
 from bson import ObjectId
 from restaurant.cuisine_dict import load_dict
-from RO.models import Restaurant
-
 
 path = 'cuisine_dict/dishes.csv'
 # Model for the Food Items on the Menu
 class Food(models.Model):
 
-    _id = models.ObjectIdField()
-    name = models.CharField(max_length=50)
-    restaurant_id = models.CharField(max_length=24, editable=False, blank=False) # To be changed when restaurant is implemented
+    _id = models.ObjectIdField(primary_key=True)
+    name = models.CharField(max_length=50, default='')
+    restaurant_id = models.CharField(max_length=24, editable=False, blank=False)
     description = models.CharField(max_length=200, blank=True, default='')
     picture = models.CharField(max_length=200, blank=True, default='')
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -23,15 +21,22 @@ class Food(models.Model):
 
     @classmethod
     def add_dish(cls, food_data):
-        dish = Food.objects.create(**food_data)
+        dish = cls(
+            name=food_data['name'],
+            restaurant_id=food_data['restaurant_id'],
+            description=food_data['description'],
+            picture=food_data['picture'],
+            price=food_data['price'],
+            specials=food_data['specials'],
+        )
+        # dish.full_clean()
+        dish.save()
         return dish
 
 
 # Model for Manual Tags
 class ManualTag(models.Model):
     _id = models.ObjectIdField()
-    food = models.ForeignKey(Food, on_delete=models.CASCADE)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     category = models.CharField(max_length=20, choices=[  # Use enum later
         ("promo", "promo"),
         ("allergy", "allergy"),
@@ -39,7 +44,7 @@ class ManualTag(models.Model):
         ('dish', 'dish')
     ])
     value = models.CharField(max_length=50, unique=True)
-    foods = models.ListField(default=[])
+    foods = models.ListField()
 
     # Clears all the tags off a food item
     @classmethod
