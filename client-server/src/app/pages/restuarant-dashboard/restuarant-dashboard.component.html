@@ -1,3 +1,17 @@
 <div class="dashboard-box">
-  <app-order-card *ngFor="let order of orders" [order]="order"></app-order-card>
+  <h2 class="header-title">Welcome</h2>
+
+  <div class="all-orders">
+    <button class="btn all-orders">View All Orders</button>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="New Orders"> Placeholder</mat-tab>
+    <mat-tab label="In-Progress"> Placeholder </mat-tab>
+  </mat-tab-group>
 </div>
+<!--  Will eventually need to customize to specific restaurant name -->
+
+<!-- <div class="dashboard-box">
+  <app-order-card *ngFor="let order of orders" [order]="order"></app-order-card>
+</div> -->
