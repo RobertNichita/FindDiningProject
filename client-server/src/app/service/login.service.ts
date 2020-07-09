@@ -45,11 +45,10 @@ export class LoginService {
   */
   getUserRole(userData): Observable<any> {
     const endpoint = `${LoginService.AUTH_ENDPOINT}/data/`;
-    console.log(userData);
-    console.log(userData._value);
     const userObject = {
       email: userData._value.email,
     };
+    console.log(userObject);
     return this.http.get(endpoint, { params: userObject });
   }
 }
