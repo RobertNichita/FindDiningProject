@@ -14,10 +14,10 @@ export class LoginService {
   @Input: JSON user object from auth
   @Output: None
   Add logged in user to the database. Updates the time if user already exists.
+  Assume user role for signup is "BU" (basic user) as this is the default
   */
   addNewUser(userData): void {
     const endpoint = `${LoginService.AUTH_ENDPOINT}/signup/`;
-    userData.role = 'BU'; // will change once get user endpoint is available
     this.http.post<any>(endpoint, userData).subscribe((data) => {});
   }
 
