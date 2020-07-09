@@ -20,6 +20,7 @@ urlpatterns = [
     path('auth/', include('auth2.urls')),
     path('admin/', admin.site.urls),
     path('tag/', include('restaurant.urls')),
+    path('RO/', include('RO.urls'))
 ]
 
 #prefix all URLpatterns with api/ i.e. api/urlpattern

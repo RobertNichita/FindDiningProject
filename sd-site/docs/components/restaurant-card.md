@@ -23,17 +23,26 @@ Specify the input:
 | ------------ | ----- | ----------------- | -------- |
 | `restaurant` | `any` | Restaurant object | Yes      |
 
-Currently, the restaurant object should contain:
+The restaurant object should contain:
 
 ```json
 {
+  "_id": "{{ MongoDB id of restaurant }}",
   "name": "{{ restaurant name }}",
-  "logo": "{{ url to image }}",
+  "address": "{{ restaurant address }}",
+  "phone": "{{ restuarant phone number }}",
+  "email": "{{ restaurant email }}",
   "city": "{{ city restaurant is in }}",
   "cuisine": "{{ type of cuisine }}",
-  "pricePoint": "{{ restaurant price point }}",
+  "pricepoint": "{{ restaurant price point }}",
   "rating": "{{ restaurant rating }}",
-  "url": "{{ url to restaurant page }}"
+  "twitter": "{{ restaurant twitter url }}",
+  "instagram": "{{ restaurant instagram url }}",
+  "bio": "{{ restaurant bio }}",
+  "GEO_location": "{\"longitude\": 19.421700, \"latitude\" : 13.216966}",
+  "external_delivery_link": "{{ self explainatory }}",
+  "cover_photo_url": "{{ url to page cover photo}}",
+  "logo_url": "{{ url to restaurant logo }}"
 }
 ```
 
@@ -41,13 +50,22 @@ Example:
 
 ```json
 {
-  "name": "Rob's Ribs",
-  "logo": "https://static.thenounproject.com/png/1939273-200.png",
-  "city": "Scarborough",
-  "cuisine": "Ribs",
-  "pricePoint": "$$",
-  "rating": "4.7",
-  "url": ""
+  "_id": "5f0219fb0c491ec3860430d6",
+  "name": "popeyes",
+  "address": "200 chicago st",
+  "phone": 6475040680,
+  "email": "popeyeschicken@popeyes.com",
+  "city": "chicago",
+  "cuisine": "american",
+  "pricepoint": "low",
+  "rating": 4.7,
+  "twitter": "https://twitter.com/KEEMSTAR",
+  "instagram": "https://www.instagram.com/dramaalert/?hl=en",
+  "bio": "We server the best chicken in the world! Classic american style",
+  "GEO_location": "{\"longitude\": 19.421700, \"latitude\" : 13.216966}",
+  "external_delivery_link": "https://play.typeracer.com/",
+  "Cover_Photo_URL": "https://cdn.mos.cms.futurecdn.net/BVb3Wzn9orDR8mwVnhrSyd-1200-80.jpg",
+  "Logo_URL": "https://cdn.mos.cms.futurecdn.net/BVb3Wzn9orDR8mwVnhrSyd-1200-80.jpg"
 }
 ```
 
@@ -60,3 +78,5 @@ Add this to the `.html` file. Replace the sections `{{ }}` with the input to be 
 ### Output
 
 There is no output. The card example above will be generated.
+
+The id will be set on the card button to link with the individual restaurant page.
