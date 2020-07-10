@@ -31,6 +31,8 @@ class Food(models.Model):
             specials=food_data['specials'],
         )
         # dish.full_clean()
+        dish.clean_fields()
+        dish.clean()
         dish.save()
         return Food.objects.get(name=food_data['name'], restaurant_id=food_data['restaurant_id'])
 
