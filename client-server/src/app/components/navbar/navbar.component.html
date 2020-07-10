@@ -15,7 +15,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item nav-link">
-        <a routerLink="/" routerLinkActive="active" class="nav-link">
+        <a routerLink="/" class="nav-link">
           HOME
         </a>
       </li>
@@ -34,32 +34,12 @@
           BROWSE
         </a>
       </li>
-      <li class="nav-item nav-link">
-        <a
-          routerLink="restaurant"
-          [queryParams]="{ restaurantId: '123' }"
-          routerLinkActive="active"
-          class="nav-link"
-        >
-          RESTAURANT 1
-        </a>
-      </li>
-      <li class="nav-item nav-link">
-        <a
-          routerLink="restaurant"
-          [queryParams]="{ restaurantId: '124' }"
-          routerLinkActive="active"
-          class="nav-link"
-        >
-          RESTAURANT 2
-        </a>
-      </li>
     </ul>
     <ul class="navbar-nav">
       <button
         type="button"
         class="upgrade-button"
-        *ngIf="auth.loggedIn"
+        *ngIf="auth.loggedIn && auth.role == 'BU'"
         data-toggle="modal"
         data-target="#exampleModal"
       >

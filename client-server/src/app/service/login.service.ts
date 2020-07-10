@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -14,17 +15,16 @@ export class LoginService {
   @Input: JSON user object from auth
   @Output: None
   Add logged in user to the database. Updates the time if user already exists.
+  Assume user role for signup is "BU" (basic user) as this is the default
   */
   addNewUser(userData): void {
     const endpoint = `${LoginService.AUTH_ENDPOINT}/signup/`;
-    userData.role = 'BU'; // will change once get user endpoint is available
     this.http.post<any>(endpoint, userData).subscribe((data) => {});
   }
 
   /*
-  @Input: JSON object - source section of user profile
+  @Input: JSON object from auth
   @Output: None
-
   Assign the 'Restauraut Owner' role to the user using their email.
   */
   updateUser(userData): void {
@@ -34,5 +34,18 @@ export class LoginService {
       role: 'RO',
     };
     this.http.post<any>(endpoint, userObject).subscribe((data) => {});
+  }
+
+  /*
+  @Input: JSON object from auth
+  @Output: Return all fields of a user
+  Get all fields of a user
+  */
+  getUserRole(userData): Observable<any> {
+    const endpoint = `${LoginService.AUTH_ENDPOINT}/data/`;
+    const userObject = {
+      email: userData.email,
+    };
+    return this.http.get(endpoint, { params: userObject });
   }
 }
