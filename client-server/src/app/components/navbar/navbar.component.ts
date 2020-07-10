@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Type } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { LoginService } from '../../service/login.service';
@@ -25,16 +25,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.userRole = this.loginService
-      .getUserRole(this.auth.userProfile$.source)
-      .subscribe((data) => {
-        this.userRole = data;
-        console.log(data);
-      });
-  }
+  ngOnInit(): void {}
 
   upgradeUser(): void {
     this.loginService.updateUser(this.auth.userProfile$.source);
+    this.auth.role = 'RO';
   }
 }

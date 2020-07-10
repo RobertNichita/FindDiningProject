@@ -44,6 +44,7 @@ export class AuthService {
   userProfile$ = this.userProfileSubject$.asObservable();
   // Create a local property for login status
   loggedIn: boolean = null;
+  role: string = '';
 
   constructor(private router: Router, private loginService: LoginService) {
     // On initial load, check authentication state with authorization server
@@ -118,6 +119,9 @@ export class AuthService {
         this.router.navigate([targetRoute]);
         // Add resulting new user to database
         this.loginService.addNewUser(user);
+        this.loginService.getUserRole(user).subscribe((data) => {
+          this.role = data.role;
+        });
       });
     }
   }

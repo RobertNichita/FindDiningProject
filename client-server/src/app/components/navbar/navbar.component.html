@@ -39,7 +39,7 @@
       <button
         type="button"
         class="upgrade-button"
-        *ngIf="auth.loggedIn"
+        *ngIf="auth.loggedIn && auth.role == 'BU'"
         data-toggle="modal"
         data-target="#exampleModal"
       >
