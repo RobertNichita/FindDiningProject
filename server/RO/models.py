@@ -14,11 +14,14 @@ class Restaurant(models.Model):
     city = models.CharField(max_length=40)
     cuisine = models.CharField(max_length=30)
     pricepoint = models.CharField(max_length=30)  # add choices, make enum
-    twitter = models.CharField(max_length=100)
-    instagram = models.CharField(max_length=100)
+    twitter = models.CharField(max_length=200)
+    instagram = models.CharField(max_length=200)
     bio = models.TextField(null=True)
-    GEO_location = models.CharField(max_length=100)
-    external_delivery_link = models.CharField(max_length=1000)
+    GEO_location = models.CharField(max_length=200)
+    external_delivery_link = models.CharField(max_length=200)
+    cover_photo_url = models.CharField(max_length=200, default='https://www.nautilusplus.com/content/uploads/2016/08/Pexel_junk-food.jpeg')
+    logo_url = models.CharField(max_length=200, default='https://d1csarkz8obe9u.cloudfront.net/posterpreviews/diner-restaurant-logo-design-template-0899ae0c7e72cded1c0abc4fe2d76ae4_screen.jpg?ts=1561476509')
+    rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
 
     @classmethod
     def get(cls, _id):

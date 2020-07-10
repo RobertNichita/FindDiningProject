@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faHeart, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { RestaurantsService } from 'src/app/service/restaurants.service';
 import dishes from '../../../assets/data/dishes.json';
 import reviews from '../../../assets/data/reviews.json';
 
@@ -19,46 +20,7 @@ export class RestaurantPageComponent implements OnInit {
   reviews: any[];
   restaurantDetails: any;
 
-  restaurantDetails1 = {
-    id: '123',
-    name: "Rob's Ribs Ribs Ribs Ribs",
-    address: '666 Address Road',
-    phone: '416-123-4567',
-    email: 'contact@email.com',
-    city: 'Scarborough',
-    cuisine: 'Ribs',
-    pricePoint: '$$',
-    rating: '4.7',
-    twitter: 'https://twitter.com/',
-    instagram: 'https://www.instagram.com/',
-    bio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    category: [
-      {
-        name: 'Appetizer',
-        menu: dishes,
-      },
-      {
-        name: 'Main',
-        menu: dishes,
-      },
-    ],
-  };
-
-  restaurantDetails2 = {
-    id: '124',
-    name: "Rob's Ribs",
-    address: '123 Address Road',
-    phone: '416-123-4567',
-    email: 'contact@email.com',
-    city: 'Scarborough',
-    cuisine: 'Ribs',
-    pricePoint: '$$',
-    rating: '4.7',
-    twitter: 'https://twitter.com/',
-    instagram: 'https://www.instagram.com/',
-    bio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  menu = {
     category: [
       {
         name: 'Appetizer',
@@ -79,18 +41,23 @@ export class RestaurantPageComponent implements OnInit {
   faTwitter = faTwitter;
   faInstagram = faInstagram;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private restaurantsService: RestaurantsService
+  ) {
     this.dishes = dishes;
     this.reviews = reviews;
   }
 
   ngOnInit(): void {
     this.restaurantId = this.route.snapshot.queryParams.restaurantId;
-    // TODO: this will change to call endpoint using restaurant id to get details
-    this.restaurantDetails =
-      this.restaurantDetails1.id == this.restaurantId
-        ? this.restaurantDetails1
-        : this.restaurantDetails2;
+    console.log(this.restaurantId);
+    this.restaurantsService
+      .getRestaurant(this.restaurantId)
+      .subscribe((data) => {
+        this.restaurantDetails = data;
+        console.log(data);
+      });
   }
 
   @HostListener('window:resize', ['$event'])

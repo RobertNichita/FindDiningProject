@@ -20,7 +20,7 @@ class SDUser(models.Model):
         user = cls(nickname=nickname, name=name, picture=picture, last_updated=updated, email=email,
                    email_verified=verified, role=role)
         user.clean_fields()
-        user.clean
+        user.clean()
         user.save()
         return user
 
