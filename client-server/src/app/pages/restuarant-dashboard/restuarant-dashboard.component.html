@@ -9,10 +9,19 @@
   <mat-tab-group mat-align-tabs="center">
     <mat-tab label="New Orders">
       <div class="new-orders" *ngFor="let order of orders">
-        <app-order-card
-          *ngIf="!order.AccDec_Timestamp"
-          [order]="order"
-        ></app-order-card>
+        <div *ngIf="!orders">
+          <app-order-card
+            *ngIf="!order.AccDec_Timestamp"
+            [order]="order"
+          ></app-order-card>
+        </div>
+      </div>
+      <div *ngIf="orders">
+        <img
+          class="no-orders-image"
+          src="assets/images/undraw_receipt_ecdd.png"
+        />
+        <p class="no-orders">Currently no orders!</p>
       </div>
     </mat-tab>
     <mat-tab label="In-Progress">
