@@ -19,7 +19,8 @@ class SDUser(models.Model):
             role = "BU"
         user = cls(nickname=nickname, name=name, picture=picture, last_updated=updated, email=email,
                    email_verified=verified, role=role)
-        # user.full_clean()
+        user.clean_fields()
+        user.clean()
         user.save()
         return user
 

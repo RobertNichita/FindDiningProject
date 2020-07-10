@@ -5,8 +5,8 @@ import json
 
 def signup_page(request):
     body = json.loads(request.body)
-    user = SDUser.signup(body['nickname'], body['name'], body['picture'], body['updated_at'], body['email'],
-                         body['email_verified'], body['role'])
+    user = SDUser.signup(nickname=body['nickname'], name=body['name'], picture=body['picture'], updated=body['updated_at'], email=body['email'],
+                         verified=body['email_verified'], role="BU")
     return HttpResponse(status=200)
 
 
@@ -18,6 +18,6 @@ def reassign_page(request):
 
 
 def data_page(request):
-    req_email = request.GET.get('email')
-    user = SDUser.objects.get(pk=req_email)
-    return JsonResponse({'nickname': user.nickname, 'name': user.name, 'picture': user.picture, 'updated_at': user.last_updated, 'email': user.email, 'email_verified': user.email_verified, 'role': user.role})
+    body = json.loads(request.body)
+    user = SDUser.objects.get(pk=body['email'])
+    return JsonResponse({'nickname': user.nickname, 'name': user.name, 'picture': user.picture, 'updated_at': user.last_updated, 'email': user.email, 'email_verified': user.email_verified, 'role': "BU"})
