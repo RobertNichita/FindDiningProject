@@ -118,10 +118,15 @@ export class AuthService {
         // Redirect to target route after callback processing
         this.router.navigate([targetRoute]);
         // Add resulting new user to database
-        this.loginService.addNewUser(user);
-        this.loginService.getUserRole(user).subscribe((data) => {
-          this.role = data.role;
-        });
+        this.loginService.getUserRole(user).subscribe(
+          (data) => {
+            this.role = data.role;
+          },
+          (error: any) => {
+            this.loginService.addNewUser(user);
+            this.role = 'BU';
+          }
+        );
       });
     }
   }
