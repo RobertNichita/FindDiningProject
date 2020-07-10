@@ -47,7 +47,8 @@ class ManualTag(models.Model):
     def add_tag(cls, food_name, restaurant, category, value):  # To be changed when restaurant is implemented
         food = Food.objects.get(name=food_name, restaurant=restaurant)  # To be changed when restaurant is implemented
         tag = cls(food=food, category=category, value=value)
-        tag.full_clean()
+        tag.clean_fields()
+        tag.clean()
         tag.save()
         return tag
 
