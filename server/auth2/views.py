@@ -18,6 +18,6 @@ def reassign_page(request):
 
 
 def data_page(request):
-    body = json.loads(request.body)
-    user = SDUser.objects.get(pk=body['email'])
-    return JsonResponse({'nickname': user.nickname, 'name': user.name, 'picture': user.picture, 'updated_at': user.last_updated, 'email': user.email, 'email_verified': user.email_verified, 'role': "BU"})
+    req_email = request.GET.get('email')
+    user = SDUser.objects.get(pk=req_email)
+    return JsonResponse({'nickname': user.nickname, 'name': user.name, 'picture': user.picture, 'updated_at': user.last_updated, 'email': user.email, 'email_verified': user.email_verified, 'role': user.role})

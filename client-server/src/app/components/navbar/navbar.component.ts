@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Type } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { LoginService } from '../../service/login.service';
@@ -11,6 +11,7 @@ import { LoginService } from '../../service/login.service';
 export class NavbarComponent implements OnInit {
   title = 'client-server';
   faUserCircle = faUserCircle;
+  userRole: any;
 
   constructor(public auth: AuthService, private loginService: LoginService) {}
 
@@ -24,9 +25,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   upgradeUser(): void {
     this.loginService.updateUser(this.auth.userProfile$.source);
+    this.auth.role = 'RO';
   }
 }

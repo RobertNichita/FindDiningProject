@@ -51,12 +51,10 @@ export class RestaurantPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.restaurantId = this.route.snapshot.queryParams.restaurantId;
-    console.log(this.restaurantId);
     this.restaurantsService
       .getRestaurant(this.restaurantId)
       .subscribe((data) => {
         this.restaurantDetails = data;
-        console.log(data);
       });
   }
 

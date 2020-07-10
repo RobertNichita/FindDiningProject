@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -22,7 +23,7 @@ export class LoginService {
   }
 
   /*
-  @Input: JSON object - source section of user profile
+  @Input: JSON object from auth
   @Output: None
 
   Assign the 'Restauraut Owner' role to the user using their email.
@@ -34,5 +35,19 @@ export class LoginService {
       role: 'RO',
     };
     this.http.post<any>(endpoint, userObject).subscribe((data) => {});
+  }
+
+  /*
+  @Input: JSON object from auth
+  @Output: Return all fields of a user
+
+  Get all fields of a user
+  */
+  getUserRole(userData): Observable<any> {
+    const endpoint = `${LoginService.AUTH_ENDPOINT}/data/`;
+    const userObject = {
+      email: userData.email,
+    };
+    return this.http.get(endpoint, { params: userObject });
   }
 }
