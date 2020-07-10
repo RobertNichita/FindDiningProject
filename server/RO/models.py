@@ -41,7 +41,8 @@ class Restaurant(models.Model):
         restaurant = cls(
             **restaurant_data
         )
-        restaurant.full_clean()
+        restaurant.clean_fields()
+        restaurant.clean()
         restaurant.save()
         return restaurant
 

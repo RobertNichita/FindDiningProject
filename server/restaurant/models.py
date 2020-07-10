@@ -1,3 +1,4 @@
+from django.forms import model_to_dict
 from djongo import models
 from bson import ObjectId
 from restaurant.cuisine_dict import load_dict
@@ -19,7 +20,6 @@ class Food(models.Model):
     class Meta:
         unique_together = (("name", "restaurant_id"),)
 
-
     @classmethod
     def add_dish(cls, food_data):
         dish = cls(
@@ -32,8 +32,15 @@ class Food(models.Model):
         )
         # dish.full_clean()
         dish.save()
-        return Food.objects.get(name=food_data['name'],
-            restaurant_id=food_data['restaurant_id'])
+        return Food.objects.get(name=food_data['name'], restaurant_id=food_data['restaurant_id'])
+
+    @classmethod
+    def get_all(cls):
+        response = {'Dishes': []}
+        for food in list(Food.objects.all()):
+            food._id = str(food._id)
+            response['Dishes'].append(model_to_dict(food))
+        return response
 
 
 # Model for Manual Tags
@@ -70,7 +77,8 @@ class ManualTag(models.Model):
             tag = ManualTag.objects.get(value=value, category=category)
         except:
             tag = cls(value=value, category=category, foods=[])
-            tag.full_clean()
+            tag.clean_fields()
+            tag.clean
             tag.save()
             tag.refresh_from_db()
 
