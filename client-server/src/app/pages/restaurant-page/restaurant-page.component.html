@@ -85,10 +85,13 @@
   </div>
 
   <mat-tab-group mat-align-tabs="center">
-    <mat-tab *ngFor="let category of menu.category" label="{{ category.name }}">
+    <mat-tab label="Menu">
+      <ngb-alert *ngIf="restaurantMenu.length == 0" [dismissible]="false">
+        Menu currently empty! Please check again at a later time.
+      </ngb-alert>
       <div class="menu-tab card-columns">
         <app-dish-card
-          *ngFor="let dish of category.menu"
+          *ngFor="let dish of restaurantMenu"
           [dish]="dish"
         ></app-dish-card>
       </div>
@@ -97,6 +100,9 @@
     <mat-tab disabled></mat-tab>
     <mat-tab label="Media"> Media </mat-tab>
     <mat-tab label="Reviews">
+      <ngb-alert *ngIf="reviews.length == 0" [dismissible]="false">
+        No reviews at the moment. Be the first!
+      </ngb-alert>
       <app-view-review-card
         *ngFor="let review of reviews"
         [review]="review"
