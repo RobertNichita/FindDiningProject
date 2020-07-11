@@ -16,8 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+import auth2
+import restaurant
+from auth2.views import data_page
+from restaurant.views import all_dishes_page
 urlpatterns = [
     path('auth/', include('auth2.urls')),
+    path('user/data', auth2.views.data_page),
     path('admin/', admin.site.urls),
     path('tag/', include('restaurant.urls')),
     path('RO/', include('RO.urls'))
