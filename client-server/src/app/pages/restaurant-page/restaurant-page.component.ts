@@ -16,9 +16,10 @@ export class RestaurantPageComponent implements OnInit {
   @Input() userId: any; // pass the user id everywhere
 
   restaurantId: string;
-  dishes: any[];
-  reviews: any[];
+  dishes: any[] = [];
+  reviews: any[] = [];
   restaurantDetails: any;
+  restaurantMenu: any[] = [];
 
   menu = {
     category: [
@@ -51,10 +52,19 @@ export class RestaurantPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.restaurantId = this.route.snapshot.queryParams.restaurantId;
+
+    // generate restaurant page
     this.restaurantsService
       .getRestaurant(this.restaurantId)
       .subscribe((data) => {
         this.restaurantDetails = data;
+      });
+
+    // generate restaurant menu
+    this.restaurantsService
+      .getRestaurantFood(this.restaurantId)
+      .subscribe((data) => {
+        this.restaurantMenu = data.Dishes;
       });
   }
 
