@@ -66,6 +66,42 @@
         aria-label="Search"
       />
     </div>
+    <div class="all-listings-box">
+      <div class="row">
+        <div class="col-md-4">
+          <app-filterlist-card
+            [category]="'Rating'"
+            [subcategories]="['1 star', '2 star', '3 star', '4 star', '5 star']"
+            [length]="5"
+            (events)="displayList($event)"
+          ></app-filterlist-card>
+          <app-filterlist-card
+            [category]="'Price Range'"
+            [subcategories]="['$', '$$', '$$$']"
+            [length]="3"
+            (events)="displayList($event)"
+          ></app-filterlist-card>
+          <app-filterlist-card
+            [category]="'Filter'"
+            [subcategories]="[
+              'Category',
+              'Category',
+              'Category',
+              'Category',
+              'Category'
+            ]"
+            [length]="5"
+            (events)="displayList($event)"
+          ></app-filterlist-card>
+        </div>
+        <div class="menu-tab card-columns">
+          <app-dish-card
+            *ngFor="let dish of dishes"
+            [dish]="dish"
+          ></app-dish-card>
+        </div>
+      </div>
+    </div>
   </mat-tab>
 </mat-tab-group>
 
