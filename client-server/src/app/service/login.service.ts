@@ -25,7 +25,6 @@ export class LoginService {
   /*
   @Input: JSON object from auth
   @Output: None
-
   Assign the 'Restauraut Owner' role to the user using their email.
   */
   updateUser(userData): void {
@@ -40,7 +39,6 @@ export class LoginService {
   /*
   @Input: JSON object from auth
   @Output: Return all fields of a user
-
   Get all fields of a user
   */
   getUserRole(userData): Observable<any> {
