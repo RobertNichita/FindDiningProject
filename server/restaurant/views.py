@@ -18,6 +18,12 @@ def clear_tags_page(request):
     return HttpResponse(status=200)
 
 
+def get_food_by_restaurant_page(request):
+    rest_id = request.GET.get('restaurant_id')
+
+    return JsonResponse(Food.get_by_restaurant(rest_id))
+
+
 def all_dishes_page(request):
     return JsonResponse(Food.get_all())
 

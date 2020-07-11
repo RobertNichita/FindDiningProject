@@ -44,6 +44,15 @@ class Food(models.Model):
             response['Dishes'].append(model_to_dict(food))
         return response
 
+    @classmethod
+    def get_by_restaurant(cls, rest_id):
+        response = {'Dishes': []}
+        print(rest_id)
+        for food in list(Food.objects.filter(restaurant_id=rest_id)):
+            food._id = str(food._id)
+            response['Dishes'].append(model_to_dict(food))
+        return response
+
 
 # Model for Manual Tags
 class ManualTag(models.Model):
