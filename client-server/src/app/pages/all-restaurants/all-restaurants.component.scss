@@ -28,26 +28,22 @@
   align-content: center;
 }
 
-.all-listings-box {
+.restaruant-listings-box {
   margin: auto;
   padding: 20px;
   width: 70%;
   height: auto;
   padding: 10px;
+
+  @media screen and (max-width: 1300px) {
+    width: 100%;
+  }
 }
 
-.menu-tab {
-  margin: 30px;
-  display: inline-block;
-  column-count: 3;
-
-  @media screen and (max-width: 1000px) {
-    column-count: 2;
-  }
-
-  @media screen and (max-width: 850px) {
-    text-align: center;
-    margin: auto;
-    column-count: 1;
-  }
+.dishes-listings-box {
+  margin: auto;
+  padding: 20px;
+  width: 100%;
+  height: auto;
+  padding: 5%;
 }
