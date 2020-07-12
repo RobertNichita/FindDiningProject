@@ -109,7 +109,7 @@ class ManualTag(models.Model):
         desc_set = {''.join(e for e in food if e.isalpha()).lower()
                     for food in dish.description.split(' ')}  # fancy set comprehension
         return [cls.add_tag(dish.name, dish.restaurant_id, 'dish', item)  # fancy list comprehension
-                for item in desc_set.intersection(load_dict.cuisine_dict)]
+                for item in desc_set.intersection(load_dict.read('dishes.csv'))]
 
     def __eq__(self, other):
         return self.food == other.food and self.category == other.category and self.value == other.value
