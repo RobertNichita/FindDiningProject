@@ -40,15 +40,16 @@ class Food(models.Model):
         response = {'Dishes': []}
         for food in list(Food.objects.all()):
             food._id = str(food._id)
+            food.tags = list(map(str, food.tags))
             response['Dishes'].append(model_to_dict(food))
         return response
 
     @classmethod
     def get_by_restaurant(cls, rest_id):
         response = {'Dishes': []}
-        print(rest_id)
         for food in list(Food.objects.filter(restaurant_id=rest_id)):
             food._id = str(food._id)
+            food.tags = list(map(str, food.tags))
             response['Dishes'].append(model_to_dict(food))
         return response
 
