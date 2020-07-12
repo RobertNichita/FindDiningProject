@@ -42,7 +42,6 @@ class Food(models.Model):
             food._id = str(food._id)
             food.tags = list(map(str, food.tags))
             response['Dishes'].append(model_to_dict(food))
-
         return response
 
     @classmethod
@@ -51,6 +50,7 @@ class Food(models.Model):
         for food in list(Food.objects.filter(restaurant_id=rest_id)):
             food._id = str(food._id)
             food.tags = list(map(str, food.tags))
+
             response['Dishes'].append(model_to_dict(food))
         return response
 
@@ -110,6 +110,6 @@ class ManualTag(models.Model):
                     for food in dish.description.split(' ')}  # fancy set comprehension
         return [cls.add_tag(dish.name, dish.restaurant_id, 'dish', item)  # fancy list comprehension
                 for item in desc_set.intersection(load_dict.cuisine_dict)]
-
+    
     def __eq__(self, other):
         return self.food == other.food and self.category == other.category and self.value == other.value
