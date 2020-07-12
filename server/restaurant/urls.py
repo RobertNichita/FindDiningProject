@@ -8,5 +8,4 @@ urlpatterns = [
     path('create/', views.create_dish_page, name='create_dish_page'),
     path('get_all/', views.all_dishes_page, name='all_dishes_page'),
     path('get_food_by_restaurant/', views.get_food_by_restaurant_page, name='get_food_by_restaurant_page'),
-    path('auto_tag/', views.auto_tag, name='auto_tag')
 ]
