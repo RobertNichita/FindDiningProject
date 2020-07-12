@@ -1,9 +1,9 @@
+
 from django.forms import model_to_dict
 from djongo import models
 from bson import ObjectId
 from restaurant.cuisine_dict import load_dict
 
-path = 'cuisine_dict/dishes.csv'
 
 # Model for the Food Items on the Menu
 class Food(models.Model):
@@ -40,17 +40,15 @@ class Food(models.Model):
         response = {'Dishes': []}
         for food in list(Food.objects.all()):
             food._id = str(food._id)
-            food.tags = list(map(str, food.tags))
             response['Dishes'].append(model_to_dict(food))
         return response
 
     @classmethod
     def get_by_restaurant(cls, rest_id):
         response = {'Dishes': []}
+        print(rest_id)
         for food in list(Food.objects.filter(restaurant_id=rest_id)):
             food._id = str(food._id)
-            food.tags = list(map(str, food.tags))
-
             response['Dishes'].append(model_to_dict(food))
         return response
 
@@ -67,10 +65,13 @@ class ManualTag(models.Model):
     value = models.CharField(max_length=50, unique=True)
     foods = models.ListField(default=[], blank=True)
 
+
+
     # Clears all the tags off a food item
     @classmethod
     def clear_food_tags(cls, food_name, restaurant):  # To be changed when restaurant is implemented
-        food = Food.objects.get(name=food_name, restaurant_id=restaurant)  # To be changed when restaurant is implemented
+        food = Food.objects.get(name=food_name,
+                                restaurant_id=restaurant)  # To be changed when restaurant is implemented
         for tag_id in food.tags:
             tag = ManualTag.objects.get(_id=tag_id)
             for food_id in tag.foods:
@@ -109,7 +110,8 @@ class ManualTag(models.Model):
         desc_set = {''.join(e for e in food if e.isalpha()).lower()
                     for food in dish.description.split(' ')}  # fancy set comprehension
         return [cls.add_tag(dish.name, dish.restaurant_id, 'dish', item)  # fancy list comprehension
-                for item in desc_set.intersection(load_dict.cuisine_dict)]
-    
+                for item in desc_set.intersection(load_dict.read('dishes.csv'))]
+
     def __eq__(self, other):
         return self.food == other.food and self.category == other.category and self.value == other.value
+
