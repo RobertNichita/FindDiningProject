@@ -76,6 +76,18 @@ class AddTagCase(TestCase):
         ManualTag.add_tag(food_name='foodA', category='promo', restaurant='mock', value='50% off')
         self.assertListEqual(self.food.tags, [self.tag._id])
 
+class AutoTag(TestCase):
+    def setUp(self):
+        self.food = Food.objects.create(name="foodA", restaurant_id='mock',
+                                        description="chicken", picture="picA",
+                                        price='10.99')
+
+    def test_auto(self):
+        actual = model_to_dict(ManualTag.auto_tag_food(self.food._id)[0])
+        expected = model_to_dict(ManualTag.objects.get(category='dish', value='chicken'))
+        expected['_id'] = str(expected['_id'])
+        expected['foods'] = [str(food) for food in expected['foods']]
+        self.assertDictEqual(expected,actual )
 
 class FoodTestCases(TestCase):
 
@@ -91,3 +103,4 @@ class FoodTestCases(TestCase):
         expected['Dishes'][0]['_id'] = str(expected['Dishes'][0]['_id'])
         expected['Dishes'][1]['_id'] = str(expected['Dishes'][1]['_id'])
         self.assertDictEqual(expected, actual)
+
