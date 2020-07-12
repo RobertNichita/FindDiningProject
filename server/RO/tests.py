@@ -24,10 +24,7 @@ class RestaurantTestCase(TestCase):
             'instagram': 'https://www.instagram.com/rdcworld1/?hl=en',
             'bio': 'Finger licking good chicken',
             'GEO_location': '{\'longitude\': 44.068203, \'latitude\':-114.742043}',
-            'external_delivery_link': 'https://docs.djangoproject.com/en/topics/testing/overview/',
-            'cover_photo_url' : 'link',
-            'logo_url' : 'link',
-            'rating' : '3.00'
+            'external_delivery_link': 'https://docs.djangoproject.com/en/topics/testing/overview/'
         }
 
         self.expected2 = {
@@ -43,10 +40,7 @@ class RestaurantTestCase(TestCase):
             'instagram': 'https://www.instagram.com/rdcworld1/?hl=en',
             'bio': 'Finger licking good chicken',
             'GEO_location': '{\'longitude\': 44.068203, \'latitude\':-114.742043}',
-            'external_delivery_link': 'https://docs.djangoproject.com/en/topics/testing/overview/',
-            'cover_photo_url' : 'link',
-            'logo_url' : 'link',
-            'rating' : '3.00'
+            'external_delivery_link': 'https://docs.djangoproject.com/en/topics/testing/overview/'
         }
 
         self.expected3 = {
@@ -62,10 +56,7 @@ class RestaurantTestCase(TestCase):
             'instagram': 'https://www.instagram.com/rdcworld1/?hl=en',
             'bio': 'Finger licking good chicken',
             'GEO_location': '{\'longitude\': 44.068203, \'latitude\':-114.742043}',
-            'external_delivery_link': 'https://docs.djangoproject.com/en/topics/testing/overview/',
-            'cover_photo_url' : 'link',
-            'logo_url' : 'link',
-            'rating' : '3.00'
+            'external_delivery_link': 'https://docs.djangoproject.com/en/topics/testing/overview/'
         }
         Restaurant.objects.create(**self.expected)
         Restaurant.objects.create(**self.expected2)
