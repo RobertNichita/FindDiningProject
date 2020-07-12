@@ -64,6 +64,8 @@ class ManualTag(models.Model):
     value = models.CharField(max_length=50, unique=True)
     foods = models.ListField(default=[], blank=True)
 
+
+
     # Clears all the tags off a food item
     @classmethod
     def clear_food_tags(cls, food_name, restaurant):  # To be changed when restaurant is implemented

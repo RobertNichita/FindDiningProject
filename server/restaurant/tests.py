@@ -2,58 +2,92 @@ from django.core.exceptions import ValidationError
 from django.test import TestCase
 from restaurant.models import Food, ManualTag
 from RO.models import Restaurant
+from django.forms.models import model_to_dict
 
 
 class TagTestCases(TestCase):
 
     def setUp(self):
-        restaurant = Restaurant.objects.create(name="RestA", address="123 Road", phone=None, email="RA@mail.com",
+        self.restaurant = Restaurant.objects.create(name="RestA", address="123 Road", phone=None, email="RA@mail.com",
                                                city="Toronto",
                                                cuisine="Chinese", pricepoint="?", twitter="?", instagram="?", bio=None,
                                                GEO_location="?", external_delivery_link="?", cover_photo_url="picA",
                                                logo_url="urlA", rating="4.5")
 
-        food = Food.objects.create(name="foodA", restaurant_id=restaurant._id, description="descripA", picture="picA",
-                                   category="catA", price=10.99)
-        tag = ManualTag.objects.create(food=[food._id], category="promo", value="50% off")
-        food.tags = [tag._id]
-        food.save()
-        Food.objects.create(name="foodB", restaurant_id=restaurant._id, description="descripB", picture="picB",
-                            category="catB",
+        self.food = Food.objects.create(name="foodA", restaurant_id=str(self.restaurant._id), description="descripA", picture="picA",
+                                   price=10.99)
+        self.tag = ManualTag.objects.create(foods=[self.food._id], category="promo", value="50% off")
+        self.food.tags = [self.tag._id]
+        self.food.save()
+        Food.objects.create(name="foodB", restaurant_id=self.restaurant._id, description="descripB", picture="picB",
                             price=20.99)
 
-    def test_clear_food_tags(self):
+
+    def test_clear_food_tags_a(self):
         restaurant = Restaurant.objects.get(name="RestA")
         ManualTag.clear_food_tags(food_name="foodA", restaurant=restaurant._id)
-        food = Food.objects.get(name="foodA")
-        food_actual = food.tags
-        expected = []
-        tags_actual = ManualTag.objects.get(food=food._id).food
+        self.food.refresh_from_db()
 
-        self.assertEqual(food_actual, expected)
-        self.assertEqual(actual, expected)
+        self.assertListEqual(self.food.tags, [])
 
-    def test_add_tag(self):
+    def test_clear_food_tags_b(self):
         restaurant = Restaurant.objects.get(name="RestA")
-        ManualTag.add_tag(food_name="foodB", restaurant_id=restaurant._id, category="promo", value="25% off")
-        food = Food.objects.get(name="foodB")
-        expected = ManualTag(food=[food._id], category="promo", value="25% off")
-        actual = ManualTag.objects.get(food=food)
-        self.assertEqual(actual, expected)
+        ManualTag.clear_food_tags(food_name="foodA", restaurant=restaurant._id)
+        self.tag.refresh_from_db()
 
-    def test_add_tag_invalid_category(self):
-        self.assertRaises(ValidationError, ManualTag.add_tag, food_name="foodB", restaurant="restB", category="wrong",
-                          value="25% off")
+        self.assertListEqual(self.tag.foods, [])
+
+
+class AddTagCase(TestCase):
+    def setUp(self):
+        self.food = Food.objects.create(name="foodA", restaurant_id='mock',
+                                        description="descripA", picture="picA",
+                                        price=10.99)
+        self.tag = ManualTag.objects.create(foods=[], category="promo", value="50% off")
+
+    def test_add_tag_exist_a(self):
+        ManualTag.add_tag(food_name='foodA', category='promo', restaurant='mock', value='50% off')
+        self.tag.refresh_from_db()
+        self.assertListEqual([self.food._id], self.tag.foods)
+
+    def test_add_tag_exist_b(self):
+        ManualTag.add_tag(food_name='foodA', category='promo', restaurant='mock', value='50% off')
+        self.food.refresh_from_db()
+        self.assertListEqual([self.tag._id], self.food.tags)
+
+    def test_add_tag_dne_a(self):
+        ManualTag.add_tag(food_name='foodA', category='promo', restaurant='mock', value='30% off')
+        self.tag = ManualTag.objects.get(value='30% off', category='promo')
+        self.assertListEqual([self.food._id], self.tag.foods)
+
+    def test_add_tag_tagged_a(self):
+        self.tag.foods = [self.food._id]
+        self.food.tags = [self.tag._id]
+        self.food.save()
+        self.tag.save()
+        ManualTag.add_tag(food_name='foodA', category='promo', restaurant='mock', value='50% off')
+        self.assertListEqual(self.tag.foods, [self.food._id])
+
+    def test_add_tag_tagged_b(self):
+        self.tag.foods = [self.food._id]
+        self.food.tags = [self.tag._id]
+        self.food.save()
+        self.tag.save()
+        ManualTag.add_tag(food_name='foodA', category='promo', restaurant='mock', value='50% off')
+        self.assertListEqual(self.food.tags, [self.tag._id])
 
 
 class FoodTestCases(TestCase):
 
     def setUp(self):
-        food = Food.objects.create(name="foodA", restaurant="restA", description="descripA", picture="picA",
-                                   category="catA", price=10.99)
-        Food.objects.create(name="foodB", restaurant="restB", description="descripB", picture="picB", category="catB",
-                            price=20.99)
+        self.foodA = Food.objects.create(name="foodA", restaurant_id="restA", description="descripA", picture="picA",
+                                 price='10.99')
+        self.foodB = Food.objects.create(name="foodB", restaurant_id="restB", description="descripB", picture="picB",
+                            price='20.99')
 
     def test_get_all_foods(self):
-        self.assertJSONEqual(ValidationError, ManualTag.add_tag, food_name="foodB", restaurant="restB",
-                             category="wrong", value="25% off")
+        actual = Food.get_all()
+        expected = {'Dishes': [model_to_dict(self.foodA), model_to_dict(self.foodB)]}
+        expected['Dishes'][0]['_id'] = str(expected['Dishes'][0]['_id'])
+        expected['Dishes'][1]['_id'] = str(expected['Dishes'][1]['_id'])
+        self.assertDictEqual(expected, actual)
