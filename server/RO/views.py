@@ -10,10 +10,10 @@ from django.forms.models import model_to_dict
 
 # Create your views here.
 def get(request):
-    try:    # body
+    try:  # body
         body = json.loads(request.body)
         _id = body['_id']
-    except: # query string
+    except:  # query string
         _id = request.GET.get('_id')
 
     restaurant = Restaurant.get(_id)
@@ -31,3 +31,16 @@ def insert(request):
     restaurant = Restaurant.insert(json.loads(request.body))
     restaurant._id = str(restaurant._id)
     return JsonResponse(model_to_dict(restaurant))
+
+
+def edit(request):
+    body = json.loads(request.body)
+    restaurant = Restaurant.get(body["restaurant_id"])
+    del body['restaurant_id']
+    for field in body:
+        if body[field] != "":
+            setattr(restaurant, field, body[field])
+    restaurant.clean_fields()
+    restaurant.clean()
+    restaurant.save()
+    return HttpResponse(status=200)

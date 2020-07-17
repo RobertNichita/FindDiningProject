@@ -74,8 +74,8 @@ class Restaurant(models.Model):
 |     Address                  | Required Fields (Field Type)                                                                                          | Optional Fields                              |Type     | Functionality                                                   |
 | :--------------------------: | :-------------------------------------------------------------------------------------------------------------------- | :------------------------------------------  | :-----: | --------------------------------------------------------------- |
 | /auth/signup/                | nickname, name, picture, updated\_at, email, email\_verified                                                          |   role **(_Roles_ Name)**, restaurant_id     | POST    |Registers SDUser to DB                                           |
-| /auth/reassign/              | user_email, role **(_Roles_ Name)**                                                                                        |                                              | POST    |Updates Role of SDUser (Not RO)                                  |
-| /auth/reassign/              | user_email, role **(_Roles_ Name)**, (Along With All Fields Needed for /RO/insert/)                                        |                                              | POST    |Updates Role of SDUSer to RO and adds his restaurant page        |
+| /auth/reassign/              | user_email, role **(_Roles_ Name)**                                                                                   |                                              | POST    |Updates Role of SDUser (Not RO)                                  |
+| /auth/reassign/              | user_email, role **(_Roles_ Name)**, (All Fields Needed for /RO/insert/)                                              |                                              | POST    |Updates Role of SDUSer to RO and adds his restaurant page        |
 | /auth/data/                  | email                                                                                                                 |                                              | GET     |Returns All Fields of the SDUser                                 |
 | /auth/exists/                | email                                                                                                                 |                                              | GET     |Returns if the SDUser exists in the DB                           |
 | /tag/add/                    | food_name, restaurant, category, value                                                                                |                                              | POST    |Adds Tag to a Food Item                                          |
@@ -87,7 +87,8 @@ class Restaurant(models.Model):
 | /RO/get/                     | restaurant_id                                                                                                         |                                              | GET     |Retrieves Restaurant data                                        |                                 
 | /RO/getAll/                  |                                                                                                                       |                                              | GET     |Retrieves all Restaurants                                        |    
 | /RO/insert/                  | name, address, phone, email, city, cuisine, pricepoint, instagram, twitter, GEO_location, external_delivery_link, bio |
+| /RO/edit/                    | restaurant_id                                                                                                         | (All Fields Needed for /RO/insert/)          | POST    |Updates the fields of the given Restaurant with the new data     |    
 
 
-All requests should be sent in a JSON format. All optional parameters can be left blank Ex: {"Role" : """}
+All requests should be sent in a JSON format. All optional parameters can be left blank Ex: {"Role" : ""}
 
