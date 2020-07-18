@@ -173,27 +173,8 @@ class RestaurantTestCase(TestCase):
             'rating': '3.00'
         }
 
-        # self.expected4 = {
-        #     '_id': '333333333333333333333333',
-        #     'name': 'Rando',
-        #     'address': 'ABC123',
-        #     'phone': 6475020680,
-        #     'city': 'Chicago',
-        #     'email': 'Rando@gmail.com',
-        #     'cuisine': 'Food',
-        #     'pricepoint': 'low',
-        #     'twitter': 'https://twitter.com/SupremeDreams_1',
-        #     'instagram': 'https://www.instagram.com/rdcworld1/?hl=en',
-        #     'bio': 'Random food',
-        #     'GEO_location': '{\'longitude\': 44.068203, \'latitude\':-114.742043}',
-        #     'external_delivery_link': 'https://docs.djangoproject.com/en/topics/testing/overview/',
-        #     'cover_photo_url': 'link',
-        #     'logo_url': 'link',
-        #     'rating': '4.00'
-        # }
         Restaurant.objects.create(**self.expected)
         Restaurant.objects.create(**self.expected2)
-        # Restaurant.objects.create(**self.expected4)
         self.factory = RequestFactory()
 
     def test_find(self):
