@@ -12,7 +12,7 @@ def insert_tag_page(request):
 
 def clear_tags_page(request):
     body = json.loads(request.body)
-    ManualTag.clear_food_tags(body['food_name'], body['restaurant'])
+    ManualTag.clear_food_tags(body['food_name'], body['restaurant_id'])
     return HttpResponse(status=200)
 
 
