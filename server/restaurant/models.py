@@ -20,6 +20,11 @@ class Food(models.Model):
 
     @classmethod
     def add_dish(cls, food_data):
+        """
+        insert dish into database and return response
+        :param food_data: dictionary representation of dish
+        :return: Food model object
+        """
         dish = cls(
             name=food_data['name'],
             restaurant_id=food_data['restaurant_id'],
@@ -35,6 +40,10 @@ class Food(models.Model):
 
     @classmethod
     def get_all(cls):
+        """
+        retrieve list of restaurants from database
+        :return: return list of restaurant json data wrapped in dictionary
+        """
         response = {'Dishes': []}
         for food in list(Food.objects.all()):
             food._id = str(food._id)
@@ -44,6 +53,11 @@ class Food(models.Model):
 
     @classmethod
     def get_by_restaurant(cls, rest_id):
+        """
+        Retrieve restaurant by id
+        :param rest_id: id of restaurant
+        :return: restaurant data in json
+        """
         response = {'Dishes': []}
         for food in list(Food.objects.filter(restaurant_id=rest_id)):
             food._id = str(food._id)
@@ -69,6 +83,12 @@ class ManualTag(models.Model):
     # Clears all the tags off a food item
     @classmethod
     def clear_food_tags(cls, food_name, restaurant):  # To be changed when restaurant is implemented
+        """
+        Destroy all food -tag relationships for food
+        :param food_name: name of food
+        :param restaurant: id of restaurant
+        :return: None
+        """
         food = Food.objects.get(name=food_name,
                                 restaurant_id=restaurant)  # To be changed when restaurant is implemented
         for tag_id in food.tags:
@@ -82,7 +102,16 @@ class ManualTag(models.Model):
 
     # Adds Tag to food
     @classmethod
+
     def add_tag(cls, food_name, restaurant_id, category, value):
+        """
+        Add tag to food
+        :param food_name: name of food
+        :param restaurant_id: id of restaurant
+        :param category: category of following tag
+        :param value: value of following tag
+        :return: following tag object
+        """
         food = Food.objects.get(name=food_name,
                                 restaurant_id=restaurant_id)
         if not ManualTag.objects.filter(value=value, category=category).exists():
@@ -103,6 +132,11 @@ class ManualTag(models.Model):
 
     @classmethod
     def auto_tag_food(cls, _id):
+        """
+        generate tags based on food description
+        :param _id: id of food
+        :return: list of generated tags
+        """
         dish = Food.objects.get(_id=ObjectId(_id))
         desc_set = {''.join(e for e in food if e.isalpha()).lower()
                     for food in dish.description.split(' ')}  # fancy set comprehension
@@ -132,6 +166,11 @@ class Restaurant(models.Model):
 
     @classmethod
     def get(cls, _id):
+        """
+        retrieve restaurant based on id
+        :param _id: id of restaurant
+        :return: restaurant json
+        """
         restaurant = list(Restaurant.objects.filter(_id=ObjectId(_id)))
         if len(restaurant) == 1:
             restaurant[0]._id = str(restaurant[0]._id)
@@ -140,6 +179,10 @@ class Restaurant(models.Model):
 
     @classmethod
     def get_all(cls):
+        """
+        Retrieve all restaurants from database
+        :return: list of restauarant json wrapped in jsons
+        """
         response = {'Restaurants': []}
         for restaurant in list(Restaurant.objects.all()):
             restaurant._id = str(restaurant._id)
@@ -148,6 +191,11 @@ class Restaurant(models.Model):
 
     @classmethod
     def insert(cls, restaurant_data):
+        """
+        Insert restaurant into database given restaurant data
+        :param restaurant_data: json data of restaurant
+        :return: restaurant object representing sent data
+        """
         restaurant = cls(
             **restaurant_data
         )
