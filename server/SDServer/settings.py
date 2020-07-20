@@ -26,7 +26,7 @@ SECRET_KEY = 'e__kj=#ny0vab4e2*&kj7=d@0cq1v%9@$uk407b)6(%x3-h3ip'
 #debug can be turned on or off
 DEBUG = int(os.environ.get('DEBUG', default=1))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'auth2'
+    'reset_migrations',
+    'jsonschema',
+    'user',
+    'restaurant'
 ]
 
 MIDDLEWARE = [
@@ -125,4 +128,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CORS_ORIGIN_WHITELIST = 'https://localhost:4200', 'https://3.18.84.86',
+CORS_ORIGIN_ALLOW_ALL = True

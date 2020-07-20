@@ -4,7 +4,9 @@ module.exports = {
     Backend: ["backend/backend"],
     Frontend: [
       "frontend/frontend",
+      "frontend/auth-guard",
       "frontend/bootstrap",
+      "frontend/material",
       "frontend/aos",
       "frontend/fortawesome",
     ],
@@ -14,6 +16,8 @@ module.exports = {
       "components/owner-card",
       "components/restaurant-card",
       "components/review-card",
+      "components/view-review-card",
+      "components/order-card",
     ],
   },
 };

@@ -135,7 +135,8 @@ SSH back into the aws instance, run the following commands
 ```
 docker pull dockerhubusername/dockerhubrepositoryname:latest-client
 docker pull dockerhubusername/dockerhubrepositoryname:latest-server
-docker run -d -p 443:443 -p 8000:8000 dockerhubusername/dockerhubrepositoryname:latest-client
-docker run -d -p 8000:8000 dockerhubusername/dockerhubrepositoryname:latest-server
+docker network create scdine
+docker run -d -p 8000:8000 --name django --network scdine dockerhubusername/dockerhubrepositoryname:latest-server
+docker run -d -p 443:443 -p 80:80 --name client --network scdine dockerhubusername/dockerhubrepositoryname:latest-client
 ```
 

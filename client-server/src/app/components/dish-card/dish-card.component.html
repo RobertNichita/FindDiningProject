@@ -1,21 +1,46 @@
 <div class="card cardBox">
-  <img src="{{ dish.image }}" class="card-img-top" alt="{{ dish.name }}" />
+  <img src="{{ dish.picture }}" class="card-img-top" alt="{{ dish.name }}" />
   <div class="card-body">
     <div class="row">
       <div class="col">
-        <h5 class="card-title">{{ dish.name }}</h5>
-        <p class="card-text">
-          <star-rating
-            value="{{ dish.rating }}"
-            totalstars="{{ totalStars }}"
-            checkedcolor="gold"
-            uncheckedcolor="grey"
-            size="24px"
-            readonly="true"
-          ></star-rating>
-        </p>
+        <h5 class="card-title">{{ dish.name | titlecase }}</h5>
+        <p class="card-text">${{ dish.price }}</p>
       </div>
-      <a href="{{ dish.url }}" class="btn">View dish</a>
+      <button class="btn" (click)="openDish(content)">
+        View dish
+      </button>
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <h2></h2>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="modal.dismiss()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="modal-body">
+    <div class="row" id="row-modal">
+      <div class="col-md-4" id="col-img">
+        <img class="dish-img" src="{{ dish.picture }}" />
+      </div>
+      <div class="col-md-8" id="col-body">
+        <div class="info-body">
+          <h2>{{ dish.name | titlecase }}</h2>
+          <h5>${{ dish.price }}</h5>
+          <p>{{ dish.description }}</p>
+          <p><b>Allergy Warning: </b>{{ dish.allergy }}</p>
+
+          <div class="picker-wrapper">
+            <ng-number-picker [(value)]="value"></ng-number-picker>
+          </div>
+          <button class="btn order-btn">ADD ORDER</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

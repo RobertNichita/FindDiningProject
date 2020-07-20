@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('auth/', include('auth2.urls')),
+    path('user/', include('user.urls')),
     path('admin/', admin.site.urls),
-
+    path('restaurant/', include('restaurant.urls')),
 ]
+
+#prefix all URLpatterns with api/ i.e. api/urlpattern
+urlpatterns = [path('api/', include(urlpatterns))]

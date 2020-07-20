@@ -1,0 +1,5 @@
+**/__migrations__/**
+**/__pycache__/**
+**.vscode**
+**.ini**
+develop

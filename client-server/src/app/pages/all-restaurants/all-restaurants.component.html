@@ -1,0 +1,109 @@
+<h2 class="header-title">Browse</h2>
+
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Restaurant">
+    <div class="input-group">
+      <div class="input-group-prepend input-group-lg">
+        <span class="input-group-text input-addon" id="basic-addon1">
+          <fa-icon class="search-icons" [icon]="faSearch"></fa-icon>
+        </span>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        id="search"
+        placeholder="Search"
+      />
+    </div>
+    <div class="restaruant-listings-box">
+      <div class="row">
+        <div class="col-md-4">
+          <app-filterlist-card
+            [category]="'Rating'"
+            [subcategories]="['1 star', '2 star', '3 star', '4 star', '5 star']"
+            [length]="5"
+            (events)="displayList($event)"
+          ></app-filterlist-card>
+          <app-filterlist-card
+            [category]="'Price Range'"
+            [subcategories]="['$', '$$', '$$$']"
+            [length]="3"
+            (events)="displayList($event)"
+          ></app-filterlist-card>
+          <app-filterlist-card
+            [category]="'Filter'"
+            [subcategories]="[
+              'Category',
+              'Category',
+              'Category',
+              'Category',
+              'Category'
+            ]"
+            [length]="5"
+            (events)="displayList($event)"
+          ></app-filterlist-card>
+        </div>
+        <div class="col-md-8">
+          <app-restaurant-card
+            *ngFor="let restaurant of restaurants"
+            [restaurant]="restaurant"
+          ></app-restaurant-card>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Dishes">
+    <div class="input-group mb-4">
+      <div class="input-group-prepend input-group-lg">
+        <span class="input-group-text input-addon" id="basic-addon1">
+          <fa-icon class="search-icons" [icon]="faSearch"></fa-icon>
+        </span>
+      </div>
+      <input
+        class="form-control my-0 py-1"
+        type="text"
+        placeholder="Search"
+        aria-label="Search"
+      />
+    </div>
+    <div class="dishes-listings-box">
+      <div class="row">
+        <div class="col-md-3">
+          <app-filterlist-card
+            [category]="'Rating'"
+            [subcategories]="['1 star', '2 star', '3 star', '4 star', '5 star']"
+            [length]="5"
+            (events)="displayList($event)"
+          ></app-filterlist-card>
+          <app-filterlist-card
+            [category]="'Price Range'"
+            [subcategories]="['$', '$$', '$$$']"
+            [length]="3"
+            (events)="displayList($event)"
+          ></app-filterlist-card>
+          <app-filterlist-card
+            [category]="'Filter'"
+            [subcategories]="[
+              'Category',
+              'Category',
+              'Category',
+              'Category',
+              'Category'
+            ]"
+            [length]="5"
+            (events)="displayList($event)"
+          ></app-filterlist-card>
+        </div>
+        <div class="col-md-9">
+          <div class="row equal">
+            <div *ngFor="let dish of dishes" class="col-sm-4 d-flex">
+              <app-dish-card [dish]="dish"></app-dish-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<img class="bottom-left" src="assets/images/undraw_chef.png" />

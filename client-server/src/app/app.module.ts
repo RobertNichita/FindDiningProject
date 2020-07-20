@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +14,9 @@ import { RestaurantCardComponent } from './components/restaurant-card/restaurant
 
 import { RatingModule } from 'ng-starrating';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NumberPickerModule } from 'ng-number-picker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,9 +24,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
-import { PaymentComponent } from './payment/payment.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+import { RestaurantPageComponent } from './pages/restaurant-page/restaurant-page.component';
 
 import { LoginService } from './service/login.service';
+import { ViewReviewCardComponent } from './components/view-review-card/view-review-card.component';
+import { AllRestaurantsComponent } from './pages/all-restaurants/all-restaurants.component';
+import { OrderCardComponent } from './components/order-card/order-card.component';
+import { RestuarantDashboardComponent } from './pages/restuarant-dashboard/restuarant-dashboard.component';
+import { RestaurantSetupComponent } from './pages/restaurant-setup/restaurant-setup.component';
+import { OwnerSetupComponent } from './pages/owner-setup/owner-setup.component';
+import { MenuSetupComponent } from './pages/menu-setup/menu-setup.component';
 
 @NgModule({
   declarations: [
@@ -38,15 +50,27 @@ import { LoginService } from './service/login.service';
     ReviewCardComponent,
     RestaurantCardComponent,
     PaymentComponent,
+    RestaurantPageComponent,
+    ViewReviewCardComponent,
+    AllRestaurantsComponent,
+    OrderCardComponent,
+    RestuarantDashboardComponent,
+    RestaurantSetupComponent,
+    OwnerSetupComponent,
+    MenuSetupComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
     FontAwesomeModule,
     RatingModule,
     CarouselModule.forRoot(),
+    MatTabsModule,
+    NumberPickerModule,
+    NgbModule,
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],

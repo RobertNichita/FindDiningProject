@@ -1,0 +1,113 @@
+<div *ngIf="restaurantDetails">
+  <img
+    src="{{ restaurantDetails.cover_photo_url }}"
+    alt="header"
+    class="header-img"
+  />
+
+  <div>
+    <div class="card infoCard">
+      <div class="row" id="info-row">
+        <div class="col-md-7" id="info-col1">
+          <h2 class="restaurant-name">
+            {{ restaurantDetails.name | titlecase }}
+          </h2>
+          <p>
+            {{ restaurantDetails.city | titlecase }} •
+            {{ restaurantDetails.cuisine | titlecase }} •
+            {{ restaurantDetails.pricepoint | titlecase }}
+          </p>
+          <div class="row" style="margin: 10px;">
+            <star-rating
+              value="{{ restaurantDetails.rating }}"
+              totalstars="{{ totalStars }}"
+              checkedcolor="gold"
+              uncheckedcolor="grey"
+              size="24px"
+              readonly="true"
+            ></star-rating>
+            <p class="row-text">{{ restaurantDetails.rating }}</p>
+          </div>
+        </div>
+
+        <div class="col-md-5" id="info-col2">
+          <div class="row">
+            <fa-icon class="contact-icon" [icon]="faMapMarker"></fa-icon>
+            <div class="contact-wrapper">
+              <p class="row-text">
+                <b>{{ restaurantDetails.address | titlecase }}</b>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <fa-icon class="contact-icon" [icon]="faPhone"></fa-icon>
+            <div class="contact-wrapper">
+              <p class="row-text">
+                <b>{{ restaurantDetails.phone }}</b>
+              </p>
+            </div>
+          </div>
+          <div class="row" *ngIf="restaurantDetails.email != ''">
+            <fa-icon class="contact-icon" [icon]="faMail"></fa-icon>
+            <div class="contact-wrapper">
+              <p class="row-text">
+                <b>{{ restaurantDetails.email }}</b>
+              </p>
+            </div>
+          </div>
+
+          <div class="media-icons">
+            <fa-icon class="media-icon" [icon]="faHeartLine"></fa-icon>
+            <a
+              *ngIf="restaurantDetails.instagram != ''"
+              href="{{ restaurantDetails.instagram }}"
+              target="_blank"
+            >
+              <fa-icon class="media-icon" [icon]="faInstagram"></fa-icon>
+            </a>
+            <a
+              *ngIf="restaurantDetails.twitter != ''"
+              href="{{ restaurantDetails.twitter }}"
+              target="_blank"
+            >
+              <fa-icon class="media-icon" [icon]="faTwitter"></fa-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="updatesBtn"><b>VIEW UPDATES</b></button>
+  </div>
+
+  <div class="card bio-card">
+    <p>{{ restaurantDetails.bio }}</p>
+  </div>
+
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Menu">
+      <ngb-alert *ngIf="restaurantMenu.length == 0" [dismissible]="false">
+        Menu currently empty! Please check again at a later time.
+      </ngb-alert>
+      <div class="col">
+        <div class="row">
+          <div *ngFor="let dish of restaurantMenu" class="col-sm-4 d-flex">
+            <app-dish-card [dish]="dish"></app-dish-card>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab disabled></mat-tab>
+    <mat-tab label="Media"> Media </mat-tab>
+    <mat-tab label="Reviews">
+      <ngb-alert *ngIf="reviews.length == 0" [dismissible]="false">
+        No reviews at the moment. Be the first!
+      </ngb-alert>
+      <app-view-review-card
+        *ngFor="let review of reviews"
+        [review]="review"
+      ></app-view-review-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>
