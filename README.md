@@ -8,6 +8,23 @@
 
 The deliverable files are in the respective deliverable folders numbered. The snapshots of the burndown chart and task board are in the **Burndown and Task Board** folder.
 
+The testing documentations are under `sd-site/docs/backend/backend.md`. Link to file [here](https://github.com/CSCC01/team_08-project/blob/master/sd-site/docs/backend/backend.md).
+
+
+## Project Website
+
+The project website is best run on certain browers due to SSL security issues.
+
+**Windows:** Chrome, Firefox
+
+**Mac:** Firefox
+
+
+## Deliverable 4 Specifics
+
+When trying to set up a restaurant, please input a URL for Twitter and Instagram despite it not being indicated so on the UI.
+
+
 ## Development
 
 `client-server` contains the Angular pageserver (frontend) and `server` contains the Django server for endpoints and database connection to MongoDB (backend).
