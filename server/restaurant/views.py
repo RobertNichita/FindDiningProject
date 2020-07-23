@@ -68,7 +68,6 @@ def clear_tags_page(request):
     ManualTag.clear_food_tags(body['food_name'], body['restaurant_id'])
     return HttpResponse(status=200)
 
-
 def get_dish_by_restaurant_page(request):
     """Retrieve all dishes from a restaurant"""
     rest_id = request.GET.get('restaurant_id')

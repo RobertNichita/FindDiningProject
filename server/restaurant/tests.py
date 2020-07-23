@@ -36,7 +36,6 @@ class TagClearCases(TestCase):
         req = self.factory.post('/api/restaurant/tag/clear/', {'food_name': 'foodA',
                                                                'restaurant_id': str(self.restaurant._id)},
                                 content_type='application/json')
-
         view_response.clear_tags_page(req)
         self.food.refresh_from_db()
         self.assertListEqual(self.food.tags, [])
