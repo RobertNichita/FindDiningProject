@@ -31,12 +31,14 @@ export class MenuSetupComponent implements OnInit {
   ngOnInit(): void {
     this.restaurantId = this.route.snapshot.queryParams.restaurantId;
     this.role = this.route.snapshot.queryParams.role;
+    
     if (!this.restaurantId || this.role !== 'RO') {
       this.router.navigate([''], {
         queryParams: { role: this.role, restaurantId: this.restaurantId },
       });
       alert('No matching restaurant found for this profile!');
     }
+
     this.loadAllDishes();
   }
 
@@ -85,6 +87,7 @@ export class MenuSetupComponent implements OnInit {
         this.dishInfo = '';
         this.allergy = '';
 
+        this.loadAllDishes();
         this.modalRef.close();
         this.loadAllDishes();
       } else {

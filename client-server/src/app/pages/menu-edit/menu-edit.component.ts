@@ -129,6 +129,7 @@ export class MenuEditComponent implements OnInit {
         this.loadAllDishes();
         this.dishEdit = false;
         this.dishModalRef.close();
+        this.loadAllDishes();
       } else {
         alert('Please enter a valid price!');
       }
@@ -144,8 +145,8 @@ export class MenuEditComponent implements OnInit {
     this.restaurantsService.deleteDish(dishInfo);
     this.clearInput();
     this.loadAllDishes();
-    this.loadAllDishes();
     this.deleteModalRef.close();
+    this.loadAllDishes();
   }
 
   back() {
