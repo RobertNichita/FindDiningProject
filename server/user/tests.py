@@ -57,7 +57,7 @@ class SDUserTestCases(TestCase):
     def test_reassign_BU_to_RO_User(self):
         """
         Tests the reassign view (Upgrading from BU -> RO) by calling it then checking the database
-        to see if the changes were made on the SDUser Documen
+        to see if the changes were made on the SDUser Document
         """
         request = self.factory.post('/api/user/role_reassign/',
                                     {"user_email": "C@mail.com", "role": "RO", "name": "Rando Resto",
@@ -134,4 +134,16 @@ class SDUserTestCases(TestCase):
         response = exists_page(request)
         expected = {"exists": False}
         actual = response.content
+        self.assertJSONEqual(actual, expected)
+
+    def test_edit_user(self):
+        """ Test if user document is properly updated """
+        request = self.factory.post('/api/user/edit/',
+                                    {"name": "Tester2", "picture": "picE2",
+                                     "email": "E@mail.com", "role": "RO"}, content_type='application/json')
+        actual = edit_user_page(request).content
+        expected = {"nickname": "TesterE", "name": "Tester2", "picture": "picE2",
+                    "last_updated": "2020-06-26T14:07:39.888Z",
+                    "email": "E@mail.com", "email_verified": True, "role": "BU",
+                    "restaurant_id": None}
         self.assertJSONEqual(actual, expected)

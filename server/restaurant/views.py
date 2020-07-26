@@ -56,6 +56,10 @@ restaurant_schema = {
     }
 }
 
+dish_editable = ["name", "description", "picture", "price", "specials"]
+
+restaurant_editable = ["name", "address", "phone", "updated_at", "email", "city", "cuisine", "pricepoint", "twitter",
+                       "instagram", "bio", "external_delivery_link", "cover_photo_url", "logo_url"]
 
 def insert_tag_page(request):
     """Insert tag to database"""
@@ -142,15 +146,14 @@ def edit_restaurant_page(request):
     validate(instance=request.body, schema=restaurant_schema)
     body = json.loads(request.body)
     restaurant = Restaurant.get(body["restaurant_id"])
-    del body['restaurant_id']
     for field in body:
-        setattr(restaurant, field, body[field])
+        if field in restaurant_editable:
+            setattr(restaurant, field, body[field])
     restaurant.clean_fields()
     restaurant.clean()
     restaurant.save()
     restaurant._id = str(restaurant._id)
     return JsonResponse(model_to_dict(restaurant))
-
 
 
 def update_logo(request):
@@ -166,9 +169,9 @@ def edit_dish_page(request):
     validate(instance=request.body, schema=food_schema)
     body = json.loads(request.body)
     dish = Food.objects.get(_id=body["_id"])
-    del body['_id']
     for field in body:
-        setattr(dish, field, body[field])
+        if field in dish_editable:
+            setattr(dish, field, body[field])
     dish.clean_fields()
     dish.clean()
     dish.save()
