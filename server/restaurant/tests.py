@@ -176,7 +176,7 @@ class FoodTestCases(TestCase):
         actual = Food.objects.get(_id=id)
         expected = Food(_id=id, name="foodB2", restaurant_id="restB", description="nutter butter", picture="picB",
                         price='10.99')
-        self.assertEqual(actual, expected)
+        self.assertDictEqual(model_to_dict(actual), model_to_dict(expected))
 
     def test_delete_food(self):
         """ Test if the food is deleted """
@@ -287,8 +287,8 @@ class RestaurantTestCase(TestCase):
         id = Restaurant.objects.get(_id="111111111111111111111111")._id
         request = self.factory.post('/api/restaurant/edit/',
                                     {"restaurant_id": "111111111111111111111111", "name": "kfc2",
-                                     "address": "211 Cambodia", "twitter": "", "instagram": "", "rating": "1.00"
-                                     }, content_type='application/json')
+                                     "address": "211 Cambodia", "twitter": "", "instagram": "",
+                                     "rating": "1.00"}, content_type='application/json')
         view_response.edit_restaurant_page(request)
         actual = Restaurant.objects.get(_id="111111111111111111111111")
         expected = Restaurant(_id=id, name='kfc22',

@@ -1,3 +1,4 @@
+from django.forms import model_to_dict
 from django.http import HttpResponse, JsonResponse
 from user.models import SDUser
 from restaurant.models import Restaurant
@@ -26,7 +27,7 @@ def signup_page(request):
     user = SDUser.signup(nickname=body['nickname'], name=body['name'], picture=body['picture'],
                          updated=body['updated_at'], email=body['email'],
                          verified=body['email_verified'], role=body['role'], restaurant_id=body['restaurant_id'])
-    return HttpResponse(status=200)
+    return JsonResponse(model_to_dict(user))
 
 
 def reassign_page(request):
