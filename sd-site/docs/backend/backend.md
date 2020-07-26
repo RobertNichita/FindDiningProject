@@ -74,6 +74,29 @@ This section will go over all the backends components of the Scarborough Dining 
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
 ```
 
+###### TimelinePost
+```python
+class TimelinePost(models.Model):
+    _id = models.ObjectIdField()
+    restaurant_id = models.CharField(max_length=24)
+    user_id = models.CharField(max_length=24)
+    likes = models.ListField(default=[], blank=True)
+    content = models.TextField(max_length=4096)
+    Timestamp = models.DateTimeField(auto_now=True)
+    comments = models.ListField(default=[], blank=True)
+```
+
+##### TimelineComment
+```python
+class TimelineComment(models.Model):
+    _id = models.ObjectIdField()
+    post_id = models.CharField(max_length=24)
+    user_id = models.CharField(max_length=24)
+    likes = models.ListField(default=[], blank=True)
+    content = models.TextField(max_length=256)
+    Timestamp = models.DateTimeField(auto_now=True)
+```
+
 ###### Prices (Enum)
 
     Low = "$"
@@ -108,6 +131,8 @@ This section will go over all the backends components of the Scarborough Dining 
 |        /restaurant/get_all/         |                                                                                                                                                                                    |                                                        | GET  | Retrieves all Restaurants                                    |
 |         /restaurant/insert/         | name, address, phone, email, city, cuisine, pricepoint (_Price_ Name), instagram, twitter, GEO_location, external_delivery_link, bio, cover_photo_url, logo_url, rating            |                                                        | POST | Registers a Restaurant to DB                                 |
 |          /restaurant/edit/          | restaurant_id                                                                                                                                                                      | **(All Fields Needed for /restaurant/insert/)**        | POST | Updates the fields of the given Restaurant with the new data |
+|        /timeline/post/upload/       | restaurant_id, user_id, content                                                                                                                                                    |                                                        | POST | Add post to timeline table                                   |
+|      /timeline/comment/upload/      | post_id, user_id, content                                                                                                                                                          |                                                        | POST | Add comment to database and to post                          |
 
 All requests should be sent in a JSON format. Optional parameters can be left blank Ex: {"Role" : ""}. Bolded Fields can be omitted entirely.
 
@@ -211,6 +236,9 @@ Specific apps, test suites, or even individual test cases can be run using the f
 |  test_find_all_restaurant    | restaurant | RestaurantTestCases | All restaurant documents are retrieved from database                                                                                                                                      | Frontend will is unable to display restaurant data                                                       |    High   |     High    |   High   |
 |  test_insert_restaurant      | restaurant | RestaurantTestCases | Given restaurant data, restaurant document is inserted into database representing said data                                                                                               | New restaurants cannot be added to the database                                                          |    High   |     High    |   High   |
 |  test_edit_restaurant        | restaurant | RestaurantTestCases | Given new restaurant data, restaurant document is updated to represent new data                                                                                                           | Restaurant data becomes static and cannot be changed by restaurant owner                                 |   Medium  |    Medium   |  Medium  |
+|  test_upload                 | timeline   | PostSuite           | Given post data, Post document is generated in the database                                                                                                                               | No Post can be created                                                                                   |   Medium  |     High    |  Medium  |
+|  test_upload_comment         | timeline   | CommentSuite        | Given Comment data, Comment document is generated in the database                                                                                                                         | No Comments can be created                                                                               |   Medium  |     High    |  Medium  |
+|  test_upload_post            | timeline   | CommentSuite        | Given Comment data, Comment document id is added to original post's comments                                                                                                              | No Comments can be viewed                                                                                |   Medium  |     High    |  Medium  |
 |  test_upload                 | cloud_storage | CloudStorageTestCases | File is uploaded to cloud, and correct path pointing to file is returned                                                                                                             | Images media cannot be changed                                                                           |   High    |     High    |   High   |
 |  test_delete                 | cloud_storage | CloudStorageTestCases | File is removed from the cloud                                                                                                                                                       | Images remain clogging the storage                                                                       |   Medium  |    Medium   |  Medium  |
 |  test_delete_default         | cloud_storage | CloudStorageTestCases | Files in default-buckets are not deleted                                                                                                                                             | Default images are deleted, affecting many users unwantingly                                             |   High    |     High    |   High   |

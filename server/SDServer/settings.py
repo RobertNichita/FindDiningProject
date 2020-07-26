@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'request_form',
     'jsonschema',
     'user',
-    'restaurant'
+    'restaurant',
+    'timeline'
 ]
 
 MIDDLEWARE = [
