@@ -38,6 +38,7 @@ def upload_post_page(request):
     return JsonResponse(model_to_dict(post))
 
 
+
 def upload_comment_page(request):
     """Upload post into post timeline post table"""
 

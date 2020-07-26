@@ -4,8 +4,7 @@ from bson import ObjectId
 from restaurant.cuisine_dict import load_dict
 from cloud_storage import cloud_controller
 from restaurant.enum import Prices, Categories
-
-
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Model for the Food Items on the Menu
@@ -195,13 +194,17 @@ class Restaurant(models.Model):
         :param restaurant_data: json data of restaurant
         :return: restaurant object representing sent data
         """
-        restaurant = cls(
-            **restaurant_data
-        )
-        restaurant.clean_fields()
-        restaurant.clean()
-        restaurant.save()
-        return restaurant
+        try:
+            cls.objects.get(email=restaurant_data['email'])
+            return None
+        except ObjectDoesNotExist:
+            restaurant = cls(
+                **restaurant_data
+            )
+            restaurant.clean_fields()
+            restaurant.clean()
+            restaurant.save()
+            return restaurant
 
     @classmethod
     def update_logo(cls, img, _id):
