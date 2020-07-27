@@ -24,7 +24,16 @@ class PostSuite(TestCase):
             'comments': [],
             'likes': [],
         }
-        d2 = TimelinePost.objects.create(**self.data2)
+        self.data3 = {
+            '_id': '444444444444444444444444',
+            'restaurant_id': '111111111111111111111111',
+            'user_id': '111111111111111111111111',
+            'content': 'Post3',
+            'comments': [],
+            'likes': [],
+        }
+        TimelinePost.objects.create(**self.data2)
+        TimelinePost.objects.create(**self.data3)
 
         ## test values for deletion testing
         self.deletepost = {
@@ -40,22 +49,22 @@ class PostSuite(TestCase):
             'restaurant_id': '0000000000000000000000',
             'user_id': '111111111111111111111111',
             'content': 'deletethispost',
-            'likes' : [],
-            'comments' : []
+            'likes': [],
+            'comments': []
         }
         self.relatedcomment = {
             '_id': '111111111111111111111222',
             'post_id': '121212121212121212121212',
             'user_id': '111111111111111111114444',
             'content': 'this post needs to be deleted',
-            'likes' : []
+            'likes': []
         }
         self.unrelatedcomment = {
             '_id': '111111111111111111111333',
             'post_id': '333333333333333333333333',
             'user_id': '111111111111111111115555',
             'content': 'this post needs to remain',
-            'likes' : []
+            'likes': []
         }
         ## test values for deletion testing
 
@@ -73,7 +82,6 @@ class PostSuite(TestCase):
             'comments': [],
         }
         self.assertDictEqual(actual, expected)
-    
 
     def testDelete(self):
         """
@@ -85,21 +93,25 @@ class PostSuite(TestCase):
         expected_deleted_post = self.deletepost.copy()
         expected_deleted_post['comments'] = [self.relatedcomment['_id']]
 
-        #setup post for deletion and dummy post for testing side effects named unrelated, both with comments
-        request_delete_post = RequestFactory().post('api/timeline/post/upload', self.deletepost, content_type='application/json')
+        # setup post for deletion and dummy post for testing side effects named unrelated, both with comments
+        request_delete_post = RequestFactory().post('api/timeline/post/upload', self.deletepost,
+                                                    content_type='application/json')
         upload_response = server.upload_post_page(request_delete_post)
-        
-        request_unrelated_post = RequestFactory().post('api/timeline/post/upload', self.unrelatedpost, content_type='application/json')
+
+        request_unrelated_post = RequestFactory().post('api/timeline/post/upload', self.unrelatedpost,
+                                                       content_type='application/json')
         unrelated_upload_response = server.upload_post_page(request_unrelated_post)
-        
-        request_related_comment = RequestFactory().post('api/timeline/comment/upload', self.relatedcomment, content_type='application/json')
+
+        request_related_comment = RequestFactory().post('api/timeline/comment/upload', self.relatedcomment,
+                                                        content_type='application/json')
         related_comment_upload = server.upload_comment_page(request_related_comment)
-        
-        request_unrelated_comment = RequestFactory().post('api/timeline/comment/upload', self.unrelatedcomment, content_type='application/json')
+
+        request_unrelated_comment = RequestFactory().post('api/timeline/comment/upload', self.unrelatedcomment,
+                                                          content_type='application/json')
         unrelated_comment_upload = server.upload_comment_page(request_unrelated_comment)
 
-        
-        request_deletion = RequestFactory().post('api/timeline/post/delete', {'post_id': self.deletepost['_id']}, content_type='application/json')
+        request_deletion = RequestFactory().post('api/timeline/post/delete', {'post_id': self.deletepost['_id']},
+                                                 content_type='application/json')
         deletion_response = server.delete_post_page(request_deletion)
         response_dict = json.loads(deletion_response.content)
         actual_deleted_comment_list = response_dict['comments']
@@ -107,13 +119,21 @@ class PostSuite(TestCase):
 
         self.assertListEqual(actual_deleted_comment_list, expected_deleted_comment_list)
         self.assertDictEqual(actual_deleted_post, expected_deleted_post)
-        
-
 
     def test_get_all_post(self):
         """ Test if all post documents are returned """
         request = RequestFactory().get('/api/timeline/post/get_all/')
         actual = json.loads(server.get_all_posts_page(request).content)['Posts']
+        for post in actual:
+            del post['Timestamp']
+        expected = [self.data2, self.data3]
+        self.assertListEqual(expected, actual)
+
+    def test_get_post_by_restaurant(self):
+        """ Test if all post documents for a restaurant are returned """
+        request = RequestFactory().get('/api/timeline/post/get_by_restaurant/',
+                                       {'restaurant_id': '000000000000000000000000'}, content_type='application/json')
+        actual = json.loads(server.get_post_by_restaurant_page(request).content)['Posts']
         for post in actual:
             del post['Timestamp']
         expected = [self.data2]
@@ -143,8 +163,6 @@ class CommentSuite(TestCase):
         })
         self.post2.comments = [self.comment._id]
         self.post2.save()
-
-
 
     def testUploadComment(self):
         """Test comment data is added to the database"""
@@ -184,7 +202,7 @@ class CommentSuite(TestCase):
         expected = []
         actual = TimelinePost.objects.get(_id=ObjectId(str(self.post2._id))).comments
         self.assertListEqual(expected, actual)
-        
+
     def testUploadPost(self):
         """Test comment id is added to post array"""
         request = RequestFactory().post('api/timeline/comment/upload/', {

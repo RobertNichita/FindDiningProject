@@ -48,39 +48,38 @@ def delete_post_page(request):
     they were before any deletions took place
     """
 
-    try: #validate request
-        validate(instance = request.body, schema = post_schema)
+    try:  # validate request
+        validate(instance=request.body, schema=post_schema)
     except jsonschema.exceptions.ValidationError:
         return HttpResponseBadRequest('Invalid request')
 
     body = json.loads(request.body)
 
-    try: #try to find the post
-        post = TimelinePost.objects.get(_id= body['post_id'])
+    try:  # try to find the post
+        post = TimelinePost.objects.get(_id=body['post_id'])
     except jsonschema.exceptions.ValidationError:
         return HttpResponseBadRequest('Invalid post_id')
     comment_response_list = []
 
-    #convert the postid to a string for JSON encoding
+    # convert the postid to a string for JSON encoding
     post._id = str(post._id)
-    #for the return value, copy the post in a dictionary
+    # for the return value, copy the post in a dictionary
     post_deleted = model_to_dict(post)
     post_deleted['comments'] = [str(comment) for comment in post.comments]
 
-    #for each comment
+    # for each comment
     for comment in post.comments:
-        #try to get the comment from the database
+        # try to get the comment from the database
         try:
-            comment_gotten = TimelineComment.objects.get(_id= ObjectId(comment))
+            comment_gotten = TimelineComment.objects.get(_id=ObjectId(comment))
         except:
             print("CommentID: " + comment + " missing from database")
         comment_gotten._id = str(comment_gotten._id)
         comment_response_list.append(model_to_dict(comment_gotten))
         comment_gotten.delete()
-    
-    post.delete()
-    return JsonResponse({'post' : post_deleted, 'comments' : comment_response_list})
 
+    post.delete()
+    return JsonResponse({'post': post_deleted, 'comments': comment_response_list})
 
 def get_all_posts_page(request):
     """ retrieve list of restaurants from database """
@@ -111,6 +110,11 @@ def upload_comment_page(request):
     comment._id = str(comment._id)
     return JsonResponse(model_to_dict(comment))
 
+
+def get_post_by_restaurant_page(request):
+    """Retrieve all posts from a restaurant"""
+    rest_id = request.GET.get('restaurant_id')
+    return JsonResponse(TimelinePost.get_by_restaurant(rest_id))
 
 def delete_comment_page(request):
     """ Deletes comment from database """
