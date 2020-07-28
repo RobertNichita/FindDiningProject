@@ -1,0 +1,52 @@
+<div class="post-card">
+  <div class="card post-content">
+    {{ post.content }}
+    <div class="text-right" style="margin-top: 20px;">
+      Posted on {{ post.Timestamp }} by
+      <b> {{ post.restaurant_name | titlecase }} </b>
+    </div>
+    <div *ngIf="role == 'RO'" class="text-right">
+      <button class="btn trashBtn"><fa-icon [icon]="faTrash"></fa-icon></button>
+    </div>
+  </div>
+
+  <div class="card comment-content">
+    <div class="comment">
+      <div class="col">
+        <div *ngFor="let comment of comments" class="row comment-group">
+          <img
+            src="{{ comment.user_pic }}"
+            class="user-img"
+            alt="name"
+            placement="top"
+            ngbTooltip="{{ comment.user_name }}"
+          />
+          <div class="user-comment">{{ comment.content }}</div>
+          <div
+            *ngIf="role == 'RO'"
+            class="text-right"
+            style="padding-top: 12px;"
+          >
+            <fa-icon [icon]="faTrash" class="comment-trash-icon"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="auth.loggedIn && id" class="comment">
+      <hr />
+      <div class="col">
+        <div class="row comment-group">
+          <img src="{{ currentUser.pic_url }}" class="user-img" alt="name" />
+          <input
+            type="text"
+            class="form-control user-input"
+            id="inputComment"
+            placeholder="Type your comment here..."
+            (keyup.enter)="addComment()"
+            [(ngModel)]="inputComment"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
