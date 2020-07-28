@@ -3,10 +3,8 @@
     {{ post.content }}
     <div class="text-right" style="margin-top: 20px;">
       Posted on {{ post.Timestamp }} by
+      <br />
       <b> {{ post.restaurant_name | titlecase }} </b>
-    </div>
-    <div *ngIf="role == 'RO'" class="text-right">
-      <button class="btn trashBtn"><fa-icon [icon]="faTrash"></fa-icon></button>
     </div>
   </div>
 
