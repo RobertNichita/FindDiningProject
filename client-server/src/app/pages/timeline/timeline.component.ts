@@ -23,6 +23,7 @@ export class TimelineComponent implements OnInit {
   postModalRef: any;
   deleteModalRef: any;
   deletePostId: string = '';
+  deletePostIndex: number;
 
   faPlus = faPlus;
   faTrash = faTrash;
@@ -78,8 +79,9 @@ export class TimelineComponent implements OnInit {
     this.postModalRef = this.postModalService.open(content, { size: 'lg' });
   }
 
-  openDeleteModal(content, id) {
+  openDeleteModal(content, id, index) {
     this.deletePostId = id;
+    this.deletePostIndex = index;
     this.deleteModalRef = this.deleteModalService.open(content, { size: 's' });
   }
 
@@ -93,18 +95,24 @@ export class TimelineComponent implements OnInit {
         content: this.content,
       };
 
-      this.timeline.createPost(postObj);
+      this.timeline.createPost(postObj).subscribe((data) => {
+        this.posts.push(data);
+        this.postModalRef.close();
+      });
+
       this.content = '';
-      this.loadTimeline(this.restaurantId);
-      this.postModalRef.close();
-      this.loadTimeline(this.restaurantId);
     }
   }
 
   deleteContent() {
     this.timeline.deletePost(this.deletePostId);
-    this.loadTimeline(this.restaurantId);
+
+    if (this.deletePostIndex > -1) {
+      this.posts.splice(this.deletePostIndex, 1);
+    }
+
+    this.deletePostId = '';
+    this.deletePostIndex = 0;
     this.deleteModalRef.close();
-    this.loadTimeline(this.restaurantId);
   }
 }
