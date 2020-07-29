@@ -40,6 +40,7 @@ import { MenuEditComponent } from './pages/menu-edit/menu-edit.component';
 import { TimelinePostComponent } from './components/timeline-post/timeline-post.component';
 import { TimelineComponent } from './pages/timeline/timeline.component';
 import { OwnerEditComponent } from './pages/owner-edit/owner-edit.component';
+import { RestaurantEditComponent } from './pages/restaurant-edit/restaurant-edit.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { OwnerEditComponent } from './pages/owner-edit/owner-edit.component';
     TimelinePostComponent,
     TimelineComponent,
     OwnerEditComponent,
+    RestaurantEditComponent,
   ],
   imports: [
     BrowserModule,
