@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'user',
     'restaurant',
     'timeline',
+    'order',
     'utils'
 ]
 

@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('restaurant/', include('restaurant.urls')),
     path('timeline/', include('timeline.urls')),
+    path('order/', include('order.urls')),
     path('cloud_storage/', include('cloud_storage.urls'))
 ]
 
