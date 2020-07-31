@@ -16,7 +16,6 @@ import dishes from '../../../assets/data/dishes.json';
 import stories from '../../../assets/data/stories.json';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from 'src/app/service/data.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from '../../service/login.service';
 
@@ -26,9 +25,8 @@ import { LoginService } from '../../service/login.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  restaurantId: string = '';
-  userId: string = '';
   role: string = '';
+  userId: string = '';
   userData: any;
 
   isShow: boolean;
@@ -81,7 +79,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    private data: DataService,
     private route: ActivatedRoute,
     private modalService: NgbModal,
     private router: Router,
@@ -92,14 +89,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.role = this.route.snapshot.queryParams.role;
-    this.userId = this.route.snapshot.queryParams.userId;
-    this.restaurantId = this.route.snapshot.queryParams.restaurantId;
-
-    this.data.changeRestaurantId(this.restaurantId);
-    this.data.changeUserId(this.userId);
-    this.data.changeRole(this.role);
-
     AOS.init({
       delay: 300,
       duration: 1500,
@@ -107,7 +96,10 @@ export class HomeComponent implements OnInit {
       anchorPlacement: 'top-bottom',
     });
 
-    if (this.userId.length > 0) {
+    this.userId = sessionStorage.getItem('userId');
+    this.role = sessionStorage.getItem('role');
+
+    if (this.userId.length > 0 && this.role == 'BU') {
       this.loginService.getUser({ email: this.userId }).subscribe((data) => {
         this.userData = data;
         if (!data.birthday || !data.address || !data.phone) {
