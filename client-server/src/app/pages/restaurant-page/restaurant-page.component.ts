@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import {
   faMapMarkerAlt,
   faPhone,
@@ -10,6 +11,7 @@ import { faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { RestaurantsService } from 'src/app/service/restaurants.service';
 import dishes from '../../../assets/data/dishes.json';
 import reviews from '../../../assets/data/reviews.json';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-restaurant-page',
@@ -20,6 +22,10 @@ export class RestaurantPageComponent implements OnInit {
   restaurantId: string = '';
   role: string = '';
   error: boolean = false;
+
+  headerModalRef: any;
+  uploadForm: FormGroup;
+  newImage: boolean = false;
 
   dishes: any[] = [];
   reviews: any[] = [];
@@ -51,7 +57,9 @@ export class RestaurantPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private restaurantsService: RestaurantsService
+    private restaurantsService: RestaurantsService,
+    private headerModalService: NgbModal,
+    private formBuilder: FormBuilder
   ) {
     this.dishes = dishes;
     this.reviews = reviews;
@@ -79,6 +87,10 @@ export class RestaurantPageComponent implements OnInit {
       .subscribe((data) => {
         this.restaurantMenu = data.Dishes;
       });
+
+    this.uploadForm = this.formBuilder.group({
+      file: [''],
+    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -117,5 +129,28 @@ export class RestaurantPageComponent implements OnInit {
 
   editRestaurant() {
     this.router.navigate(['/restaurant-edit']);
+  }
+
+  openEditHeaderModal(content) {
+    this.headerModalRef = this.headerModalService.open(content, { size: 's' });
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      this.newImage = true;
+      const file = event.target.files[0];
+      this.uploadForm.get('file').setValue(file);
+    }
+  }
+
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('file', this.uploadForm.get('file').value);
+    this.restaurantsService
+      .uploadRestaurantMedia(formData, this.restaurantId, 'cover')
+      .subscribe((data) => {});
+    this.newImage = false;
+    this.headerModalRef.close();
+    window.location.reload();
   }
 }
