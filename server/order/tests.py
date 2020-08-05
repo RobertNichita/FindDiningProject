@@ -11,13 +11,17 @@ import pytz
 from utils.stubs.test_helper import MockModule
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils import timezone
 from utils.stubs.datetime_stub import mockdatetime
+
 
 class CartTestCases(TestCase):
 
     def setUp(self):
         self.factory = RequestFactory()
-        self.c1 = Cart.objects.create(restaurant_id='222222222222222222222222', user_email='test2@mail.com', price=0)
+        self.c1 = Cart.objects.create(restaurant_id='222222222222222222222222', user_email='test2@mail.com', price="0.00")
+        self.c2 = Cart.objects.create(restaurant_id='222222222222222222222222', user_email='test3@mail.com', price="0.00", complete_tstmp = timezone.now())
+        self.c3 = Cart.objects.create(restaurant_id='222222222222222222222222', user_email='test2@mail.com', price="0.00", send_tstmp = timezone.now())
         self.f1 = Food.objects.create(name="foodA", restaurant_id='mock',
                                       description="chicken", picture="picA",
                                       price='10.99')
@@ -55,7 +59,55 @@ class CartTestCases(TestCase):
         expected = {"_id": str(Item.objects.get(cart_id=str(self.c1._id))._id),
                     "cart_id": str(self.c1._id), "food_id": str(self.f1._id), "count": 2}
         self.assertDictEqual(actual, expected)
+    
+    def test_get_users_cart_unsent(self):
+        """
+        Test if users open carts are returned properly
+        """
+        req = self.factory.get('/api/order/cart/user_carts/', {'user_email': 'test2@mail.com', 'is_sent' : False})
+        response = view_response.get_users_cart_page(req)
+        expected = json.loads(json.dumps(model_to_dict(self.c1), cls=BSONEncoder))
+        actual = json.loads(response.content)['carts'][0]
+        self.assertDictEqual(expected, actual)
 
+    def test_get_users_cart_sent(self):
+        """
+        Test if users sent carts are returned properly
+        """
+        req = self.factory.get('/api/order/cart/user_carts/', {'user_email': 'test2@mail.com', 'is_sent' : True})
+        response = view_response.get_users_cart_page(req)
+        expected = json.loads(json.dumps(model_to_dict(self.c3), cls=BSONEncoder))
+        actual = json.loads(response.content)['carts'][0]
+        self.assertDictEqual(expected, actual)
+
+    def test_get_closed_cart(self):
+        """Test if users with only closed carts get the correct error"""
+        req = self.factory.get('/api/order/cart/user_carts/', {'user_email': 'test3@mail.com', 'is_sent': False})
+        response = view_response.get_users_cart_page(req)
+        expected = {'NoCart': 'Closed'}
+        actual = json.loads(response.content)
+        self.assertDictEqual(expected, actual)
+
+    def test_get_no_cart(self):
+        """Test if users with no carts created get the correct error"""
+        req = self.factory.get('/api/order/cart/user_carts/', {'user_email': 'test1@mail.com', 'is_sent': False})
+        response = view_response.get_users_cart_page(req)
+        expected = {'NoCart': 'Closed'}
+        actual = json.loads(response.content)
+        self.assertDictEqual(expected, actual)
+
+    def test_get_restaurant_carts(self):
+        req = self.factory.get('/api/order/cart/restaurant_carts/', {'restaurant_id': '222222222222222222222222'})
+        response = view_response.get_restaurant_carts_page(req)
+        expected = {
+        'carts': 
+         [
+            json.loads(json.dumps(model_to_dict(self.c3), cls=BSONEncoder))
+         ]
+        }
+        actual = json.loads(response.content)
+        
+        self.assertDictEqual(expected, actual)
 
 class CartStatusCases(TestCase):
 
