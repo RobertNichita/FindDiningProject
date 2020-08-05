@@ -140,6 +140,12 @@ def edit_item_amount_page(request):
             responsemessage[entry] = model_to_dict(responsemessage[entry])
     return JsonResponse(json.loads(json.dumps(responsemessage, cls=BSONEncoder)))
 
+def get_items_by_cart_page(request):
+    """Get all items associated with a given cart"""
+    items = Item.get_items_by_cart(request.GET['cart_id'])
+    items = [model_to_dict(item) for item in items]
+    return JsonResponse(json.loads(json.dumps({'items': items}, cls=BSONEncoder)))
+
 
 def cancel_cart_page(request):
     """ Deletes cart and all items in cart """
@@ -147,3 +153,4 @@ def cancel_cart_page(request):
     body = json.loads(request.body)
     Cart.objects.get(_id=ObjectId(body['_id'])).cancel_cart()
     return HttpResponse('success')
+
