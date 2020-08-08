@@ -77,4 +77,33 @@ export class OrdersService {
     };
     return this.http.get(endpoint, { params: params });
   }
+
+  /*
+  @Input: A cart ID and a boolean for status
+  @Output: An observable
+
+  Updates the status of the cart
+  */
+  updateStatus(cartId, status): Observable<any> {
+    const endpoint = `${OrdersService.ORDER_ENDPOINT}/cart/update_status/`;
+    const obj = {
+      _id: cartId,
+      status: status,
+    };
+    return this.http.post<any>(endpoint, obj);
+  }
+
+  /*
+  @Input: A cart ID and a boolean for status
+  @Output: None
+
+  Updates the status of the cart
+  */
+  cancelCart(cartId): Observable<any> {
+    const endpoint = `${OrdersService.ORDER_ENDPOINT}/cart/cancel/`;
+    const obj = {
+      _id: cartId,
+    };
+    return this.http.post<any>(endpoint, obj);
+  }
 }
