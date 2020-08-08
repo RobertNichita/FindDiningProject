@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import orders from '../../../assets/data/orders.json';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RestaurantsService } from '../../service/restaurants.service';
+import { OrdersService } from '../../service/orders.service';
 
 @Component({
   selector: 'app-restuarant-dashboard',
@@ -9,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RestuarantDashboardComponent implements OnInit {
   restaurantId: string = '';
+  restaurantName: string = '';
   userId: string = '';
   role: string = '';
 
@@ -16,25 +18,14 @@ export class RestuarantDashboardComponent implements OnInit {
   in_progress: any[];
   complete: any[];
   orders: any[];
+  dishes: any[];
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-    this.orders = orders;
-    this.new_orders = [];
-    this.in_progress = [];
-    this.complete = [];
-    for (let i = 0; i < this.orders.length; i++) {
-      if (this.orders[i].AccDec_Timestamp === '') {
-        this.new_orders.push(this.orders[i]);
-      } else if (
-        this.orders[i].AccDec_Timestamp !== '' &&
-        this.orders[i].Complete_Timestamp === ''
-      ) {
-        this.in_progress.push(this.orders[i]);
-      } else {
-        this.complete.push(this.orders[i]);
-      }
-    }
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private restaurantsService: RestaurantsService,
+    private ordersService: OrdersService
+  ) {}
 
   ngOnInit(): void {
     this.restaurantId = sessionStorage.getItem('restaurantId');
@@ -42,5 +33,31 @@ export class RestuarantDashboardComponent implements OnInit {
       this.router.navigate(['']);
       alert('No matching restaurant found for this profile!');
     }
+    this.restaurantsService
+      .getRestaurant(this.restaurantId)
+      .subscribe((data) => {
+        this.restaurantName = data.name;
+      });
+    this.getRestaurantFood();
+    this.getOrders();
+  }
+
+  getOrders(): void {
+    this.orders = [];
+    this.new_orders = [];
+    this.in_progress = [];
+    this.complete = [];
+  }
+
+  getRestaurantFood(): void {
+    this.restaurantsService
+      .getRestaurantFood(this.restaurantId)
+      .subscribe((data) => {
+        this.dishes = data.Dishes;
+      });
+  }
+
+  viewAllOrders(): void {
+    this.router.navigate(['/all-orders']);
   }
 }
