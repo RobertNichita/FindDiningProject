@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { LoginService } from 'src/app/service/login.service';
-import cartItems from '../../../assets/data/cart.json';
 import { OrdersService } from 'src/app/service/orders.service';
 import { RestaurantsService } from 'src/app/service/restaurants.service';
 import { StaticSymbol } from '@angular/compiler';
