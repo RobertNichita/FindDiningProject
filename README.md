@@ -76,7 +76,7 @@ Setup mongodb database in the cloud with
 https://docs.atlas.mongodb.com/getting-started/
 
 ```
-Then setup database engine in django with your database credentials server/SDServer/settings.py
+Then setup database engine in django with your database credentials in server/SDServer/settings.py
 ```
 DATABASES = {
     'default': {
