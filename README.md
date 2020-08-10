@@ -8,7 +8,7 @@
 
 The deliverable files are in the respective deliverable folders numbered. The snapshots of the burndown chart and task board are in the **Burndown and Task Board** folder.
 
-The testing documentations are under `sd-site/docs/backend/backend.md`. Link to file [here](https://github.com/CSCC01/team_08-project/blob/master/sd-site/docs/backend/backend.md).
+The testing documentations are under `sd-site/docs/tests/back-tests.md` for backend and `sd-site/docs/tests/front-tests.md` for frontend. Link to files [here](https://github.com/CSCC01/team_08-project/tree/master/sd-site/docs/tests).
 
 
 ## Project Website
@@ -17,7 +17,7 @@ The project website is best run on certain browers due to SSL security issues.
 
 **Windows:** Chrome, Firefox
 
-**Mac:** Firefox
+**Mac:** Firefox, Chrome (will need to type `thisisunsafe` to pass the security)
 
 ## Development
 
@@ -28,24 +28,19 @@ Docker is installed and running.
 
 ### To launch the Angular Pageserver:
 
-*In development configuration:*
 ```
-cd client-server && docker-compose -f docker-compose.yml up -d client-dev
+cd client-server && npm install && ng serve
 ```
-
-*In production configuration:*
-```
-cd client-server && docker-compose -f docker-compose.yml up -d client-prod
-```
+You will only have to do `npm install` if it is your first time running it or new packages were added.
 
 ### To launch the Django Server:
 ```
-cd server && docker-compose -f docker-compose.yml up -d server
+cd server && docker build -f Dockerfile-dev -t server . && docker run -p 8000:8000 server
 ```
 
 ## Documentation
 
-`sd-site` contains the Docusaurus for documentation of backend and frontend components. 
+`sd-site` contains the Docusaurus for documentation of backend and frontend components and logistics.
 
 #### Prerequisites
 
@@ -53,8 +48,9 @@ cd server && docker-compose -f docker-compose.yml up -d server
 
 ### To launch the documentation site:
 ```
-cd sd-site && yarn start
+cd sd-site && yarn install && yarn start
 ```
+You will only have to do `yarn install` if it is your first time running it.
 
 ## Deployment Instructions:
 
