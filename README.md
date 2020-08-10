@@ -8,6 +8,17 @@
 
 The deliverable files are in the respective deliverable folders numbered. The snapshots of the burndown chart and task board are in the **Burndown and Task Board** folder.
 
+The testing documentations are under `sd-site/docs/backend/backend.md`. Link to file [here](https://github.com/CSCC01/team_08-project/blob/master/sd-site/docs/backend/backend.md).
+
+
+## Project Website
+
+The project website is best run on certain browers due to SSL security issues.
+
+**Windows:** Chrome, Firefox
+
+**Mac:** Firefox
+
 ## Development
 
 `client-server` contains the Angular pageserver (frontend) and `server` contains the Django server for endpoints and database connection to MongoDB (backend).
@@ -159,4 +170,3 @@ docker network create scdine
 docker run -d -p 8000:8000 --name django --network scdine dockerhubusername/dockerhubrepositoryname:latest-server
 docker run -d -p 443:443 -p 80:80 --name client --network scdine dockerhubusername/dockerhubrepositoryname:latest-client
 ```
-
