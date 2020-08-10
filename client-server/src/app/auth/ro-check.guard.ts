@@ -6,13 +6,12 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ROCheckGuard implements CanActivate {
-  constructor(private auth: AuthService) {}
+  constructor() {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -22,6 +21,6 @@ export class ROCheckGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.auth.role == 'RO';
+    return sessionStorage.getItem('role') == 'RO';
   }
 }

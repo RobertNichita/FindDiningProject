@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class RestaurantsService {
   private static readonly RO_ENDPOINT = `${environment.endpoint_url}/restaurant`;
+  private static readonly UPLOAD_ENDPOINT = `${environment.endpoint_url}/cloud_storage/upload/`;
   constructor(private http: HttpClient) {}
 
   /*
@@ -77,8 +78,68 @@ export class RestaurantsService {
 
   Creates an entry for the dish for a particular restuarant using its id.
   */
-  createDish(dishInfo): void {
+  createDish(dishInfo): Observable<any> {
     const endpoint = `${RestaurantsService.RO_ENDPOINT}/dish/insert/`;
+    return this.http.post<any>(endpoint, dishInfo);
+  }
+
+  /*
+  @Input: JSON object containing dish info
+  @Output: None
+
+  Creates an entry for the dish for a particular restuarant using its id.
+  */
+  editDish(dishInfo): Observable<any> {
+    const endpoint = `${RestaurantsService.RO_ENDPOINT}/dish/edit/`;
+    return this.http.post<any>(endpoint, dishInfo);
+  }
+
+  /*
+  @Input: JSON object containing dish name and restaurant id
+  @Output: None
+
+  Delete dish using dish name and restaurant id.
+  */
+  deleteDish(dishInfo): void {
+    const endpoint = `${RestaurantsService.RO_ENDPOINT}/dish/delete/`;
     this.http.post<any>(endpoint, dishInfo).subscribe((data) => {});
+  }
+
+  /*
+  @Input: JSON object containing restaurant info (must have ID)
+  @Output: None
+
+  Edits information for a restuarant using its id.
+  */
+  editRestaurant(restInfo): Observable<any> {
+    const endpoint = `${RestaurantsService.RO_ENDPOINT}/edit/`;
+    return this.http.post<any>(endpoint, restInfo);
+  }
+
+  uploadRestaurantMedia(formData, id, location): Observable<any> {
+    const endpoint = `${RestaurantsService.UPLOAD_ENDPOINT}`;
+
+    if (location == 'cover') {
+      formData.append('save_location', 'cover_photo_url');
+    } else if (location == 'logo') {
+      formData.append('save_location', 'logo_url');
+    } else if (location == 'owner') {
+      formData.append('save_location', 'owner_picture_url');
+    }
+
+    formData.append('app', 'restaurant_RestaurantMedia');
+    formData.append('_id', id);
+
+    return this.http.post<any>(endpoint, formData);
+  }
+
+  uploadFoodMedia(formData, id): Observable<any> {
+    const endpoint = `${RestaurantsService.UPLOAD_ENDPOINT}`;
+
+    formData.append('save_location', 'picture');
+    formData.append('app', 'restaurant_FoodMedia');
+    formData.append('_id', id);
+
+    return this.http.post<any>(endpoint, formData);
   }
 }

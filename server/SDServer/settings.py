@@ -40,9 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reset_migrations',
+    'cloud_storage',
+    'request_form',
     'jsonschema',
     'user',
-    'restaurant'
+    'restaurant',
+    'timeline',
+    'order',
+    'utils',  
+    'review',
+    'geo'
 ]
 
 MIDDLEWARE = [

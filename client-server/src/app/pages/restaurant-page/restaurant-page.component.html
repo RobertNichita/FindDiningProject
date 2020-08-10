@@ -1,9 +1,72 @@
+<div *ngIf="error">
+  <app-page-error></app-page-error>
+</div>
+
 <div *ngIf="restaurantDetails">
-  <img
-    src="{{ restaurantDetails.cover_photo_url }}"
-    alt="header"
-    class="header-img"
-  />
+  <div class="text-right">
+    <img
+      src="{{ restaurantDetails.cover_photo_url }}"
+      alt="header"
+      class="header-img"
+    />
+    <button
+      *ngIf="role == 'RO'"
+      class="btn editRestaurant"
+      (click)="editRestaurant()"
+      placement="top" ngbTooltip="Update Restaurant Info"
+    >
+      <fa-icon [icon]="faEdit"></fa-icon>
+      <b>EDIT RESTAURANT DETAILS</b>
+    </button>
+    <button
+      *ngIf="role == 'RO'"
+      class="btn editHeader"
+      (click)="openEditHeaderModal(headerModal)"
+      placement="bottom" ngbTooltip="Update your Header"
+    >
+      <fa-icon [icon]="faEdit"></fa-icon>
+      <b>EDIT HEADER</b>
+    </button>
+  </div>
+
+  <ng-template #headerModal let-modal>
+    <div class="modal-header">
+      <h2 class="modal-title" id="modal-basic-title">Edit Header Image</h2>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="cover">Add cover image:</label>
+            <input
+              type="file"
+              name="cover"
+              id="cover"
+              (change)="onFileSelect($event)"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div class="text-right">
+        <button class="btn saveBtn skip" (click)="modal.dismiss('Cross click')">
+          CANCEL
+        </button>
+        <button class="btn saveBtn" type="submit" (click)="onSubmit()">
+          CONFIRM
+        </button>
+      </div>
+    </div>
+  </ng-template>
 
   <div>
     <div class="card infoCard">
@@ -59,40 +122,106 @@
           <div class="media-icons">
             <fa-icon class="media-icon" [icon]="faHeartLine"></fa-icon>
             <a
+              *ngIf="
+                restaurantDetails.external_delivery_link != '' &&
+                restaurantDetails.external_delivery_link != ' '
+              "
+              href="{{ restaurantDetails.external_delivery_link }}"
+              target="_blank"
+            >
+              <fa-icon class="media-icon" [icon]="faShippingFast" placement="bottom" ngbTooltip="You can also order here"></fa-icon>
+            </a>
+            <a
               *ngIf="restaurantDetails.instagram != ''"
               href="{{ restaurantDetails.instagram }}"
               target="_blank"
             >
-              <fa-icon class="media-icon" [icon]="faInstagram"></fa-icon>
+              <fa-icon class="media-icon" [icon]="faInstagram" placement="bottom" ngbTooltip="View our Instagram"></fa-icon>
             </a>
             <a
               *ngIf="restaurantDetails.twitter != ''"
               href="{{ restaurantDetails.twitter }}"
               target="_blank"
             >
-              <fa-icon class="media-icon" [icon]="faTwitter"></fa-icon>
+              <fa-icon class="media-icon" [icon]="faTwitter" placement="bottom" ngbTooltip="View our Twitter"></fa-icon>
             </a>
           </div>
         </div>
       </div>
     </div>
 
-    <button class="updatesBtn"><b>VIEW UPDATES</b></button>
+    <button class="updatesBtn" (click)="viewTimeline()" placement="top" ngbTooltip="View our Timeline">
+      <b>VIEW UPDATES</b>
+    </button>
   </div>
 
   <div class="card bio-card">
     <p>{{ restaurantDetails.bio }}</p>
   </div>
 
+  <div style="text-align: center;">
+    <button *ngIf="role == 'RO'" class="btn editBtn" (click)="editMenu()" placement="bottom" ngbTooltip="Update Your Menu">
+      <fa-icon [icon]="faEdit"></fa-icon>
+      <b>EDIT MENU</b>
+    </button>
+  </div>
+
   <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Menu">
+    <mat-tab label="About Us">
+      <div style="text-align: center;">
+        <button *ngIf="role == 'RO'" class="btn editBtn" (click)="editOwner()" placement="bottom" ngbTooltip="Update Owner Info">
+          <fa-icon [icon]="faEdit"></fa-icon>
+          <b>EDIT OWNER</b>
+        </button>
+      </div>
+      <div class="row" style="margin: 0;">
+        <div class="form-group col-md-5">
+          <div *ngIf="restaurantDetails.owner_picture_url">
+            <img
+              class="owner-image"
+              src="{{ restaurantDetails.owner_picture_url }}"
+              alt="If you're seeing this, update your owner picture!"
+            />
+          </div>
+          <div *ngIf="!restaurantDetails.owner_picture_url">
+            <img
+              class="owner-image"
+              src="../../../assets/images/undraw_chef.png"
+              alt="If you're seeing this, update your owner picture!"
+            />
+          </div>
+        </div>
+        <div class="form-group col-md-7">
+          <div *ngIf="restaurantDetails.owner_name">
+            <h2 class="owner-name">{{ restaurantDetails.owner_name }}</h2>
+          </div>
+          <div *ngIf="!restaurantDetails.owner_name">
+            <h2 class="owner-name">Owner Name Placeholder</h2>
+          </div>
+          <div class="card story-card" *ngIf="restaurantDetails.owner_story">
+            <p>{{ restaurantDetails.owner_story }}</p>
+          </div>
+          <div class="card story-card" *ngIf="!restaurantDetails.owner_story">
+            <p>Owner Story Placeholder</p>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab *ngFor="let tab of categories" label="{{ tab | titlecase }}">
+      <br />
       <ngb-alert *ngIf="restaurantMenu.length == 0" [dismissible]="false">
         Menu currently empty! Please check again at a later time.
       </ngb-alert>
       <div class="col">
         <div class="row">
-          <div *ngFor="let dish of restaurantMenu" class="col-sm-4 d-flex">
-            <app-dish-card [dish]="dish"></app-dish-card>
+          <div *ngFor="let dish of restaurantMenu">
+            <div
+              *ngIf="dish.category.toLowerCase() == tab.toLowerCase()"
+              class="col-sm-4 d-flex"
+            >
+              <app-dish-card [dish]="dish"></app-dish-card>
+            </div>
           </div>
         </div>
       </div>
@@ -101,6 +230,15 @@
     <mat-tab disabled></mat-tab>
     <mat-tab label="Media"> Media </mat-tab>
     <mat-tab label="Reviews">
+      <div style="text-align: center;">
+        <button
+          *ngIf="role == 'BU'"
+          class="btn addReview"
+          (click)="openReviewModal(reviewContent)"
+        >
+          ADD REVIEW
+        </button>
+      </div>
       <ngb-alert *ngIf="reviews.length == 0" [dismissible]="false">
         No reviews at the moment. Be the first!
       </ngb-alert>
@@ -111,3 +249,17 @@
     </mat-tab>
   </mat-tab-group>
 </div>
+
+<ng-template #reviewContent let-modal>
+  <div class="modal-header">
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <app-review-card (review)="addReview($event)"></app-review-card>
+</ng-template>

@@ -1,0 +1,23 @@
+<div *ngIf="dish" class="card cardBox">
+  <div class="row">
+    <div class="col-md-4">
+      <img class="dish-photo" src="{{ dish.picture }}" />
+    </div>
+    <div class="info-body col-md-4">
+      <h3 class="info">{{ dish.name | titlecase }}</h3>
+      <p>${{ dish.price }}</p>
+      <p>{{ dish.restaurant | titlecase }}</p>
+    </div>
+    <div class="col-md-4">
+      <h3 class="total">Quantity</h3>
+      <div class="number-picker">
+        <ng-number-picker
+          [(value)]="value"
+          (valueChange)="changeQuantity()"
+        ></ng-number-picker>
+      </div>
+      <button class="btn" (click)="saveNewAmount()">SAVE</button>
+      <h3 class="total">Total: ${{ total }}</h3>
+    </div>
+  </div>
+</div>

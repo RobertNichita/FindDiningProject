@@ -1,11 +1,18 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  faMapMarkerAlt,
+  faPhone,
+  faEdit,
+  faShippingFast,
+} from '@fortawesome/free-solid-svg-icons';
 import { faHeart, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { RestaurantsService } from 'src/app/service/restaurants.service';
-import dishes from '../../../assets/data/dishes.json';
-import reviews from '../../../assets/data/reviews.json';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ReviewsService } from 'src/app/service/reviews.service';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-restaurant-page',
@@ -13,26 +20,21 @@ import reviews from '../../../assets/data/reviews.json';
   styleUrls: ['./restaurant-page.component.scss'],
 })
 export class RestaurantPageComponent implements OnInit {
-  @Input() userId: any; // pass the user id everywhere
+  restaurantId: string = '';
+  role: string = '';
+  userId: string = '';
+  error: boolean = false;
 
-  restaurantId: string;
+  headerModalRef: any;
+  reviewModalRef: any;
+  uploadForm: FormGroup;
+  newImage: boolean = false;
+
   dishes: any[] = [];
   reviews: any[] = [];
   restaurantDetails: any;
   restaurantMenu: any[] = [];
-
-  menu = {
-    category: [
-      {
-        name: 'Appetizer',
-        menu: dishes,
-      },
-      {
-        name: 'Dessert',
-        menu: dishes,
-      },
-    ],
-  };
+  categories: string[] = [];
 
   totalStars = 5;
   faMapMarker = faMapMarkerAlt;
@@ -41,24 +43,37 @@ export class RestaurantPageComponent implements OnInit {
   faHeartLine = faHeart;
   faTwitter = faTwitter;
   faInstagram = faInstagram;
+  faEdit = faEdit;
+  faShippingFast = faShippingFast;
 
   constructor(
     private route: ActivatedRoute,
-    private restaurantsService: RestaurantsService
-  ) {
-    this.dishes = dishes;
-    this.reviews = reviews;
-  }
+    private router: Router,
+    private restaurantsService: RestaurantsService,
+    private reviewService: ReviewsService,
+    private loginService: LoginService,
+    private headerModalService: NgbModal,
+    private reviewModalService: NgbModal,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.restaurantId = this.route.snapshot.queryParams.restaurantId;
+    this.restaurantId =
+      this.route.snapshot.queryParams.restaurantId ||
+      sessionStorage.getItem('restaurantId');
+    this.role = sessionStorage.getItem('role');
+    this.userId = sessionStorage.getItem('userId');
 
     // generate restaurant page
-    this.restaurantsService
-      .getRestaurant(this.restaurantId)
-      .subscribe((data) => {
+    this.restaurantsService.getRestaurant(this.restaurantId).subscribe(
+      (data) => {
         this.restaurantDetails = data;
-      });
+        this.categories = data.categories;
+      },
+      (error) => {
+        this.error = true;
+      }
+    );
 
     // generate restaurant menu
     this.restaurantsService
@@ -66,6 +81,13 @@ export class RestaurantPageComponent implements OnInit {
       .subscribe((data) => {
         this.restaurantMenu = data.Dishes;
       });
+
+    this.uploadForm = this.formBuilder.group({
+      file: [''],
+    });
+
+    // generate restaurant reviews
+    this.getReview();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -82,6 +104,86 @@ export class RestaurantPageComponent implements OnInit {
       el1.classList.add('col-md-7');
       el2.classList.add('col-md-5');
       el3.classList.add('row');
+    }
+  }
+
+  viewTimeline() {
+    this.router.navigate(['/timeline'], {
+      queryParams: {
+        restaurantId: this.restaurantId,
+        updates: true,
+      },
+    });
+  }
+
+  editMenu() {
+    this.router.navigate(['/menu-edit']);
+  }
+
+  editOwner() {
+    this.router.navigate(['/owner-edit']);
+  }
+
+  editRestaurant() {
+    this.router.navigate(['/restaurant-edit']);
+  }
+
+  openEditHeaderModal(content) {
+    this.headerModalRef = this.headerModalService.open(content, { size: 's' });
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      this.newImage = true;
+      const file = event.target.files[0];
+      this.uploadForm.get('file').setValue(file);
+    }
+  }
+
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('file', this.uploadForm.get('file').value);
+    this.restaurantsService
+      .uploadRestaurantMedia(formData, this.restaurantId, 'cover')
+      .subscribe((data) => {
+        this.newImage = false;
+        window.location.reload();
+      });
+    this.headerModalRef.close();
+  }
+
+  openReviewModal(content) {
+    this.reviewModalRef = this.reviewModalService.open(content, { size: 'm' });
+  }
+
+  addReview(review) {
+    review.restaurant_id = this.restaurantId;
+    review.user_email = this.userId;
+    this.reviewService.insertReview(review).subscribe((data) => {});
+    this.reviewModalRef.close();
+    setTimeout(function () {
+      window.location.reload();
+    }, 100);
+  }
+
+  getReview() {
+    this.reviews = [];
+    this.reviewService
+      .getReviewbyRestaurant(this.restaurantId)
+      .subscribe((data) => {
+        this.reviews = data.Reviews;
+        this.getReviewerInfo();
+      });
+  }
+
+  getReviewerInfo() {
+    for (let i = 0; i < this.reviews.length; i++) {
+      this.loginService
+        .getUser({ email: this.reviews[i].user_email })
+        .subscribe((data) => {
+          this.reviews[i].reviewer = data.name;
+          this.reviews[i].reviewer_image = data.picture;
+        });
     }
   }
 }

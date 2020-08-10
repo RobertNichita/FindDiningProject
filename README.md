@@ -19,12 +19,6 @@ The project website is best run on certain browers due to SSL security issues.
 
 **Mac:** Firefox
 
-
-## Deliverable 4 Specifics
-
-When trying to set up a restaurant, please input a URL for Twitter and Instagram despite it not being indicated so on the UI.
-
-
 ## Development
 
 `client-server` contains the Angular pageserver (frontend) and `server` contains the Django server for endpoints and database connection to MongoDB (backend).
@@ -86,6 +80,26 @@ HTTP from all sources
 HTTPS from all sources
 NFS from the default security group
 if SSH is not already present allow it from all sources
+
+### Setup Mongodb database
+Setup mongodb database in the cloud with
+```
+https://docs.atlas.mongodb.com/getting-started/
+
+```
+Then setup database engine in django with your database credentials in server/SDServer/settings.py
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': '<dbname>',
+        'HOST': <mongodb connection string>,
+        'USER': '<dbuser>',
+        'PASSWORD': '<password for dbuser>'
+    }
+}
+```
+
 
 ### Whitelist the IP of the aws instance on mongodb atlas
     https://docs.atlas.mongodb.com/security-whitelist/
@@ -156,4 +170,3 @@ docker network create scdine
 docker run -d -p 8000:8000 --name django --network scdine dockerhubusername/dockerhubrepositoryname:latest-server
 docker run -d -p 443:443 -p 80:80 --name client --network scdine dockerhubusername/dockerhubrepositoryname:latest-client
 ```
-

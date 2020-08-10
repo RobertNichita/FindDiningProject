@@ -27,7 +27,7 @@ class Command(BaseCommand):
         seed.add_randomizer("email",        lambda fake:fake.email(), gen_dict)
         seed.add_randomizer("city",         lambda fake:fake.city(), gen_dict)
         seed.add_randomizer("cuisine",      lambda fake:fake.random_element(self.cuisine_dictionary), gen_dict)
-        seed.add_randomizer("pricepoint",   lambda fake:fake.random_element(elements = ('$','$$','$$$')), gen_dict)
+        seed.add_randomizer("pricepoint",   lambda fake:fake.random_element(elements = ('Low','Medium','High')), gen_dict)
         seed.add_randomizer("bio",          lambda fake:fake.paragraph(), gen_dict)
         seed.add_randomizer("GEO_location", lambda fake:fake.location_on_land(), gen_dict)
 
@@ -49,8 +49,6 @@ class Command(BaseCommand):
                 'twitter' : " ",
                 'instagram' : " ",
                 'external_delivery_link' : " ",
-                'cover_photo_url' : 'https://www.nautilusplus.com/content/uploads/2016/08/Pexel_junk-food.jpeg',
-                'logo_url' : 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/diner-restaurant-logo-design-template-0899ae0c7e72cded1c0abc4fe2d76ae4_screen.jpg?ts=1561476509',
                 'rating' : "0.00"
             }
             rand_Document = seed.gen_rand_dict(gen_dict)

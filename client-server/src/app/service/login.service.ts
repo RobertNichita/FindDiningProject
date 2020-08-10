@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class LoginService {
   private static readonly AUTH_ENDPOINT = `${environment.endpoint_url}/user`;
+  private static readonly UPLOAD_ENDPOINT = `${environment.endpoint_url}/cloud_storage/upload/`;
 
   constructor(private http: HttpClient) {}
 
@@ -41,12 +42,22 @@ export class LoginService {
   @Output: Return all fields of a user
   Get all fields of a user
   */
-  getUserRole(userData): Observable<any> {
+  getUser(userData): Observable<any> {
     const endpoint = `${LoginService.AUTH_ENDPOINT}/data/`;
     const userObject = {
       email: userData.email,
     };
     return this.http.get(endpoint, { params: userObject });
+  }
+
+  /*
+  @Input: JSON object from auth
+  @Output: Return True if user is in database, False otherwise
+  Check if user exists in the database
+  */
+  editUser(userData): Observable<any> {
+    const endpoint = `${LoginService.AUTH_ENDPOINT}/edit/`;
+    return this.http.post<any>(endpoint, userData);
   }
 
   /*
@@ -60,5 +71,15 @@ export class LoginService {
       email: userData.email,
     };
     return this.http.get(endpoint, { params: userObject });
+  }
+
+  uploadUserMedia(formData, id): Observable<any> {
+    const endpoint = `${LoginService.UPLOAD_ENDPOINT}`;
+
+    formData.append('save_location', 'picture');
+    formData.append('app', 'user_SDUserMedia');
+    formData.append('email', id);
+
+    return this.http.post<any>(endpoint, formData);
   }
 }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -17,6 +17,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NumberPickerModule } from 'ng-number-picker';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,21 @@ import { RestuarantDashboardComponent } from './pages/restuarant-dashboard/restu
 import { RestaurantSetupComponent } from './pages/restaurant-setup/restaurant-setup.component';
 import { OwnerSetupComponent } from './pages/owner-setup/owner-setup.component';
 import { MenuSetupComponent } from './pages/menu-setup/menu-setup.component';
+import { MenuEditComponent } from './pages/menu-edit/menu-edit.component';
+import { TimelinePostComponent } from './components/timeline-post/timeline-post.component';
+import { TimelineComponent } from './pages/timeline/timeline.component';
+import { OwnerEditComponent } from './pages/owner-edit/owner-edit.component';
+import { RestaurantEditComponent } from './pages/restaurant-edit/restaurant-edit.component';
+import { MapComponent } from './components/map/map.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { PageErrorComponent } from './components/page-error/page-error.component';
+import { CartCardComponent } from './components/cart-card/cart-card.component';
+import { FavouritesComponent } from './pages/favourites/favourites.component';
+import { AllOwnersComponent } from './pages/all-owners/all-owners.component';
+import { DynamicLabelComponent } from './components/dynamic-label/dynamic-label.component';
+import { AllOrdersComponent } from './pages/all-orders/all-orders.component';
+import { AllOrderCardComponent } from './components/all-order-card/all-order-card.component';
+import { AllTransactionsComponent } from './pages/all-transactions/all-transactions.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +74,21 @@ import { MenuSetupComponent } from './pages/menu-setup/menu-setup.component';
     RestaurantSetupComponent,
     OwnerSetupComponent,
     MenuSetupComponent,
+    MenuEditComponent,
+    TimelinePostComponent,
+    TimelineComponent,
+    OwnerEditComponent,
+    RestaurantEditComponent,
+    MapComponent,
+    CheckoutComponent,
+    CartCardComponent,
+    PageErrorComponent,
+    FavouritesComponent,
+    AllOwnersComponent,
+    DynamicLabelComponent,
+    AllOrdersComponent,
+    AllOrderCardComponent,
+    AllTransactionsComponent
   ],
   imports: [
     BrowserModule,
@@ -65,12 +96,14 @@ import { MenuSetupComponent } from './pages/menu-setup/menu-setup.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     RatingModule,
     CarouselModule.forRoot(),
     MatTabsModule,
     NumberPickerModule,
     NgbModule,
+    NgHttpLoaderModule.forRoot(),
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],

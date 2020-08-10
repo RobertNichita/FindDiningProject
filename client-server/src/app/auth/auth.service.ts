@@ -11,6 +11,7 @@ import {
 } from 'rxjs';
 import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { LoginService } from '../service/login.service';
 
 @Injectable({
@@ -20,8 +21,8 @@ export class AuthService {
   // Create an observable of Auth0 instance of client
   auth0Client$ = (from(
     createAuth0Client({
-      domain: 'dev-9kghct0f.us.auth0.com',
-      client_id: 'LbgoI3tmAyYueLtWm8ZY1WSGeZap6a52',
+      domain: environment.auth0.domain,
+      client_id: environment.auth0.client_id,
       redirect_uri: `${window.location.origin}`,
     })
   ) as Observable<Auth0Client>).pipe(
@@ -45,6 +46,8 @@ export class AuthService {
   // Create a local property for login status
   loggedIn: boolean = null;
   role: string = '';
+  userId: string = '';
+  restaurantId: string = '';
 
   constructor(private router: Router, private loginService: LoginService) {
     // On initial load, check authentication state with authorization server
@@ -115,20 +118,37 @@ export class AuthService {
       // Subscribe to authentication completion observable
       // Response will be an array of user and login status
       authComplete$.subscribe(([user, loggedIn]) => {
-        // Redirect to target route after callback processing
-        this.router.navigate([targetRoute]);
         // Add resulting new user to database
         this.loginService.checkUserExists(user).subscribe((bool) => {
           if (bool.exists) {
-            this.loginService.getUserRole(user).subscribe((data) => {
+            this.loginService.getUser(user).subscribe((data) => {
               this.role = data.role;
+              this.userId = data.email;
+              if (data.role == 'RO') {
+                this.restaurantId = data.restaurant_id;
+              }
+
+              sessionStorage.setItem('role', this.role);
+              sessionStorage.setItem('restaurantId', this.restaurantId);
+              sessionStorage.setItem('userId', this.userId);
+              sessionStorage.setItem('userAddress', data.address);
             });
           } else {
             user.role = 'BU';
             user.restaurant_id = '';
             this.loginService.addNewUser(user);
             this.role = 'BU';
+
+            sessionStorage.setItem('role', this.role);
+            sessionStorage.setItem('userId', user.email);
           }
+
+          // Redirect to target route after callback processing
+          this.router.navigate([targetRoute]).then(() => {
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          });
         });
       });
     }
@@ -139,7 +159,7 @@ export class AuthService {
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log out
       client.logout({
-        client_id: 'LbgoI3tmAyYueLtWm8ZY1WSGeZap6a52',
+        client_id: environment.auth0.client_id,
         returnTo: `${window.location.origin}`,
       });
     });
