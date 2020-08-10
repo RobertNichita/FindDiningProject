@@ -35,5 +35,3 @@ def insert_review_page(request):
 def get_restaurant_reviews_page(request):
     """ Get list of reviews from a restaurant from the database """
     return JsonResponse(Review.get_by_restaurant(request.GET.get('restaurant_id')))
-
-
