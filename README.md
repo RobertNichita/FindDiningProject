@@ -70,6 +70,26 @@ HTTPS from all sources
 NFS from the default security group
 if SSH is not already present allow it from all sources
 
+### Setup Mongodb database
+Setup mongodb database in the cloud with
+```
+https://docs.atlas.mongodb.com/getting-started/
+
+```
+Then setup database engine in django with your database credentials server/SDServer/settings.py
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': '<dbname>',
+        'HOST': <mongodb connection string>,
+        'USER': '<dbuser>',
+        'PASSWORD': '<password for dbuser>'
+    }
+}
+```
+
+
 ### Whitelist the IP of the aws instance on mongodb atlas
     https://docs.atlas.mongodb.com/security-whitelist/
 
